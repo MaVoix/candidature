@@ -1,0 +1,3 @@
+<?php
+
+$aDataScript["name"]="world";

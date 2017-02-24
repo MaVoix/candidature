@@ -1,0 +1,5 @@
+DirectoryIndex app.php
+
+Options +FollowSymlinks
+RewriteEngine On
+RewriteRule ^(?!dbdump|assets|css|js|fonts|data)(.*)/(.*)\.(.*)$ /app.php?area=$1&page=$2&format=$3&%{QUERY_STRING} [L]
