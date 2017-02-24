@@ -3,7 +3,7 @@
 /ext/twig/autom4te.cache/
 /phpunit.xml
 /web/maintenance.php
-/config.local.php
+/web/config.local.php
 /vendor
 
 # OS generated files #
