@@ -8,6 +8,12 @@ $_CONFIG["version-css"]                     = "1"; //var to force browser cache 
 $_CONFIG["version-js"]                      = "1"; //var to force browser cache reload JS, use : strtotime("now") for always reload
 $_CONFIG["urlSite"]                         = "http://candidature.mavoix.info"; //url site without "/" at the end
 
+// mysql
+$_CONFIG["bdd-serveur"]                     = "localhost"; //server mysql database
+$_CONFIG["bdd-login"]                       = "login"; //login mysql database
+$_CONFIG["bdd-pass"]                        = "pass"; //pass mysql database
+$_CONFIG["bdd-base"]                        = "base"; //database name
+
 // MAIN
 $_CONFIG["idSite"]                          = "appelcandidature"; //for unique session var prefix
 $_CONFIG["types"]			                = "visitor|admin>visitor"; //set hierarchy of user type ex: "type1|type2>type1|type3>type1|admin|type3>type2>type1"
