@@ -24,10 +24,12 @@ if($bMaintenance){
 
 
     //class loader
+    require_once '../class/Liste.class.php';
     require_once '../class/Navigate.class.php';
     require_once '../class/TwigExtension.class.php';
     require_once '../class/TwigExtensionFilter.class.php';
     require_once '../class/User.class.php';
+    require_once '../class/UserListe.class.php';
 
     //service loader
     require_once '../services/App.class.php';

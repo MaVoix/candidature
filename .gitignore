@@ -5,6 +5,7 @@
 /web/maintenance.php
 /web/config.php
 /vendor
+/web/tool
 
 # OS generated files #
 ######################

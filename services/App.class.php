@@ -54,11 +54,11 @@ class App
 
     private static function init_user(){
 
-        $oUser=new User();
-        if(SessionService::get("user-type")=="admin"){
-            $oUser->setLogin(SessionService::get("user-login"));
-            $oUser->setType("admin");
+        if(SessionService::get("user-id")){
+            $oUser=new User(array("id"=>SessionService::get("user-id")));
+            $oUser->hydrateFromBDD(array('*'));
         }else{
+            $oUser=new User();
             $oUser->setType("visitor");
         }
         return $oUser;

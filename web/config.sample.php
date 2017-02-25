@@ -20,5 +20,4 @@ $_CONFIG["types"]			                = "visitor|admin>visitor"; //set hierarchy o
 $_CONFIG["area-default"]                    = array("visitor"=>"candidature","admin"=>"home"); //dir default for each type user
 $_CONFIG["page-default"]                    = array("visitor"=>"list","admin"=>"home"); //page default for each type user
 $_CONFIG["format-default"]                  = "html"; //format default (html/json/xml)
-$_CONFIG["admin-account"]                   = array("admin"=>"admin"); //array of login/pass for admin
 

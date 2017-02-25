@@ -31,27 +31,38 @@ if (!isset($_POST["pass"]) || $_POST["pass"] == "") {
     array_push($aResponse["required"], array("field" => "pass"));
 }
 if($nError==0) {
-    $_POST["login"]=trim($_POST["login"]);
-    $_POST["pass"]=trim($_POST["pass"]);
 
-    $aLogins = array_keys(ConfigService::get("admin-account"));
-    if (in_array($_POST["login"],$aLogins)){
-        if(ConfigService::get("admin-account")[$_POST["login"]]==$_POST["pass"]){
-            $oMe->setLogin($_POST["login"]);
-            $oMe->setType("admin");
+    //encode PASS
+    $sPassword=User::encodePassword($_POST["pass"]);
 
-            SessionService::set("user-login",$_POST["login"]);
-            SessionService::set("user-type","admin");
+    //CONNEXION
+    $oListeUser = new UserListe();
+    $oListeUser-> applyRules4Connexion($_POST["login"],  $sPassword);
+    $aUsers = $oListeUser->getPage();
+   if(count($aUsers)!=1){
+       $nError++;
+   }else{
+       $aUser=$aUsers[0];
+       if($aUser["login"]==$_POST["login"]  &&  $aUser["pass"]==$sPassword ){
+           $oMe->setLogin($_POST["login"]);
+           $oMe->setType("admin");
 
-            $aResponse["redirect"] = "/candidature/list.html";
-            $aResponse["durationMessage"] = "2000";
-            $aResponse["durationRedirect"] = "2000";
-            $aResponse["durationFade"] = "10000";
-            $aResponse["message"]["title"] = "";
-            $aResponse["message"]["type"] = "success";
-            $aResponse["message"]["text"] = "Connexion réussie !";
-        }
-    }
+           SessionService::set("user-id",$aUser["id"]);
+
+           $aResponse["redirect"] = "/candidature/list.html";
+           $aResponse["durationMessage"] = "2000";
+           $aResponse["durationRedirect"] = "2000";
+           $aResponse["durationFade"] = "10000";
+           $aResponse["message"]["title"] = "";
+           $aResponse["message"]["type"] = "success";
+           $aResponse["message"]["text"] = "Connexion réussie !";
+
+       }else{
+           $nError++;
+       }
+
+   }
+
 }
 
 

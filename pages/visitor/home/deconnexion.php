@@ -5,8 +5,8 @@ $aResponse = array();
 $aResponse["type"] = "message";
 
 
-SessionService::set("user-login","");
-SessionService::set("user-type","visitor");
+
+SessionService::set("user-id",null);
 
 $aResponse["redirect"] = "/candidature/form.html";
 $aResponse["durationMessage"] = "2000";
