@@ -82,8 +82,8 @@
                             <div class="drop-zone" style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}" ></div>
                             <div class="input-group image-preview">
                                 <input type="file" accept="image/jpeg" name="image" id="imagefile"/>
-                                <input type="hidden" id="imageData" name="imageData"/>
-                                <input type="hidden" id="imageFilename" name="imageFilename"/>
+                                <input type="hidden" id="imageData" name="imageData" value="{%  if candidature.path_pic!='' %}{{ base64image }}{% endif %}"/>
+                                <input type="hidden" id="imageFilename" name="imageFilename" value="{%  if candidature.path_pic!='' %}{{ nameimage}}{% endif %}"/>
                                 <input type="text" class="form-control image-preview-filename" disabled="disabled">
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default image-preview-clear"

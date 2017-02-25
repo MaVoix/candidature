@@ -15,6 +15,21 @@ $aResponse["required"] = array();
 
 $nError = 0;
 
+//check edit KEY
+$bEdit=false;
+$OldCandidature=new Candidature();
+if(isset($_POST["id"]) && isset($_POST["key"])){
+    $bEdit=true;
+    $oListeCandidature=new CandidatureListe();
+    $oListeCandidature->applyRules4Key($_POST["key"],$_POST["id"]);
+    $aCandidatures=$oListeCandidature->getPage();
+    if(count($aCandidatures)==1){
+        $OldCandidature=new Candidature(array("id"=>$aCandidatures[0]["id"]));
+        $OldCandidature->hydrateFromBDD(array('*'));
+    }
+}
+
+
 //mandatory fields
 $aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","engagement-1","engagement-2","engagement-3");
 
@@ -97,7 +112,7 @@ if ($nError == 0) {
 }
 
 $sExtension="jpg";
-if ($nError == 0) {
+if ($nError == 0 ) {
     //Add base 64 encode data in FILE "image"
     if(!isset($_FILES)){
         $_FILES=array("image"=>array());
@@ -113,7 +128,7 @@ if ($nError == 0) {
     file_put_contents($_FILES["image"]["tmp_name"], $decodedData ) ;
 }
 
-if ($nError == 0) {
+if ($nError == 0 ) {
     if (!in_array(mime_content_type($_FILES['image']['tmp_name']), $aMime)) {
         $nError++;
         $aResponse["message"]["text"] = "Format de fichier photo non reconnu.";
@@ -145,8 +160,16 @@ if ($nError == 0) {
 
 
 if($nError==0){
-    $Candidature=new Candidature();
-    $Candidature->setDate_created(date("Y-m-d H:i:s"));
+    if($bEdit){
+        $Candidature=new Candidature(array("id"=>$OldCandidature->getId()));
+        $OldCandidature->hydrateFromBDD(array('*'));
+    }else{
+        $Candidature=new Candidature();
+        $Candidature->setDate_created(date("Y-m-d H:i:s"));
+        //generate key for link
+        $sKey=md5($_SERVER["REMOTE_ADDR"].ConfigService::get("key").rand(1000,9999).time());
+        $Candidature->setKey_edit($sKey);
+    }
     $Candidature->setName($_POST["nom"]);
     $Candidature->setFirstname($_POST["prenom"]);
     $Candidature->setCivility($_POST["civilite"]);
@@ -160,9 +183,6 @@ if($nError==0){
     $Candidature->setPresentation($_POST["presentation"]);
     $Candidature->setZipcode($_POST["cp"]);
 
-    //generate key for link
-    $sKey=md5($_SERVER["REMOTE_ADDR"].ConfigService::get("key").rand(1000,9999).time());
-    $Candidature->setKey_edit($sKey);
 
     //save Files
     $outputDir = "data/" . date("Y") . "/" . date("m") . "/" . date("d") . "/". time() . session_id() . "/";
@@ -192,15 +212,15 @@ if($nError==0){
 
     //PDF
     if (array_key_exists("attestation", $_FILES)) {
-
-        if (!in_array(mime_content_type($_FILES['attestation']['tmp_name']), array("application/pdf"))) {
-            $nError++;
-            $aResponse["message"]["text"] = "Format de fichier PDF non reconnu.";
-        }
-        if( $nError==0) {
-            if (move_uploaded_file($_FILES['attestation']['tmp_name'], $outputFileCerificat)) {
-                $Candidature->setPath_certificate($outputFileCerificat);
-                $Candidature->setIs_certificate(true);
+        if(file_exists($_FILES['attestation']['tmp_name'])){
+            if (@move_uploaded_file($_FILES['attestation']['tmp_name'], $outputFileCerificat)) {
+                if (!in_array(mime_content_type($outputFileCerificat), array("application/pdf"))) {
+                    $nError++;
+                    $aResponse["message"]["text"] = "Format de fichier PDF non reconnu.";
+                }else{
+                    $Candidature->setPath_certificate($outputFileCerificat);
+                    $Candidature->setIs_certificate(true);
+                }
             } else {
                 $aResponse["message"]["text"] = "Erreur lors de l'enregistrement de votre fichier PDF.";
                 $nError++;
@@ -213,13 +233,22 @@ if($nError==0){
 
         $Candidature->save();
 
+
+
         $aResponse["redirect"] = "/candidature/success.html";
         $aResponse["durationMessage"] = "2000";
         $aResponse["durationRedirect"] = "2000";
         $aResponse["durationFade"] = "10000";
         $aResponse["message"]["title"] = "";
         $aResponse["message"]["type"] = "success";
-        $aResponse["message"]["text"] = "Candidature envoyée correctement !";
+        //if edit clean old file
+        if($bEdit){
+            @unlink($OldCandidature->getPath_pic());
+            $aResponse["message"]["text"] = "Modification enregistrée !";
+        }else{
+            $aResponse["message"]["text"] = "Candidature envoyée correctement !";
+        }
+
     }
 
 }

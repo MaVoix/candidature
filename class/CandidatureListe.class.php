@@ -63,4 +63,31 @@ class CandidatureListe extends Liste
         $this->setFields(self::$_champs);
     }
 
+
+    public function applyRules4Key($key,$id)
+    {
+        $this->setAllFields();
+
+        $this->addCriteres([
+            [
+                "field" => "key_edit",
+                "compare" => "=",
+                "value" => vars::secureInjection($key)
+            ]
+        ]);
+
+        $this->addCriteres([
+            [
+                "field" => "id",
+                "compare" => "=",
+                "value" => vars::secureInjection($id)
+            ]
+        ]);
+
+
+
+
+        return $this;
+    }
+
 }
