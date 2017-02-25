@@ -21,5 +21,10 @@ $_CONFIG["types"]			                = "visitor|admin>visitor"; //set hierarchy o
 $_CONFIG["area-default"]                    = array("visitor"=>"candidature","admin"=>"home"); //dir default for each type user
 $_CONFIG["page-default"]                    = array("visitor"=>"list","admin"=>"home"); //page default for each type user
 $_CONFIG["format-default"]                  = "html"; //format default (html/json/xml)
-
+$_CONFIG["max-filesize"]                    = 8; // in Mb
+$_CONFIG["max-width"]                       = 4000; // in PX
+$_CONFIG["max-height"]                      = 4000; // in PX
+$_CONFIG["min-width"]                       = 600; // in PX
+$_CONFIG["min-height"]                      = 600; // in PX
+$_CONFIG["mime-type-limit"]                 = array('image/jpeg'=>'jpg','image/png'=>'png');
 

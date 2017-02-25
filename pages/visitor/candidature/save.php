@@ -81,6 +81,69 @@ if( $nError==0 ) {
 }
 
 
+//check upload picture
+$aLimitMime = ConfigService::get("mime-type-limit");
+$aMime = array_keys(ConfigService::get("mime-type-limit"));
+
+if ($nError == 0) {
+    if (!isset($_POST["imageFilename"]) || $_POST["imageFilename"] == "") {
+        $nError++;
+        $aResponse["message"]["text"] = "N'oubliez pas d'envoyer votre photo !";
+    }
+    if (!isset($_POST["imageData"]) || $_POST["imageData"] == "") {
+        $nError++;
+        $aResponse["message"]["text"] = "N'oubliez pas d'envoyer votre photo !";
+    }
+}
+
+$sExtension="jpg";
+if ($nError == 0) {
+    //Add base 64 encode data in FILE "image"
+    if(!isset($_FILES)){
+        $_FILES=array("image"=>array());
+    }
+    $sExtension=strtolower(substr($_POST["imageFilename"],-3));
+    if($sExtension=="peg"){
+        $sExtension="jpg";
+    }
+    $_FILES["image"]["tmp_name"]= '../tmp/'.md5(rand(1000,99999).time().ConfigService::get("key")).'.'.$sExtension;
+    $_FILES["image"]["name"]=$_POST["imageFilename"];
+    $encodedData = explode(',', $_POST["imageData"]);
+    $decodedData = base64_decode($encodedData[1]);
+    file_put_contents($_FILES["image"]["tmp_name"], $decodedData ) ;
+}
+
+if ($nError == 0) {
+    if (!in_array(mime_content_type($_FILES['image']['tmp_name']), $aMime)) {
+        $nError++;
+        $aResponse["message"]["text"] = "Format de fichier non reconnu.";
+    }
+}
+if ($nError == 0) {
+    if (filesize($_FILES['image']['tmp_name']) > ConfigService::get("max-filesize") * 1024 * 1024) {
+        $nError++;
+        $aResponse["message"]["text"] = "Le fichier dépasse le poids maximum autorisé. (" . ConfigService::get("max-filesize") . " Mb )";
+    }
+}
+
+
+if ($nError == 0) {
+    //format de l'image
+    $img = new claviska\ SimpleImage($_FILES['image']['tmp_name']);
+    if (
+        $img->getWidth() < ConfigService::get("min-width") || $img->getWidth() > ConfigService::get("max-width") ||
+        $img->getHeight() < ConfigService::get("min-height") || $img->getHeight() > ConfigService::get("max-height")
+    ) {
+        $nError++;
+        $aResponse["message"]["text"] = "Les dimensions de l'image ne sont pas valides (environ 1000x1000)";
+    }
+
+}
+
+//check PDF ...
+
+
+
 if($nError==0){
     $Candidature=new Candidature();
     $Candidature->setDate_created(date("Y-m-d H:i:s"));
@@ -99,20 +162,59 @@ if($nError==0){
 
     //generate key for link
     $sKey=md5($_SERVER["REMOTE_ADDR"].ConfigService::get("key").rand(1000,9999).time());
-
     $Candidature->setKey_edit($sKey);
 
-    $Candidature->save();
+    //save Files
+    $outputDir = "data/" . date("Y") . "/" . date("m") . "/" . date("d") . "/". time() . session_id() . "/";
+    mkdir($outputDir, 0777, true);
+    $outputFilePhoto= $outputDir."original.".$sExtension;
+
+    $outputFilePhotoFit= $outputDir."photo-fit.jpg";
+    $outputFileCerificat=$outputDir."certificate.pdf";
 
 
+    //PIC
+    if (copy($_FILES['image']['tmp_name'], $outputFilePhoto)) {
+        $img = new claviska\ SimpleImage($outputFilePhoto);
+        $exif = $img->getExif();
+        if (array_key_exists("Orientation", $exif)) {
+            $img->autoOrient();
+        }
+        $img->bestFit(800, 800);
+        $img->toFile($outputFilePhotoFit, "image/jpeg", 100);
+        $Candidature->setPath_pic($outputFilePhoto);
+    }else{
+        $aResponse["message"]["text"] = "Erreur lors de l'enregistrement de votre image.";
+        $nError++;
+    }
+    @unlink($_FILES['image']['tmp_name']);
 
-    $aResponse["redirect"] = "/candidature/success.html";
-    $aResponse["durationMessage"] = "2000";
-    $aResponse["durationRedirect"] = "2000";
-    $aResponse["durationFade"] = "10000";
-    $aResponse["message"]["title"] = "";
-    $aResponse["message"]["type"] = "success";
-    $aResponse["message"]["text"] = "Candidature envoyée correctement !";
+
+    //PDF
+    if (array_key_exists("attestation", $_FILES)) {
+        if(move_uploaded_file($_FILES['attestation']['tmp_name'],$outputFileCerificat)){
+            $Candidature->setPath_certificate($outputFileCerificat);
+            $Candidature->setIs_certificate(true);
+        }else{
+            $aResponse["message"]["text"] = "Erreur lors de l'enregistrement de votre fichier.";
+            $nError++;
+        }
+
+    }
+
+    if( $nError==0){
+
+        $Candidature->save();
+
+        $aResponse["redirect"] = "/candidature/success.html";
+        $aResponse["durationMessage"] = "2000";
+        $aResponse["durationRedirect"] = "2000";
+        $aResponse["durationFade"] = "10000";
+        $aResponse["message"]["title"] = "";
+        $aResponse["message"]["type"] = "success";
+        $aResponse["message"]["text"] = "Candidature envoyée correctement !";
+    }
+
 }
 
 

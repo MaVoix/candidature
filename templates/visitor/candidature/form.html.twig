@@ -8,6 +8,9 @@
                 <div class="col-xs-12 col-md-6 col-md-offset-3">
                     <form action="/candidature/save.json" id="formcandidature" method="post" autocomplete="off" data-ajax="true"
                           enctype="multipart/form-data">
+                        {%  if candidature.id!='' %}
+                        <input type="hidden" id="id" value="{{ candidature.id }}" />
+                        {% endif %}
                         <h1>CANDIDATURE MAVOIX</h1>
                         <hr />
                         <h2>Coordonnées</h2>
@@ -15,31 +18,31 @@
                             <label for="civilite" class="control-label">Civilité : *</label>
                             <select id="civilie" name="civilite" class="form-control">
                                 <option value="">Choisir ...</option>
-                                <option value="M.">M.</option>
-                                <option value="Mme">Mme</option>
+                                <option value="M." {%  if candidature.civility=='M.' %} selected {%  endif %}>M.</option>
+                                <option value="Mme" {%  if candidature.civility=='Mme' %} selected {%  endif %}>Mme</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="nom" class="control-label">Nom : *</label>
-                            <input type="text" class="form-control" id="nom" name="nom"
+                            <input type="text" class="form-control" id="nom" name="nom" value="{{ candidature.name|upper }}"
                                    placeholder="Nom">
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="control-label">Prénom : *</label>
-                            <input type="text" class="form-control" id="prenom" name="prenom"
-                                   placeholder="Prénom ">
+                            <input type="text" class="form-control" id="prenom" name="prenom" value="{{ candidature.firstname|capitalize }}"
+                                   placeholder="Prénom" >
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="control-label">E-mail : *</label>
-                            <input type="email" class="form-control" id="email" name="email"
+                            <input type="email" class="form-control" id="email" name="email" value="{{ candidature.email }}"
                                    placeholder="xxxxxx@xxxxx.com ">
                         </div>
                         <div class="form-group">
                             <label for="video" class="control-label">Téléphone : *</label>
                             <div class="input-group">
                                 <div class="input-group-addon">+33(0)</div>
-                                <input type="text" class="form-control" id="tel" name="tel" placeholder="XXXXXXXXX">
+                                <input type="text" class="form-control" id="tel" name="tel" placeholder="XXXXXXXXX"  value="{{ candidature.tel }}">
                             </div>
                             <p class="help-block form-text text-muted" >
                                 Ne pas saisir le 0 de l'indicatif.</p>
@@ -49,33 +52,33 @@
                         <div class="form-group">
                             <label for="ad1" class="control-label">Adresse champ 1 : *</label>
                             <input type="text" class="form-control" id="ad1" name="ad1"
-                                   placeholder="N° | type de voie | nom de la voie">
+                                   placeholder="N° | type de voie | nom de la voie"  value="{{ candidature.ad1 }}">
                         </div>
                         <div class="form-group">
                             <label for="ad2" class="control-label">Adresse champ 2 :</label>
-                            <input type="text" class="form-control" id="ad2" name="ad2"
+                            <input type="text" class="form-control" id="ad2" name="ad2"  value="{{ candidature.ad2 }}"
                                    placeholder="Immeuble, Résidence, Z.I ...">
                         </div>
                         <div class="form-group">
                             <label for="ad3" class="control-label">Adresse champ 3 :</label>
-                            <input type="text" class="form-control" id="ad3" name="ad3"
+                            <input type="text" class="form-control" id="ad3" name="ad3"  value="{{ candidature.ad3 }}"
                                    placeholder="BP, TSA, Lieu dit">
                         </div>
                         <div class="form-group">
                             <label for="cp" class="control-label">Code postal : *</label>
-                            <input type="text" class="form-control" id="cp" name="cp"
+                            <input type="text" class="form-control" id="cp" name="cp"  value="{{ candidature.zipcode }}"
                                    placeholder="XXXXX">
                         </div>
                         <div class="form-group">
                             <label for="ville" class="control-label">Ville : *</label>
-                            <input type="text" class="form-control" id="ville" name="ville"
+                            <input type="text" class="form-control" id="ville" name="ville"  value="{{ candidature.city }}"
                                    placeholder="Nom de la ville">
                         </div>
                         <hr />
                         <h2>Témoignage/Présentation</h2>
                         <div class="form-group">
                             <label for="imagefile" class="control-label">Une Photo :</label>
-                            <div class="drop-zone"></div>
+                            <div class="drop-zone" style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}" ></div>
                             <div class="input-group image-preview">
                                 <input type="file" accept="image/jpeg" name="image" id="imagefile"/>
                                 <input type="hidden" id="imageData" name="imageData"/>
@@ -89,7 +92,7 @@
                                     <div class="btn btn-default image-preview-input">
                                         <span class="fa fa-folder-open"></span>
                                         <span class="image-preview-input-title">Choisir</span>
-                                        <input type="hidden" name="MAX_FILE_SIZE" value="{{ maxFilesize }}"/>
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="{{ ConfigService.get("max-filesize")*1024*1024 }}"/>
                                     </div>
                                 </span>
                             </div>
@@ -97,13 +100,13 @@
 
                         <div class="form-group">
                             <label for="presentation" class="control-label">Texte de présentation :</label>
-                            <textarea class="form-control" rows="8" id="presentation" name="presentation"></textarea>
+                            <textarea class="form-control" rows="8" id="presentation" name="presentation"> {{ candidature.presentation }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="video" class="control-label">Lien vidéo : </label>
                             <div class="input-group">
                                 <div class="input-group-addon">http://</div>
-                                <input type="text" class="form-control" id="video" name="video" placeholder="lienversvotrevideo.com">
+                                <input type="text" class="form-control" id="video" name="video" placeholder="lienversvotrevideo.com"  value="{{ candidature.url_video }}">
                             </div>
                             <p class="help-block form-text text-muted" >
                                 Youtube, Vimeo ou Dailymotion</p>
@@ -146,7 +149,7 @@
                         <div class="form-group">
                             <p>Si vous disposez déjà de votre attestation d'inscription à une liste électorale</p>
                             <label for="attestation" class="control-label">Attestation d’inscription liste électorale :</label>
-                            <input type="file" class="form-control" id="attestation" name="attestation"   >
+                            <input type="file" class="form-control" accept="application/pdf"  id="attestation" name="attestation"   >
                         </div>
                         <hr />
                         <div class="text-center"><button type="submit" class="btn btn-primary ">Envoyer ma candidature</button></div>
