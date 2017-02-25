@@ -8,8 +8,6 @@ ini_set("memory_limit", "256M");
 $bMaintenance=false;
 if(file_exists('maintenance.php')){
     require_once 'maintenance.php';
-}else{
-    echo "<h1>File maintenance.php not found. (see maintenance.sample.php for further details)</h1>";
 }
 if($bMaintenance){
     echo "<h1>Under maintenance, please try later ...</h1>";
@@ -19,10 +17,8 @@ if($bMaintenance){
 
     //config loader
     require_once 'config.php';
-    if(file_exists('config.local.php')){
-        require_once 'config.local.php';
-    }else{
-        echo "<h1>File config.local.php not found. (see app.php for further details)</h1>";
+    if(file_exists('config.php')){
+        require_once 'config.php';
     }
 
 
