@@ -27,7 +27,9 @@
         "forum": "https://groups.google.com/forum/#!forum/twig-users"
     },
     "require": {
-        "php": ">=5.2.7"
+        "php": ">=5.2.7",
+        "claviska/simpleimage": "^3.3",
+        "phpmailer/phpmailer": "^5.2"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "~3.2",
