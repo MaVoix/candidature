@@ -16,12 +16,22 @@ $aResponse["required"] = array();
 $nError = 0;
 
 //mandatory fields
-if (!isset($_POST["nom"]) || $_POST["nom"] == "") {
-    $nError++;
-    array_push($aResponse["required"], array("field" => "nom"));
+$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","engagement-1","engagement-2","engagement-3");
+
+foreach($aMandoryFields as $sField){
+    if (!isset($_POST[$sField]) || $_POST[$sField] == "") {
+        $nError++;
+        array_push($aResponse["required"], array("field" => $sField));
+    }
 }
 
+
+
+
 if($nError==0){
+
+
+
     $aResponse["redirect"] = "/candidature/success.html";
     $aResponse["durationMessage"] = "2000";
     $aResponse["durationRedirect"] = "2000";
