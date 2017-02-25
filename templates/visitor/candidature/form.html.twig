@@ -9,7 +9,8 @@
                     <form action="/candidature/save.json" id="formcandidature" method="post" autocomplete="off" data-ajax="true"
                           enctype="multipart/form-data">
                         {%  if candidature.id!='' %}
-                        <input type="hidden" id="id" value="{{ candidature.id }}" />
+                            <input type="hidden" id="id" name="id" value="{{ candidature.id }}" />
+                            <input type="hidden" id="key" name="key" value="{{ key }}" />
                         {% endif %}
                         <h1>CANDIDATURE MAVOIX</h1>
                         <hr />

@@ -116,7 +116,7 @@ if ($nError == 0) {
 if ($nError == 0) {
     if (!in_array(mime_content_type($_FILES['image']['tmp_name']), $aMime)) {
         $nError++;
-        $aResponse["message"]["text"] = "Format de fichier non reconnu.";
+        $aResponse["message"]["text"] = "Format de fichier photo non reconnu.";
     }
 }
 if ($nError == 0) {
@@ -192,12 +192,19 @@ if($nError==0){
 
     //PDF
     if (array_key_exists("attestation", $_FILES)) {
-        if(move_uploaded_file($_FILES['attestation']['tmp_name'],$outputFileCerificat)){
-            $Candidature->setPath_certificate($outputFileCerificat);
-            $Candidature->setIs_certificate(true);
-        }else{
-            $aResponse["message"]["text"] = "Erreur lors de l'enregistrement de votre fichier.";
+
+        if (!in_array(mime_content_type($_FILES['attestation']['tmp_name']), array("application/pdf"))) {
             $nError++;
+            $aResponse["message"]["text"] = "Format de fichier PDF non reconnu.";
+        }
+        if( $nError==0) {
+            if (move_uploaded_file($_FILES['attestation']['tmp_name'], $outputFileCerificat)) {
+                $Candidature->setPath_certificate($outputFileCerificat);
+                $Candidature->setIs_certificate(true);
+            } else {
+                $aResponse["message"]["text"] = "Erreur lors de l'enregistrement de votre fichier PDF.";
+                $nError++;
+            }
         }
 
     }
