@@ -94,10 +94,52 @@ class CandidatureListe extends Liste
             ]
         ]);
 
+        $this->addCriteres([
+            [
+                "field" => "date_deleted",
+                "compare" => "IS NULL",
+                "value" => ""
+            ]
+        ]);
+
 
 
 
         return $this;
+    }
+
+    public function applyRules4ListVisitor()
+    {
+        $this->setAllFields();
+        $this->addCriteres([
+            [
+                "field" => "state",
+                "compare" => "=",
+                "value" => "online"
+            ]
+        ]);
+
+        $this->addCriteres([
+            [
+                "field" => "date_deleted",
+                "compare" => "IS NULL",
+                "value" => ""
+            ]
+        ]);
+
+    }
+
+    public function applyRules4ListAdmin()
+    {
+        $this->setAllFields();
+        $this->addCriteres([
+            [
+                "field" => "date_deleted",
+                "compare" => "IS NULL",
+                "value" => ""
+            ]
+        ]);
+
     }
 
 }

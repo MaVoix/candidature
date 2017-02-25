@@ -1,6 +1,6 @@
 <?php
 
 $oListeCandidature=new CandidatureListe();
-$oListeCandidature->applyRules4ListAdmin();
+$oListeCandidature->applyRules4ListVisitor();
 $aCandidatures=$oListeCandidature->getPage();
 $aDataScript["candidatures"]=$aCandidatures;
