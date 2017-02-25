@@ -25,6 +25,9 @@ if($bMaintenance){
 
     //class loader
     require_once '../class/Liste.class.php';
+
+    require_once '../class/Candidature.class.php';
+    require_once '../class/CandidatureListe.class.php';
     require_once '../class/Navigate.class.php';
     require_once '../class/TwigExtension.class.php';
     require_once '../class/TwigExtensionFilter.class.php';

@@ -261,7 +261,7 @@ class User	{
         {
             $this->hydrateFromBDD(array('id'));
             $this->callHydrateFromBDDOnGet++;
-            if($this->callHydrateFromBDDOnGet>getConfig("maxCallHydrateFromBDDonGet"))
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
             {
                 echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
             }
@@ -305,7 +305,7 @@ class User	{
         {
             $this->hydrateFromBDD(array('login'));
             $this->callHydrateFromBDDOnGet++;
-            if($this->callHydrateFromBDDOnGet>getConfig("maxCallHydrateFromBDDonGet"))
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
             {
                 echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
             }
@@ -349,7 +349,7 @@ class User	{
         {
             $this->hydrateFromBDD(array('pass'));
             $this->callHydrateFromBDDOnGet++;
-            if($this->callHydrateFromBDDOnGet>getConfig("maxCallHydrateFromBDDonGet"))
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
             {
                 echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
             }
@@ -393,7 +393,7 @@ class User	{
         {
             $this->hydrateFromBDD(array('type'));
             $this->callHydrateFromBDDOnGet++;
-            if($this->callHydrateFromBDDOnGet>getConfig("maxCallHydrateFromBDDonGet"))
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
             {
                 echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
             }
@@ -440,7 +440,7 @@ class User	{
         {
             $this->hydrateFromBDD(array('enable'));
             $this->callHydrateFromBDDOnGet++;
-            if($this->callHydrateFromBDDOnGet>getConfig("maxCallHydrateFromBDDonGet"))
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
             {
                 echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
             }
