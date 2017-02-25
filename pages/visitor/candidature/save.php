@@ -19,13 +19,17 @@ $nError = 0;
 $bEdit=false;
 $OldCandidature=new Candidature();
 if(isset($_POST["id"]) && isset($_POST["key"])){
-    $bEdit=true;
     $oListeCandidature=new CandidatureListe();
     $oListeCandidature->applyRules4Key($_POST["key"],$_POST["id"]);
     $aCandidatures=$oListeCandidature->getPage();
     if(count($aCandidatures)==1){
+        $bEdit=true;
         $OldCandidature=new Candidature(array("id"=>$aCandidatures[0]["id"]));
         $OldCandidature->hydrateFromBDD(array('*'));
+    }else{
+
+        $nError++;
+        $aResponse["message"]["text"] = "Impossible de modifier cette candidature.";
     }
 }
 
@@ -179,6 +183,7 @@ if ($nError == 0) {
 if($nError==0){
     if($bEdit){
         $Candidature=new Candidature(array("id"=>$OldCandidature->getId()));
+        $Candidature->setDate_amended(date("Y-m-d H:i:s"));
         $OldCandidature->hydrateFromBDD(array('*'));
     }else{
         $Candidature=new Candidature();
@@ -186,6 +191,7 @@ if($nError==0){
         //generate key for link
         $sKey=md5($_SERVER["REMOTE_ADDR"].ConfigService::get("key").rand(1000,9999).time());
         $Candidature->setKey_edit($sKey);
+        $Candidature->setState("offline");
     }
     $Candidature->setName($_POST["nom"]);
     $Candidature->setFirstname($_POST["prenom"]);

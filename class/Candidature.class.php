@@ -11,7 +11,9 @@ class Candidature	{
 
     private $nId;
     private $sDate_created;
+    private $sDate_amended;
     private $sDate_deleted;
+    private $sState;
     private $sCivility;
     private $sFirstname;
     private $sName;
@@ -156,9 +158,19 @@ class Candidature	{
             $aData["date_created"]=$this->getDate_created();
         }
 
+        if(isset($this->aDataSet["date_amended"]))
+        {
+            $aData["date_amended"]=$this->getDate_amended();
+        }
+
         if(isset($this->aDataSet["date_deleted"]))
         {
             $aData["date_deleted"]=$this->getDate_deleted();
+        }
+
+        if(isset($this->aDataSet["state"]))
+        {
+            $aData["state"]=$this->getState();
         }
 
         if(isset($this->aDataSet["civility"]))
@@ -260,7 +272,9 @@ class Candidature	{
         $this->callHydrateFromBDDOnGet=0;
         $this->aDataSet=array();
         $this->setDate_created(NULL);
+        $this->setDate_amended(NULL);
         $this->setDate_deleted(NULL);
+        $this->setState(NULL);
         $this->setCivility(NULL);
         $this->setFirstname(NULL);
         $this->setName(NULL);
@@ -287,7 +301,9 @@ class Candidature	{
         $aObjet = [
             "id" => $this->getId(),
             "date_created" => $this->getDate_created(),
+            "date_amended" => $this->getDate_amended(),
             "date_deleted" => $this->getDate_deleted(),
+            "state" => $this->getState(),
             "civility" => $this->getCivility(),
             "firstname" => $this->getFirstname(),
             "name" => $this->getName(),
@@ -419,6 +435,50 @@ class Candidature	{
 
 
     /**
+     * Set le champ date_amended
+     * @param string $sDate_amended nouvelle valeur pour le champ date_amended
+     */
+    public function setDate_amended($sDate_amended)
+    {
+        if( is_null($sDate_amended) ) $sDate_amended='';
+        $this->sDate_amended = $sDate_amended;
+        $this->aDataSet["date_amended"]=1;
+    }
+
+
+
+    /**
+     * Get le champ date_amended
+     * @return string valeur du champ date_amended
+     */
+    public function getDate_amended()
+    {
+        if( !is_null($this->sDate_amended) )
+        {
+            if( $this->sDate_amended==='' )
+            {
+                return NULL;
+            }
+            else
+            {
+                return $this->sDate_amended;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('date_amended'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->sDate_amended;
+        }
+    }
+
+
+
+    /**
      * Set le champ date_deleted
      * @param string $sDate_deleted nouvelle valeur pour le champ date_deleted
      */
@@ -457,6 +517,50 @@ class Candidature	{
                 echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
             }
             return $this->sDate_deleted;
+        }
+    }
+
+
+
+    /**
+     * Set le champ state
+     * @param string $sState nouvelle valeur pour le champ state
+     */
+    public function setState($sState)
+    {
+        if( is_null($sState) ) $sState='';
+        $this->sState = $sState;
+        $this->aDataSet["state"]=1;
+    }
+
+
+
+    /**
+     * Get le champ state
+     * @return string valeur du champ state
+     */
+    public function getState()
+    {
+        if( !is_null($this->sState) )
+        {
+            if( $this->sState==='' )
+            {
+                return NULL;
+            }
+            else
+            {
+                return $this->sState;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('state'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->sState;
         }
     }
 

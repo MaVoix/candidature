@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 25 Février 2017 à 17:51
+-- Généré le :  Sam 25 Février 2017 à 21:29
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -31,7 +31,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `candidature` (
   `id` int(11) NOT NULL,
   `date_created` datetime DEFAULT NULL,
+  `date_amended` datetime DEFAULT NULL,
   `date_deleted` datetime DEFAULT NULL,
+  `state` varchar(10) NOT NULL DEFAULT 'offline',
   `civility` varchar(5) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -84,16 +86,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour les tables exportées
 --
 
---
--- AUTO_INCREMENT pour la table `candidature`
---
-ALTER TABLE `candidature`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

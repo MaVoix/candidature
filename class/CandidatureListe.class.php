@@ -12,7 +12,9 @@ class CandidatureListe extends Liste
     private static $_champs = array(
         "id",
         "date_created",
+        "date_amended",
         "date_deleted",
+        "state",
         "civility",
         "firstname",
         "name",
@@ -81,6 +83,14 @@ class CandidatureListe extends Liste
                 "field" => "id",
                 "compare" => "=",
                 "value" => vars::secureInjection($id)
+            ]
+        ]);
+
+        $this->addCriteres([
+            [
+                "field" => "state",
+                "compare" => "=",
+                "value" => "offline"
             ]
         ]);
 
