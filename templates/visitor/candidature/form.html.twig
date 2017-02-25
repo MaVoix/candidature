@@ -1,49 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Starter Template for Bootstrap</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
+{% extends "visitor/base.html.twig" %}
 
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+
+{% block body %}
+    <div class="wrapper-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <form action="/candidature/save.json" id="formcandidature" method="post" autocomplete="off" data-ajax="true"
+                          enctype="multipart/form-data">
+                        <h1>CANDIDATURE MAVOIX</h1>
+                        <hr />
+                        <div class="form-group">
+                            <label for="nom" class="control-label">Nom : *</label>
+                            <input type="text" class="form-control" id="nom" name="nom"
+                                   placeholder="Nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom" class="control-label">Prénom :</label>
+                            <input type="text" class="form-control" id="prenom" name="prenom"
+                                   placeholder="Prénom ">
+                        </div>
+                        <div class="form-group">
+                            <label for="cp" class="control-label">Code postal :</label>
+                            <input type="text" class="form-control" id="cp" name="cp"
+                                   placeholder="XXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="ville" class="control-label">Ville :</label>
+                            <input type="text" class="form-control" id="ville" name="ville"
+                                   placeholder="Nom de la ville">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="imagefile" class="control-label">Une Photo :</label>
+                            <div class="drop-zone"></div>
+                            <div class="input-group image-preview">
+                                <input type="file" accept="image/jpeg" name="image" id="imagefile"/>
+                                <input type="hidden" id="imageData" name="imageData"/>
+                                <input type="hidden" id="imageFilename" name="imageFilename"/>
+                                <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default image-preview-clear"
+                                            style="display:none;">
+                                        <span class="fa fa-times"></span>
+                                    </button>
+
+                                    <div class="btn btn-default image-preview-input">
+                                        <span class="fa fa-folder-open"></span>
+                                        <span class="image-preview-input-title">Choisir</span>
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="{{ maxFilesize }}"/>
+
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="presentation" class="control-label">Texte de présentation :</label>
+                            <textarea class="form-control" rows="5" id="presentation"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="video" class="control-label">Lien vidéo : </label>
+                            <div class="input-group">
+                                <div class="input-group-addon">http://</div>
+                                <input type="text" class="form-control" id="tel" name="tel" placeholder="lienversvotrevideo.com">
+                            </div>
+                            <p class="help-block form-text text-muted" >
+                                Youtube, Vimeo ou Dailymotion</p>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary pull-right">Envoyer ma candidature</button>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
-<div class="container">
-    <div style="margin-top:200px;">
-        <h1>Hello {{ name|upper }} !!</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a
-            mostly barebones HTML document.</p>
-    </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-</body>
-</html>
-
+{% endblock %}

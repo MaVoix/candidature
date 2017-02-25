@@ -19,13 +19,13 @@ if($bMaintenance){
 
     //config loader
     require_once 'config.php';
-    if( strstr($_SERVER['HTTP_HOST'], "mavoix.info") ) {
-        require_once 'config.online.php';
-    }elseif( strstr($_SERVER['HTTP_HOST'], "nomserveurdev") ) {
-        require_once 'config.dev.php';
-    }else{
+    if(file_exists('config.local.php')){
         require_once 'config.local.php';
+    }else{
+        echo "<h1>File config.local.php not found. (see app.php for further details)</h1>";
     }
+
+
 
     //class loader
     require_once '../class/Navigate.class.php';

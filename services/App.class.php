@@ -21,7 +21,7 @@ class App
         }
         else
         {
-            echo $oNavigate->getTemplate();
+            header("HTTP/1.0 404 Not Found");
         }
     }
 
@@ -35,6 +35,7 @@ class App
         ));
         $twig->addGlobal('TwigExtension', new TwigExtension() );
         $twig->addGlobal("ConfigService", new ConfigService());
+
 
         $twig->addGlobal("get", $_GET);
         $twig->addGlobal("post", $_POST);
@@ -54,6 +55,12 @@ class App
     private static function init_user(){
 
         $oUser=new User();
+        if(SessionService::get("user-type")=="admin"){
+            $oUser->setLogin(SessionService::get("user-login"));
+            $oUser->setType("admin");
+        }else{
+            $oUser->setType("visitor");
+        }
         return $oUser;
 
     }

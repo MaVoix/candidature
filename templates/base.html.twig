@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}CANDIDATURE #MAVOIX{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/font-awesome.min.css?v={{ ConfigService.get("version-css") }}">
+    <link rel="stylesheet" href="/css/plugins.css?v={{ ConfigService.get("version-css") }}">
+    <link rel="stylesheet" href="/css/styles.css?v={{ ConfigService.get("version-css") }}">
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+<div id="loading">
+    <div class="loading-display"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+        <div class="loading-display"><!--<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span>-->
+            <h5 class="no-margin ">Chargement <i class="fa fa-spinner fa-spin  fa-fw"></i></h5>
+        </div>
+        <div id="progress-wrp">
+            <div class="progress-bar"></div ><div class="status typo">0%</div>
+        </div>
+    </div>
+</div>
+{% embed oMe.type ~ "/menu.html.twig" %}{% endembed %}
+{% block header %}{% endblock %}
+{% block body %}{% endblock %}
+{% block footer %}{% endblock %}
+<div class="modal fade" tabindex="-1" role="dialog" id="modalConfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title text-primary" id="modal-title" ></h2>
+            </div>
+            <div class="modal-body" id="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default typo" data-dismiss="modal" id="modal-cancel">Annuler</button>
+                <button type="button" class="btn btn-primary typo" id="modal-confirm">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="/js/plugins/pace/pace.js?v={{ ConfigService.get("version-js") }}"></script>
+<script src="/js/plugins/toastr/toastr.min.js?v={{ ConfigService.get("version-js") }}"></script>
+<script src="/js/plugins/upload-preview/upload-preview.js?v={{ ConfigService.get("version-js") }}"></script>
+<script src="/js/lib.js?v={{ ConfigService.get("version-js") }}"></script>
+ {% block javascripts %}{% endblock %}
+</body>
+</html>

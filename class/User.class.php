@@ -3,6 +3,8 @@
 class User	{
 
     private $_sDbInstance = null;
+    private $_type="visitor";
+    private $_login="";
     private $nId;
 
 
@@ -14,8 +16,21 @@ class User	{
     }
 
     public function getType(){
-        return 'visitor';
+        return $this->_type;
     }
+
+    public function setType($sType){
+        $this->_type=$sType;
+    }
+
+    public function getLogin(){
+        return $this->_login;
+    }
+
+    public function setLogin($sLogin){
+        $this->_login=$sLogin;
+    }
+
 
 
 }
