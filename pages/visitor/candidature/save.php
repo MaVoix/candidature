@@ -95,6 +95,23 @@ if( $nError==0 ) {
     }
 }
 
+//link
+if ( $nError==0 ){
+    if($_POST["video"]){
+        $handle = curl_init($_POST["video"]);
+        curl_setopt($handle,  CURLOPT_RETURNTRANSFER, TRUE);
+        $response = curl_exec($handle);
+        $httpCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);
+        if($httpCode > 404 || $httpCode==0 ) {
+            $aResponse["message"]["text"] = "Le lien vidéo ne fonctionne pas.";
+            array_push($aResponse["required"],array("field"=>"video"));
+            $nError++;
+        }
+        curl_close($handle);
+    }
+
+}
+
 
 //check upload picture
 $aLimitMime = ConfigService::get("mime-type-limit");
