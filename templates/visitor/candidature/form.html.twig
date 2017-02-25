@@ -10,6 +10,15 @@
                           enctype="multipart/form-data">
                         <h1>CANDIDATURE MAVOIX</h1>
                         <hr />
+                        <h2>Coordonnées</h2>
+                        <div class="form-group">
+                            <label for="civilite" class="control-label">Civilité: *</label>
+                            <select id="civilie" class="form-control">
+                                <option value="">Choisir ...</option>
+                                <option value="M.">M.</option>
+                                <option value="Mme">Mme</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="nom" class="control-label">Nom : *</label>
                             <input type="text" class="form-control" id="nom" name="nom"
@@ -20,17 +29,50 @@
                             <input type="text" class="form-control" id="prenom" name="prenom"
                                    placeholder="Prénom ">
                         </div>
+
+                        <div class="form-group">
+                            <label for="email" class="control-label">E-mail :</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="xxxxxx@xxxxx.com ">
+                        </div>
+                        <div class="form-group">
+                            <label for="video" class="control-label">Téléphone : </label>
+                            <div class="input-group">
+                                <div class="input-group-addon">+33(0)</div>
+                                <input type="text" class="form-control" id="tel" name="tel" placeholder="XXXXXXXXX">
+                            </div>
+                            <p class="help-block form-text text-muted" >
+                                Ne pas saisir le 0 de l'indicatif.</p>
+                        </div>
+                        <hr />
+                        <h2>Adresse</h2>
+                        <div class="form-group">
+                            <label for="ad1" class="control-label">Adresse champ 1 * :</label>
+                            <input type="text" class="form-control" id="ad1" name="ad1"
+                                   placeholder="N° | type de voie | nom de la voie">
+                        </div>
+                        <div class="form-group">
+                            <label for="ad2" class="control-label">Adresse champ 2 :</label>
+                            <input type="text" class="form-control" id="ad2" name="ad2"
+                                   placeholder="Immeuble, Résidence, Z.I ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="ad3" class="control-label">Adresse champ 3 :</label>
+                            <input type="text" class="form-control" id="ad3" name="ad3"
+                                   placeholder="BP, TSA, Lieu dit">
+                        </div>
                         <div class="form-group">
                             <label for="cp" class="control-label">Code postal :</label>
                             <input type="text" class="form-control" id="cp" name="cp"
-                                   placeholder="XXXXXX">
+                                   placeholder="XXXXX">
                         </div>
                         <div class="form-group">
                             <label for="ville" class="control-label">Ville :</label>
                             <input type="text" class="form-control" id="ville" name="ville"
                                    placeholder="Nom de la ville">
                         </div>
-
+                        <hr />
+                        <h2>Témoignage/Présentation</h2>
                         <div class="form-group">
                             <label for="imagefile" class="control-label">Une Photo :</label>
                             <div class="drop-zone"></div>
@@ -44,12 +86,10 @@
                                             style="display:none;">
                                         <span class="fa fa-times"></span>
                                     </button>
-
                                     <div class="btn btn-default image-preview-input">
                                         <span class="fa fa-folder-open"></span>
                                         <span class="image-preview-input-title">Choisir</span>
                                         <input type="hidden" name="MAX_FILE_SIZE" value="{{ maxFilesize }}"/>
-
                                     </div>
                                 </span>
                             </div>
@@ -57,9 +97,8 @@
 
                         <div class="form-group">
                             <label for="presentation" class="control-label">Texte de présentation :</label>
-                            <textarea class="form-control" rows="5" id="presentation"></textarea>
+                            <textarea class="form-control" rows="8" id="presentation"></textarea>
                         </div>
-
                         <div class="form-group">
                             <label for="video" class="control-label">Lien vidéo : </label>
                             <div class="input-group">
@@ -69,8 +108,49 @@
                             <p class="help-block form-text text-muted" >
                                 Youtube, Vimeo ou Dailymotion</p>
                         </div>
+                        <hr />
+                        <h2>Engagements</h2>
+                        <div class="form-group ">
+                            <div class="checkbox">
+                                <label class="control-label">
+                                    <input id="engagement-1" value="ok" type="checkbox" name="engagement-1">
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <label class="label-checkbox" for="engagement-1">Engagement 1 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent dictum, libero non auctor consequat, velit felis venenatis nibh</label>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group ">
+                            <div class="checkbox">
+                                <label class="control-label">
+                                    <input id="engagement-2" value="ok" type="checkbox" name="engagement-2">
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <label class="label-checkbox" for="engagement-2">Engagement 2 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent dictum, libero non auctor consequat, velit felis venenatis nibh</label>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group ">
+                            <div class="checkbox">
+                                <label class="control-label">
+                                    <input id="engagement-3" value="ok" type="checkbox" name="engagement-3">
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <label class="label-checkbox" for="engagement-3">Engagement 3 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent dictum, libero non auctor consequat, velit felis venenatis nibh</label>
+                            </div>
+                        </div>
+                        <hr />
+                        <h2>Attestation</h2>
 
-                        <button type="submit" class="btn btn-primary pull-right">Envoyer ma candidature</button>
+
+                        <div class="form-group">
+                            <p>Si vous disposez déjà de votre attestation d'inscription à une liste électorale</p>
+                            <label for="ville" class="control-label">Attestation d’inscription liste électorale :</label>
+                            <input type="file" class="form-control" id="ville" name="ville"
+                                   placeholder="Nom de la ville">
+                        </div>
+                        <hr />
+                        <div class="text-center"><button type="submit" class="btn btn-primary ">Envoyer ma candidature</button></div>
 
                     </form>
                 </div>
