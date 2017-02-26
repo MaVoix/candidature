@@ -2,35 +2,32 @@
 
 
 {% block body %}
-<div class="wrapper-page">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-                <h1>CANDIDATURES</h1>
-                <p>Vous trouverez ici la liste des candidature.</p>
-
-            </div>
-            {% for candidature in candidatures %}
-
-                <div class="col-xs-12 col-md-6 col-lg-4 p-b-x4 p-t-x4">
-                    <div class="row">
-                        <div class="col-xs-12 text-center">
-                            <h3>{{ candidature.firstname|capitalize }} {{ candidature.name|first|upper }}.<br /><small>{{ candidature.city }}({{ candidature.zipcode }})</small></h3>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-md-offset-3">
-                        <div style="background-image:url('/{{ candidature.path_pic_fit }}')" class="circle-pic-candidature" ></div>
-                        </div>
-                        <div class="col-xs-12 p-t-x2 p-b-x2">
-                        <a href="/candidature/candidat.html?id={{ candidature.id }}" class="btn btn-primary btn-block">Voir la fiche</a>
-                        </div>
-                    </div>
-
-
+    <div class="wrapper-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h1>CANDIDATURES</h1>
+                    <p>Vous trouverez ici la liste des candidature.</p>
                 </div>
-
-            {% endfor %}
-
+                <div class="row">
+                    {% for candidature in candidatures %}
+                        <div class="col-xs-6 col-md-4 col-lg-3 p-t-x2">
+                            <form method="post" action="/candidature/candidat.html?id={{ candidature.id }}">
+                                <button type="submit" class="no-button">
+                                    <div class="text-center sticker-name">
+                                        <h3>{{ candidature.firstname|capitalize }} {{ candidature.name|first|upper }}
+                                            .<br/>
+                                            <small>{{ candidature.city }} ({{ candidature.zipcode }})</small>
+                                        </h3>
+                                    </div>
+                                    <div style="background-image:url('/{{ candidature.path_pic_fit }}');"
+                                         class="square-pic-candidature"></div>
+                                </button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

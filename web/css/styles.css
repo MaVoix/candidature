@@ -151,9 +151,18 @@ body{
     -webkit-box-shadow: none !important;
 }
 
+.no-button{
+    background:none;
+    border:none;
+    padding:0;
+    text-align:inherit;
+    cursor: pointer;
+    width:100%;
+}
 
 .wrapper-page{
     padding:20px 0;
+    min-height:700px;
 }
 
 .wrapper-menu{
@@ -177,6 +186,7 @@ body{
     padding-bottom:100%;
     background-size:cover;
     background-position:center center;
+    background-color:#000000;
 }
 
 
@@ -187,4 +197,13 @@ body{
     background-size:cover;
     background-position:center center;
     border-radius: 100%;
+    background-color:#000000;
+}
+
+
+.sticker-name{
+    background-color:rgba(255,255,255,0.8);
+    position:absolute;
+    padding:20px 40px 10px 10px;
+    width:100%;
 }
