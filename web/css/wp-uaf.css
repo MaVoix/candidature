@@ -1,0 +1,13 @@
+			@font-face {
+				font-family: 'myriad';
+				font-style: normal;
+				src: url('//beta.mavoix.info/website/wp-content/uploads/useanyfont/170215051901Myriad.eot');
+				src: local('myriad'), url('//beta.mavoix.info/website/wp-content/uploads/useanyfont/170215051901Myriad.eot') format('embedded-opentype'), url('//beta.mavoix.info/website/wp-content/uploads/useanyfont/170215051901Myriad.woff') format('woff');
+			}
+            
+            .myriad{font-family: 'myriad' !important;}
+            
+						body, h1, h2, h3, h4, h5, h6, p, blockquote, li, a{
+					font-family: 'myriad' !important;
+				}
+		
