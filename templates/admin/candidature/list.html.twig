@@ -16,25 +16,52 @@
                     <h1>CANDIDATURES</h1>
                     <p>Vous trouverez ici la liste des candidatures.</p>
                 </div>
-                <div class="col-xs-12 col-md-6 col-md-offset-3">
-                    <p>
-                        <form action="/candidature/list.html" method="post" autocomplete="off">
-                        <div class="form-group">
-                            <label for="tri" class="control-label">Trier par :</label>
-                            <select id="tri" name="tri" class="form-control">
-                                <option value="date-asc">Date (du + récent au + ancien)</option>
-                                <option value="date-desc">Date (du + ancien au + récent)</option>
-                                <option value="name-asc">Nom</option>
-                                <option value="firstname-asc">Prénom</option>
-                                <option value="city-asc">Ville</option>
-                                <option value="zipcode-asc">Code postal</option>
+                <div class="p-b-x4">
+                <form action="/candidature/list.html" method="post" autocomplete="off"  data-ajax="true">
+                <div class="col-xs-12 m-b-x2">
+                    <label for="search" class="control-label">Chercher :</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                   value="{{ search }}" autofocus  id="search" name="search" placeholder="Nom, prénom, ville, code postal ...">
+                            <span class="input-group-btn"><button type="submit"  class="btn btn-default"><i class="fa fa-search"></i> Go</button>
+                            </span>                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6" >
+                    <div class="form-group">
+                            <label for="filter" class="control-label">Filtrer :</label>
+                            <select id="filter" name="filter" class="form-control submitOnChange">
+                                <option value="">Tous</option>
+                                <option value="online" {% if filter=='online' %} selected {% endif %}>En ligne</option>
+                                <option value="offline"  {% if filter=='offline' %} selected {% endif %}>Hors ligne</option>
+                                <option value="is_certificate"  {% if filter=='is_certificate' %} selected {% endif %}>Attestation valide</option>
                                 </option>
                             </select>
                         </div>
-                        </form>
 
-                    </p>
+
                 </div>
+                    <div class="col-xs-12 col-md-6" >
+                        <div class="form-group">
+                            <label for="order" class="control-label">Trier par :</label>
+                            <select id="order" name="order" class="form-control submitOnChange">
+                                <option value="date_created--desc"  {% if order=='date_created--desc' %} selected {% endif %}>Date (derniers inscrits)</option>
+                                <option value="date_created--asc"  {% if order=='date_created--asc' %} selected {% endif %}>Date (premiers inscrits)</option>
+                                <option value="name--asc"  {% if order=='name--asc' %} selected {% endif %}>Nom</option>
+                                <option value="firstname--asc"  {% if order=='firstname--asc' %} selected {% endif %}>Prénom</option>
+                                <option value="city--asc"  {% if order=='city--asc' %} selected {% endif %}>Ville</option>
+                                <option value="zipcode--asc"  {% if order=='zipcode--asc' %} selected {% endif %}>Code postal</option>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 m-b-x2">
+                        <button type="button" class="btn btn-primary pull-right jsBtReset" >Reset</button>
+                    </div>
+
+                </form>
+                </div>
+                <div class="updatableContent" data-updateIndex="1">
+
                 {% for candidature in candidatures %}
                     <div class="col-xs-12 col-md-6 col-lg-4 p-b-x4 {{ candidature.state }}" data-id-candidature="{{ candidature.id }}">
                         <div>
@@ -76,7 +103,7 @@
 
                 {% endfor %}
 
-
+                </div>
             </div>
         </div>
     </div>

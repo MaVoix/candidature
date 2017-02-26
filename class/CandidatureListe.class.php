@@ -42,8 +42,9 @@ class CandidatureListe extends Liste
         parent::__construct();
         $this->setTablePrincipale("candidature");
         $this->setAliasPrincipal("Candidature");
-        /*$this->setTri("");
+        $this->setTri("date_created");
         $this->setSens("DESC");
+        /*
         $this->setSearchFields(array(
         array("field"=>"nom")
         ))*/
@@ -199,4 +200,63 @@ class CandidatureListe extends Liste
         return $this;
     }
 
+    public function applyRules4Search($sSearch){
+        $this->addCriteres([
+            [
+                "field" => "",
+                "compare" => "sql",
+                "value" => " name LIKE '%".vars::secureInjection($sSearch)."%' 
+                            OR firstname LIKE '%".vars::secureInjection($sSearch)."%'
+                            OR zipcode LIKE '%".vars::secureInjection($sSearch)."%'
+                            OR tel LIKE '%".vars::secureInjection($sSearch)."%'
+                            OR city LIKE '%".vars::secureInjection($sSearch)."%'
+                            OR email LIKE '%".vars::secureInjection($sSearch)."%'
+                            "
+            ]
+        ]);
+    }
+
+    public function applyRules4FilterBy($sFilter)
+    {
+        switch ($sFilter){
+            case "online" :
+                $this->addCriteres([
+                    [
+                        "field" => "state",
+                        "compare" => "=",
+                        "value" => "online"
+                    ]
+                ]);
+                break;
+            case "offline" :
+                $this->addCriteres([
+                    [
+                        "field" => "state",
+                        "compare" => "=",
+                        "value" => "offline"
+                    ]
+                ]);
+                break;
+            case "is_certificate" :
+                $this->addCriteres([
+                    [
+                        "field" => "is_certificate",
+                        "compare" => "=",
+                        "value" => "1"
+                    ]
+                ]);
+                break;
+            }
+
+
+    }
+
+    public function applyRules4OrderBy($sOrder)
+    {
+        if(strstr($sOrder,"--")){
+            $aOrder=explode("--",$sOrder);
+            $this->setTri($aOrder[0]);
+            $this->setSens($aOrder[1]);
+        }
+    }
 }

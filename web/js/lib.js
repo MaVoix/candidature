@@ -107,7 +107,7 @@ $(document).ready(function () {
     $(".jsBackButton").on('click', function() {  window.history.back(); });
 
     //toggle offline/online
-    $('.jsSwitchAjax').on('change',function() {
+    $body.on('change','.jsSwitchAjax',function() {
         var $element = $(this);
         if (!isSendingForm)
         {
@@ -129,6 +129,17 @@ $(document).ready(function () {
             var data = $element.data("param");
             sendAjaxRequest( url, data);
         }
+    });
+
+    //submit form on select change
+    $body.on("change",".submitOnChange",function(){
+       $(this).closest("form").submit();
+    });
+
+    $body.on("click",".jsBtReset",function(){
+        $(this).closest("form").find("select option:first").prop('selected', true);
+        $(this).closest("form").find("input").val('');
+        $(this).closest("form").submit();
     });
 
 
@@ -293,6 +304,32 @@ function sendAjaxRequest( url, aData, bFadeLoading)
             }
         }
 
+        if(!response.hasOwnProperty("type")){
+
+            var $updatedPage = jQuery(response);
+            $(".updatableContent[data-updateIndex]").each(function (i, content)
+            {
+
+                var $currentContent = $(content);
+                var updateIndex =  $currentContent.attr("data-updateIndex") ;
+
+
+                var $updatedContent = $updatedPage.find(".updatableContent[data-updateIndex='"+ updateIndex +"']");
+
+                if( $updatedContent.length>0 )
+                {
+
+                    $currentContent.replaceWith($updatedContent);
+                    $('[data-toggle]').bootstrapToggle();
+
+
+                }
+
+            });
+        }
+
+
+
     }).fail( function(response)
     {
         isSendingForm = false;
@@ -420,9 +457,6 @@ function sendAjaxRequest( url, aData, bFadeLoading)
 
 
 })(jQuery);
-
-
-
 
 
 
