@@ -199,6 +199,9 @@
 
 .offline > div {
     border:1px solid #999999;
-    color:#999999;
+    color:#999999 ;
     padding:10px;
+}
+.offline  h3 {
+    color:#999999;
 }

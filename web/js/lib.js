@@ -103,7 +103,18 @@ $(document).ready(function () {
     $("input.jsSelectOnClick").on('click', function() { $(this).select(); });
 
     //historyback button
-    $(".jsBackButton").on('click', function() {   window.history.back(); });
+    $(".jsBackButton").on('click', function() {  window.history.back(); });
+
+    //toggle offline/online
+    $('.jsSwitchAjax').on('change',function() {
+        var $element = $(this);
+        if (!isSendingForm)
+        {
+            var url = $element.data("url");
+            var data = $element.data("param")+'&checked='+$element.prop('checked');
+            sendAjaxRequest( url, data);
+        }
+    });
 
 
     //click link
@@ -242,6 +253,11 @@ function sendAjaxRequest( url, aData, bFadeLoading)
                     toastr.options.timeOut = 10000;
                 }
                 toastr[response.message.type](response.message.text, response.message.title);
+            }
+
+            if(response.type == "refresh-state-list" )
+            {
+                $('[data-id-candidature="'+response.id+'"]').removeClass("offline").removeClass("online").addClass(response.class);
             }
         }
 

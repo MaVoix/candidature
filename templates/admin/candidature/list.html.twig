@@ -1,5 +1,12 @@
 {% extends "admin/base.html.twig" %}
 
+{%  block css %}
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+{% endblock %}
+
+{%  block javascripts %}
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+{% endblock %}
 
 {% block body %}
     <div class="wrapper-page">
@@ -13,7 +20,7 @@
 
                 {% for candidature in candidatures %}
 
-                    <div class="col-xs-12 col-md-6 col-lg-4 p-b-x4 online">
+                    <div class="col-xs-12 col-md-6 col-lg-4 p-b-x4 {{ candidature.state }}" data-id-candidature="{{ candidature.id }}">
                         <div>
                             <h3>{{ candidature.civility }} {{ candidature.firstname }} {{ candidature.name }}</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dictum ipsum, sed
@@ -26,8 +33,14 @@
                             <a href="/candidature/fiche.html?id={{ candidature.id }}" class="btn btn-primary btn-block">Fiche
                                 complete</a>
                             <div class="m-t-x4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
+                                </label>
+                            </div>
+                            <div class="m-t-x4">
+
+
                                 <a href="#" class="btn btn-danger btn-block">Supprimer</a>
-                                <a href="#" class="btn btn-default btn-block btn-default">Passer Hors-ligne</a>
                                 <a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}"
                                    class="btn btn-info btn-block">Editer</a>
                             </div>
