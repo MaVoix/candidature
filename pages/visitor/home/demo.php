@@ -5,3 +5,8 @@ $oCanditure->setDate_created(date("Y-m-d H:i:s"));
 $oCanditure->setDate_deleted(date("Y-m-d H:i:s"));
 $oCanditure->setName("INSERTDEMO");
 $oCanditure->save();
+
+
+$oUser= new User(array("id"=>1));
+$oUser->hydrateFromBDD(array('*'));
+var_dump($oUser);
