@@ -8,7 +8,7 @@ $aResponse["type"] = "message";
 
 SessionService::set("user-id",null);
 
-$aResponse["redirect"] = "/candidature/list.html";
+$aResponse["redirect"] = "/candidature/candidatures.html";
 $aResponse["durationMessage"] = "2000";
 $aResponse["durationRedirect"] = "2000";
 $aResponse["durationFade"] = "10000";
