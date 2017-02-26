@@ -197,7 +197,7 @@ if($nError==0){
         $Candidature=new Candidature();
         $Candidature->setDate_created(date("Y-m-d H:i:s"));
         //generate key for link
-        $sKey=md5($_SERVER["REMOTE_ADDR"].ConfigService::get("key").rand(1000,9999).time());
+        $sKey=sha1($_SERVER["REMOTE_ADDR"].ConfigService::get("key").rand(1000,9999).time());
         $Candidature->setKey_edit($sKey);
         $Candidature->setState("offline");
     }
