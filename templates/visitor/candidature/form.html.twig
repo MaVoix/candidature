@@ -86,8 +86,7 @@
                         <h2>Témoignage/Présentation</h2>
                         <div class="form-group">
                             <label for="imagefile" class="control-label">Une Photo :</label>
-                            <div class="drop-zone"
-                                 style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}"></div>
+
                             <div class="input-group image-preview">
                                 <input type="file" accept="image/jpeg" name="image" id="imagefile"/>
                                 <input type="hidden" id="imageData" name="imageData"
@@ -108,6 +107,10 @@
                                     </div>
                                 </span>
                             </div>
+
+                            <div class="drop-zone"
+                                 style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}"></div>
+
                         </div>
 
                         <div class="form-group">
