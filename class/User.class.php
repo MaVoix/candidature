@@ -99,14 +99,7 @@ class User	{
         }
     }
 
-    /**
-     * Fonction permettant de supprimer fictivement un objet (en lui passant un date supprime)
-     */
-    public function supprime()
-    {
-        $this->setDate_supprime(date("Y-m-d H:i:s"));
-        $this->save();
-    }
+
 
     /**
      * Fonction permettant de supprimer réellement un objet (en faisant un DELETE )

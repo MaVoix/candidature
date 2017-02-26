@@ -142,4 +142,36 @@ class CandidatureListe extends Liste
 
     }
 
+
+    public function applyRules4GetCandidatVisitor($id)
+    {
+        $this->setAllFields();
+
+        $this->addCriteres([
+            [
+                "field" => "id",
+                "compare" => "=",
+                "value" => vars::secureInjection($id)
+            ]
+        ]);
+
+        $this->addCriteres([
+            [
+                "field" => "state",
+                "compare" => "=",
+                "value" => "online"
+            ]
+        ]);
+
+        $this->addCriteres([
+            [
+                "field" => "date_deleted",
+                "compare" => "IS NULL",
+                "value" => ""
+            ]
+        ]);
+
+        return $this;
+    }
+
 }
