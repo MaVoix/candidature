@@ -12,7 +12,8 @@
                 <div class="row">
                     {% for candidature in candidatures %}
                         <div class="col-xs-6 col-md-4 col-lg-3 p-t-x2">
-                            <form method="post" action="/candidature/candidat.html?id={{ candidature.id }}">
+                            <form method="get" action="/candidature/candidat.html">
+                                <input type="hidden" name="id" value="{{ candidature.id }}" >
                                 <button type="submit" class="no-button">
                                     <div class="text-center sticker-name">
                                         <h3>{{ candidature.firstname|capitalize }} {{ candidature.name|first|upper }}

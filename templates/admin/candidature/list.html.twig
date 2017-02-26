@@ -15,8 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-                    <h1>CANDIDATURES</h1>
-                    <p>Vous trouverez ici la liste des candidatures.</p>
+                    <h1>Administration</h1>
                 </div>
                 <div class="p-b-x4">
                 <form action="/candidature/list.html" method="post" autocomplete="off"  data-ajax="true">
@@ -58,7 +57,7 @@
                     </div>
                     <div class="col-xs-12 m-b-x2">
                         <a href="/candidature/export.csv" class="btn btn-default pull-left" download="export.csv" >Export CSV</a>
-                        <button type="button" class="btn btn-primary pull-right jsBtReset" >Reset</button>
+                        <button type="button" class="btn btn-default pull-right jsBtReset" >Affichage par défaut</button>
                     </div>
 
                 </form>
@@ -98,8 +97,9 @@
                             </div>
                             <div class="m-t-x4">
                                 <a href="javascript:void(0);" class="btn btn-danger btn-block click-send-ajax-confirm" data-modal-title="Confirmation"  data-modal-body="Êtes-vous sûr de vouloir supprimer définitivement cette candidature ? <br> <i>En cas de doutes, il est préférable de simplement passer cette canidature hors ligne.</i><p class='m-t-x2'><b>A NOTER : Cette intervention n'efface pas complétement les données en base</b></p>" data-modal-confirm="Supprimer"  data-modal-cancel="Annuler" data-url="/candidature/delete.json" data-param='{"id":"{{ candidature.id }}","from":"list"}'  ><i class="fa fa-trash pull-left" aria-hidden="true"></i> Supprimer</a>
-                                <a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}"
-                                   class="btn btn-info btn-block">Editer</a>
+
+                                <a href="{%  if candidature.state=='offline'  %}{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}{% else %}javascript:void(0);{% endif %}  "
+                                   class="btn btn-info btn-block"   {%  if candidature.state=='online'  %}disabled{% endif %} >Editer</a>
                             </div>
                         </div>
                     </div>

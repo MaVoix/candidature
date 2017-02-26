@@ -13,7 +13,72 @@
 {% block body %}
     <div class="wrapper-page">
         <div class="container">
-            <div class="row m-b-x4">
+
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3 ">
+
+
+
+                        <h2>Coordonnées</h2>
+                        <div class="form-group">
+                            <label for="civilite" class="control-label">Civilité :</label>
+                           <div>{{ candidature.civility }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nom" class="control-label">Nom :</label>
+                            <div>{{ candidature.name|upper }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom" class="control-label">Prénom :</label>
+                            <div>{{ candidature.firstname|capitalize}}</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="control-label">E-mail :</label>
+                            <div>{{ candidature.email }}</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="video" class="control-label">Téléphone :</label>
+                            <div>{{ candidature.tel|phone }}</div>
+
+                        </div>
+                        <hr/>
+                        <h2>Adresse</h2>
+                        <div class="form-group">
+
+                            <b>{{ candidature.civility }} {{ candidature.firstname|capitalize}} {{ candidature.name|upper }}</b>
+                            <div>{{ candidature.ad1 }}</div>
+                            <div>{{ candidature.ad2 }}</div>
+                            <div>{{ candidature.ad3 }}</div>
+                            <div>{{ candidature.zipcode }} {{ candidature.city }}</div>
+                        </div>
+
+                        <hr/>
+                        <h2>Témoignage/Présentation</h2>
+
+
+                    {% if candidature.presentation!=''  %}
+                        <hr />
+                        <p>{{ candidature.presentation_nl2br|raw }} </p>
+                    {% endif %}
+
+                    {% if candidature.url_video!=''  %}
+                        <hr />
+                        <p class="text-center"><a href="{{ candidature.url_video }}"  target="_blank" class="btn btn-default"> Voir la vidéo </a></p>
+                    {% endif %}
+
+                    {%  if candidature.path_certificate!=''  %}
+                    <p class="text-center">
+                    <a href="/{{ candidature.path_certificate }}" download="attestation.pdf" class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Télécharger PDF</a>
+                    </p>
+                    {%  endif %}
+
+
+
+                </div>
+            </div>
+            {%  if candidature.state=='offline'  %}
+            <div class="row m-b-x4 m-t-x2">
                 <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
 
                     <label for="linkedit" class="control-label">Lien d'édition :</label>
@@ -29,60 +94,32 @@
                 </div>
 
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-                    <h3>{{ candidature.firstname }}</h3>
-                    <h2>{{ candidature.city }}({{ candidature.zipcode }})</h2>
-                </div>
-                <div class="col-xs-12 col-md-6 col-md-offset-3 m-t-x4">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dictum ipsum, sed pretium est.
-                        Vestibulum congue nunc nec velit dictum ultricies eu eget eros. Nulla facilisi. Aliquam egestas
-                        vehicula nunc, at ultrices mauris pellentesque a. Phasellus bibendum malesuada sollicitudin.
-                        Mauris eu lectus et mi finibus egestas. Suspendisse quis est ac leo viverra tempus pretium non
-                        nisi. Donec sem nisi, tristique et pellentesque id, commodo convallis nunc. Nulla imperdiet id
-                        urna eu condimentum. Sed id eleifend libero, vel vehicula arcu.</p>
-
-                    <p>Suspendisse sollicitudin orci non ante sodales scelerisque. Nullam egestas, libero ac dictum
-                        pretium, neque erat tempus nisi, ut porttitor risus arcu et urna. Sed aliquet efficitur tortor,
-                        id dignissim tortor cursus eu. Etiam lacinia ut nunc id luctus. Aliquam porta, mi sed ultrices
-                        laoreet, augue lacus mattis erat, vel porta ligula libero sit amet magna. Phasellus gravida eros
-                        sit amet mauris facilisis, sed rutrum est gravida. Sed fermentum tortor id odio euismod, et
-                        feugiat augue dignissim. Cras dolor augue, accumsan id commodo ac, scelerisque vitae purus. Ut
-                        fringilla elementum congue. Donec mattis erat risus, eget dignissim nibh tempor id. Vivamus
-                        sagittis sem vel feugiat malesuada. Suspendisse blandit id sem a feugiat. Nulla facilisi. Nam
-                        eget turpis sit amet mi tempus efficitur. Maecenas sed ex faucibus, iaculis justo in, congue
-                        libero.</p>
-
-                    <p>Quisque sit amet dui nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                        per inceptos himenaeos. Cras laoreet, nisl nec tincidunt fermentum, ex tortor ultricies mauris,
-                        in sagittis mi augue vitae velit. Aliquam interdum urna quis porta ornare. Nullam nisl orci,
-                        rhoncus quis laoreet id, interdum vitae dui. Donec eget condimentum quam. Pellentesque luctus
-                        felis lectus, id consequat dolor hendrerit a.</p>
-                    <p>Nullam in dui lobortis, dignissim massa eget, fringilla magna. Vivamus accumsan risus sed enim
-                        pulvinar, eu varius risus cursus. Nulla velit elit, ultricies et leo sed, facilisis efficitur
-                        dolor. Mauris tristique commodo ligula. Aenean pellentesque neque volutpat, mollis mauris ac,
-                        suscipit ex. Nam laoreet, diam sit amet porttitor mollis, elit neque consectetur eros, sed
-                        accumsan nunc diam ac mi. Fusce pretium pharetra aug, id venenatis eros mattis in. Pellentesque
-                        at ante nunc</p>
-                </div>
-                <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-                    <div class="m-t-x4 m-b-x4">
+            {% endif %}
 
 
-                        <a href="javascript:void(0);" class="btn btn-danger btn-block click-send-ajax-confirm" data-modal-title="Confirmation"  data-modal-body="Êtes-vous sûr de vouloir supprimer définitivement cette candidature ? <br> <i>En cas de doutes, il est préférable de simplement passer cette canidature hors ligne.</i><p class='m-t-x2'><b>A NOTER : Cette intervention n'efface pas complétement les données en base</b></p>" data-modal-confirm="Supprimer"  data-modal-cancel="Annuler" data-url="/candidature/delete.json" data-param='{"id":"{{ candidature.id }}","from":"fiche"}'  ><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</a>
+            <div class="row m-t-x4">
+                <div class="col-xs-12 col-md-6 col-md-offset-3 ">
+                    <div class="row">
+                    <div class="col-xs-2 ">
+                        <a href="javascript:void(0);" class="btn btn-danger  click-send-ajax-confirm" data-modal-title="Confirmation"  data-modal-body="Êtes-vous sûr de vouloir supprimer définitivement cette candidature ? <br> <i>En cas de doutes, il est préférable de simplement passer cette canidature hors ligne.</i><p class='m-t-x2'><b>A NOTER : Cette intervention n'efface pas complétement les données en base</b></p>" data-modal-confirm="Supprimer"  data-modal-cancel="Annuler" data-url="/candidature/delete.json" data-param='{"id":"{{ candidature.id }}","from":"fiche"}'  ><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </div>
-                    <div class="p-t-x4 p-b-x4">
-                        <label class="checkbox-inline">
+                    <div class="col-xs-5">
+                        <label class="checkbox-inline" >
                             <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
                         </label>
                     </div>
-                    <div class="m-t-x4">
+                    <div class="col-xs-5">
                         <label class="checkbox-inline">
                             <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_certificate=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/certificate-valid.json" data-param="id={{ candidature.id }}"> ATTESTATION VALIDE
                         </label>
                     </div>
-                    <a href="/candidature/list.html" class="btn btn-primary btn-lg">Retour</a>
                 </div>
+                </div>
+        </div>
+        <div class="row m-t-x4">
+                    <div class="m-t text-center">
+                    <a href="/candidature/list.html" class="btn btn-primary ">Retour</a>
+                    </div>
             </div>
         </div>
     </div>
