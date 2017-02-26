@@ -71,7 +71,12 @@
                     </div>
                     <div class="p-t-x4 p-b-x4">
                         <label class="checkbox-inline">
-                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
+                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
+                        </label>
+                    </div>
+                    <div class="m-t-x4">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_certificate=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/certificate-valid.json" data-param="id={{ candidature.id }}"> ATTESTATION VALIDE
                         </label>
                     </div>
                     <a href="/candidature/list.html" class="btn btn-primary btn-lg">Retour</a>

@@ -112,9 +112,17 @@ if ( $nError==0 ){
             $nError++;
         }
         curl_close($handle);
+
+        if(substr($_POST["video"],0,4)!="http"){
+            $aResponse["message"]["text"] = "Le lien vidéo doit commencer par http:// ou https://.";
+            array_push($aResponse["required"],array("field"=>"video"));
+            $nError++;
+        }
     }
 
 }
+
+
 
 
 //check upload picture
@@ -242,7 +250,6 @@ if($nError==0){
                     $aResponse["message"]["text"] = "Format de fichier PDF non reconnu.";
                 }else{
                     $Candidature->setPath_certificate($outputFileCerificat);
-                    $Candidature->setIs_certificate(true);
                 }
             } else {
                 $aResponse["message"]["text"] = "Erreur lors de l'enregistrement de votre fichier PDF.";

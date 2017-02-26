@@ -166,4 +166,10 @@ body{
 }
 
 
-
+.square-pic-candidature{
+    width:100%;
+    margin:auto;
+    padding-bottom:100%;
+    background-size:cover;
+    background-position:center center;
+}

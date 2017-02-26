@@ -14,33 +14,60 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
                     <h1>CANDIDATURES</h1>
-                    <p>Vous trouverez ici la liste des candidature.</p>
-                    <p>//TODO FORM TRI (date/code postal/modéré/non-modéré)</p>
+                    <p>Vous trouverez ici la liste des candidatures.</p>
                 </div>
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <p>
+                        <form action="/candidature/list.html" method="post" autocomplete="off">
+                        <div class="form-group">
+                            <label for="tri" class="control-label">Trier par :</label>
+                            <select id="tri" name="tri" class="form-control">
+                                <option value="date-asc">Date (du + récent au + ancien)</option>
+                                <option value="date-desc">Date (du + ancien au + récent)</option>
+                                <option value="name-asc">Nom</option>
+                                <option value="firstname-asc">Prénom</option>
+                                <option value="city-asc">Ville</option>
+                                <option value="zipcode-asc">Code postal</option>
+                                </option>
+                            </select>
+                        </div>
+                        </form>
 
+                    </p>
+                </div>
                 {% for candidature in candidatures %}
-
                     <div class="col-xs-12 col-md-6 col-lg-4 p-b-x4 {{ candidature.state }}" data-id-candidature="{{ candidature.id }}">
                         <div>
                             <h3>{{ candidature.civility }} {{ candidature.firstname }} {{ candidature.name }}</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dictum ipsum, sed
-                                pretium est. Vestibulum congue nunc nec velit dictum ultricies eu eget eros. Nulla
-                                facilisi. Aliquam egestas vehicula nunc, at ultrices mauris pellentesque a. Phasellus
-                                bibendum malesuada sollicitudin. Mauris eu lectus et mi finibus egestas. Suspendisse
-                                quis est ac leo viverra tempus pretium non nisi. Donec sem nisi, tristique et
-                                pellentesque id, commodo convallis nunc. Nulla imperdiet id urna eu condimentum. Sed id
-                                eleifend libero, vel vehicula arcu.</p>
+                            <p class="m-b-x2">{{ candidature.city }}({{ candidature.zipcode }})</p>
+                            <div style="background-image:url('/{{ candidature.path_pic_fit }}')" class="square-pic-candidature " ></div>
+
+                            <div class="m-t-x2">
                             <a href="/candidature/fiche.html?id={{ candidature.id }}" class="btn btn-primary btn-block">Fiche
                                 complete</a>
+                                {%  if candidature.url_video!=''  %}
+                                    <a href="{{ candidature.url_video }}" target="_blank" class="btn btn-primary btn-block"><i class="fa fa-file-video-o pull-left" aria-hidden="true"></i> Lien vidéo</a>
+                                {%  else %}
+                                    <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-video-o pull-left" aria-hidden="true"></i> Lien vidéo</button>
+                                {% endif %}
+                            {%  if candidature.path_certificate!=''  %}
+                                <a href="/{{ candidature.path_certificate }}" download="attestation.pdf" class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Télécharger PDF</a>
+                                {%  else %}
+                                    <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i>Télécharger PDF</button>
+                            {% endif %}
+                            </div>
                             <div class="m-t-x4">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
+                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success" data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
                                 </label>
                             </div>
                             <div class="m-t-x4">
-
-
-                                <a href="javascript:void(0);" class="btn btn-danger btn-block click-send-ajax-confirm" data-modal-title="Confirmation"  data-modal-body="Êtes-vous sûr de vouloir supprimer définitivement cette candidature ? <br> <i>En cas de doutes, il est préférable de simplement passer cette canidature hors ligne.</i><p class='m-t-x2'><b>A NOTER : Cette intervention n'efface pas complétement les données en base</b></p>" data-modal-confirm="Supprimer"  data-modal-cancel="Annuler" data-url="/candidature/delete.json" data-param='{"id":"{{ candidature.id }}","from":"list"}'  ><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</a>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_certificate=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/certificate-valid.json" data-param="id={{ candidature.id }}"> ATTESTATION VALIDE
+                                </label>
+                            </div>
+                            <div class="m-t-x4">
+                                <a href="javascript:void(0);" class="btn btn-danger btn-block click-send-ajax-confirm" data-modal-title="Confirmation"  data-modal-body="Êtes-vous sûr de vouloir supprimer définitivement cette candidature ? <br> <i>En cas de doutes, il est préférable de simplement passer cette canidature hors ligne.</i><p class='m-t-x2'><b>A NOTER : Cette intervention n'efface pas complétement les données en base</b></p>" data-modal-confirm="Supprimer"  data-modal-cancel="Annuler" data-url="/candidature/delete.json" data-param='{"id":"{{ candidature.id }}","from":"list"}'  ><i class="fa fa-trash pull-left" aria-hidden="true"></i> Supprimer</a>
                                 <a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}"
                                    class="btn btn-info btn-block">Editer</a>
                             </div>
