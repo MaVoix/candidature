@@ -162,6 +162,13 @@ class Navigate
         $this->template=substr($sPathOfTemplate,strlen($sTemplateDir."/"));
 
     }
+    public function getUrl(){
+        $sParam='';
+        if(isset($_GET["id"])){
+            $sParam="?id=".$_GET["id"];
+        }
+        return ConfigService::get("urlSite")."/".$this->getArea()."/".$this->getPage().".".$this->getFormat().$sParam;
+    }
 
     public function getUser(){
         return $this->user;

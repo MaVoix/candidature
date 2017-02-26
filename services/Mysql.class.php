@@ -127,41 +127,40 @@ class Mysql extends PDO {
 		}
 		
 	}
-		
-	//insert des données a partir d'un tableau
-	function insert($sTable,$aParam,$bExecute=true){
-		//$sTable => nom de la table
-		//$aParam => tableau associatif nomdecolonne=>valeur
-		//$bExecute => execute ou non la requete (facultatif...)
-		
-		if(!isset($this->aBigInsert[$sTable])){
-			$this->aBigInsert[$sTable]=array();
-		}
-		if($aParam){	
-			$sSql="DESCRIBE $sTable";
-			$this->select($sSql);
-			$aLignes=$this->getRes();	
-			$sColonnes="(";
-			$sValeurs="(";
-			$n=0;
-			foreach($aLignes as $aCol)
-			{
-				if( $n>0 )
-				{
-					$sColonnes .= ",";
-					$sValeurs .= ",";
-				}
 
-				$field = $aCol["Field"];
-				$sColonnes .= "`{$field}`";
+    function insert($sTable,$aParam,$bExecute=true){
+        //$sTable => nom de la table
+        //$aParam => tableau associatif nomdecolonne=>valeur
+        //$bExecute => execute ou non la requete (facultatif...)
 
-				if( !array_key_exists($field, $aParam) )
-				{
-					if( $aCol["Null"]=="YES" )
-					{
-						$sValeurs .= "NULL";
-					}
-					else
+        if(!isset($this->aBigInsert[$sTable])){
+            $this->aBigInsert[$sTable]=array();
+        }
+        if($aParam){
+            $sSql="DESCRIBE $sTable";
+            $this->select($sSql);
+            $aLignes=$this->getRes();
+            $sColonnes="(";
+            $sValeurs="(";
+            $n=0;
+            foreach($aLignes as $aCol)
+            {
+                if( $n>0 )
+                {
+                    $sColonnes .= ",";
+                    $sValeurs .= ",";
+                }
+
+                $field = $aCol["Field"];
+                $sColonnes .= "`{$field}`";
+
+                if( !array_key_exists($field, $aParam) )
+                {
+                    if( $aCol["Null"]=="YES" )
+                    {
+                        $sValeurs .= "NULL";
+                    }
+                    else
                     {
                         if( $aCol["Extra"]==="auto_increment" OR strlen($aCol["Default"])>0 )
                         {
@@ -171,47 +170,47 @@ class Mysql extends PDO {
                         {
                             $sValeurs .= "''";
                         }
-					}
-				}
-				else
+                    }
+                }
+                else
                 {
                     $value = Vars::secureInjection($aParam[$field]);
                     $sValeurs .= "'{$value}'";
-				}
+                }
 
-				$n++;		
-			}
+                $n++;
+            }
 
-			$sColonnes .= ")";
-			$sValeurs .= ")";
-			$sSqlReturn = $sValeurs;
+            $sColonnes .= ")";
+            $sValeurs .= ")";
+            $sSqlReturn = $sValeurs;
 
 
-		}
-		if($bExecute){	
-			array_push($this->aBigInsert[$sTable],$sSqlReturn);
-			if($this->aBigInsert[$sTable]){
-				$sSql="INSERT INTO $sTable $sColonnes VALUES ";	
-				$n=0;			
-				foreach($this->aBigInsert[$sTable] as $sInsertValeurs){
-					if($n>0){
-						$sSql.=",";
-					}
-					$sSql.="$sInsertValeurs";					
-					$n++;
-				}
-				$this->aBigInsert[$sTable]=array();				
-				$this->execute($sSql);
-			
-				return $this->lastInsertId();
-			}
-			$this->execute("INSERT INTO $sTable $sColonnes VALUES ".$sSqlReturn);
-			//echo "INSERT INTO $sTable $sColonnes VALUES ".$sSqlReturn;			
-			return intval( $this->lastInsertId() );
-		}else{
-			array_push($this->aBigInsert[$sTable],$sSqlReturn);
-		}
-	}
+        }
+        if($bExecute){
+            array_push($this->aBigInsert[$sTable],$sSqlReturn);
+            if($this->aBigInsert[$sTable]){
+                $sSql="INSERT INTO $sTable $sColonnes VALUES ";
+                $n=0;
+                foreach($this->aBigInsert[$sTable] as $sInsertValeurs){
+                    if($n>0){
+                        $sSql.=",";
+                    }
+                    $sSql.="$sInsertValeurs";
+                    $n++;
+                }
+                $this->aBigInsert[$sTable]=array();
+                $this->execute($sSql);
+
+                return $this->lastInsertId();
+            }
+            $this->execute("INSERT INTO $sTable $sColonnes VALUES ".$sSqlReturn);
+            //echo "INSERT INTO $sTable $sColonnes VALUES ".$sSqlReturn;
+            return intval( $this->lastInsertId() );
+        }else{
+            array_push($this->aBigInsert[$sTable],$sSqlReturn);
+        }
+    }
 
     //insert avec on duplicate key
     function insertDuplicateKey($sTable,$aParam){
