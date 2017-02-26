@@ -18,8 +18,8 @@ $_CONFIG["bdd-base"]                        = "base"; //database name
 // MAIN
 $_CONFIG["idSite"]                          = "appelcandidature"; //for unique session var prefix
 $_CONFIG["types"]			                = "visitor|admin>visitor"; //set hierarchy of user type ex: "type1|type2>type1|type3>type1|admin|type3>type2>type1"
-$_CONFIG["area-default"]                    = array("visitor"=>"candidature","admin"=>"home"); //dir default for each type user
-$_CONFIG["page-default"]                    = array("visitor"=>"list","admin"=>"home"); //page default for each type user
+$_CONFIG["area-default"]                    = array("visitor"=>"candidature","admin"=>"candidature"); //dir default for each type user
+$_CONFIG["page-default"]                    = array("visitor"=>"list","admin"=>"list"); //page default for each type user
 $_CONFIG["format-default"]                  = "html"; //format default (html/json/xml)
 $_CONFIG["max-filesize"]                    = 8; // in Mb
 $_CONFIG["max-width"]                       = 4000; // in PX
