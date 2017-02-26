@@ -83,6 +83,7 @@ $(document).ready(function () {
                 var data = $(this).data("param");
                 sendAjaxRequest(url, data);
             }
+            $('#modalConfirm').modal('toggle');
         });
 
         if( $element.data("modal-confirm") )
@@ -258,6 +259,11 @@ function sendAjaxRequest( url, aData, bFadeLoading)
             if(response.type == "refresh-state-list" )
             {
                 $('[data-id-candidature="'+response.id+'"]').removeClass("offline").removeClass("online").addClass(response.class);
+            }
+
+            if(response.type == "refresh-delete-list" )
+            {
+                $('[data-id-candidature="'+response.id+'"]').remove();
             }
         }
 

@@ -40,7 +40,7 @@
                             <div class="m-t-x4">
 
 
-                                <a href="#" class="btn btn-danger btn-block">Supprimer</a>
+                                <a href="javascript:void(0);" class="btn btn-danger btn-block click-send-ajax-confirm" data-modal-title="Confirmation"  data-modal-body="Êtes-vous sûr de vouloir supprimer définitivement cette candidature ? <br> <i>En cas de doutes, il est préférable de simplement passer cette canidature hors ligne.</i><p class='m-t-x2'><b>A NOTER : Cette intervention n'efface pas complétement les données en base</b></p>" data-modal-confirm="Supprimer"  data-modal-cancel="Annuler" data-url="/candidature/delete.json" data-param='{"id":"{{ candidature.id }}","from":"list"}'  ><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</a>
                                 <a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}"
                                    class="btn btn-info btn-block">Editer</a>
                             </div>
