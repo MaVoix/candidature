@@ -6,21 +6,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-                    <h3>{{ candidature.firstname }}</h3>
-                    <h2>{{ candidature.city }}({{ candidature.zipcode }})</h2>
+                    <h2>{{ candidature.firstname|capitalize }} {{ candidature.name|first|upper }}
+                        .<br/>
+                        <small>{{ candidature.city }} ({{ candidature.zipcode }})</small>
+                    </h2>
                 </div>
-                <div class="col-xs-12 col-md-6 col-md-offset-3 m-t-x4">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dictum ipsum, sed pretium est. Vestibulum congue nunc nec velit dictum ultricies eu eget eros. Nulla facilisi. Aliquam egestas vehicula nunc, at ultrices mauris pellentesque a. Phasellus bibendum malesuada sollicitudin. Mauris eu lectus et mi finibus egestas. Suspendisse quis est ac leo viverra tempus pretium non nisi. Donec sem nisi, tristique et pellentesque id, commodo convallis nunc. Nulla imperdiet id urna eu condimentum. Sed id eleifend libero, vel vehicula arcu.</p>
-
-                    <p>Suspendisse sollicitudin orci non ante sodales scelerisque. Nullam egestas, libero ac dictum pretium, neque erat tempus nisi, ut porttitor risus arcu et urna. Sed aliquet efficitur tortor, id dignissim tortor cursus eu. Etiam lacinia ut nunc id luctus. Aliquam porta, mi sed ultrices laoreet, augue lacus mattis erat, vel porta ligula libero sit amet magna. Phasellus gravida eros sit amet mauris facilisis, sed rutrum est gravida. Sed fermentum tortor id odio euismod, et feugiat augue dignissim. Cras dolor augue, accumsan id commodo ac, scelerisque vitae purus. Ut fringilla elementum congue. Donec mattis erat risus, eget dignissim nibh tempor id. Vivamus sagittis sem vel feugiat malesuada. Suspendisse blandit id sem a feugiat. Nulla facilisi. Nam eget turpis sit amet mi tempus efficitur. Maecenas sed ex faucibus, iaculis justo in, congue libero.</p>
-
-                    <p>Quisque sit amet dui nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras laoreet, nisl nec tincidunt fermentum, ex tortor ultricies mauris, in sagittis mi augue vitae velit. Aliquam interdum urna quis porta ornare. Nullam nisl orci, rhoncus quis laoreet id, interdum vitae dui. Donec eget condimentum quam. Pellentesque luctus felis lectus, id consequat dolor hendrerit a.</p>
-                    <p>Nullam in dui lobortis, dignissim massa eget, fringilla magna. Vivamus accumsan risus sed enim pulvinar, eu varius risus cursus. Nulla velit elit, ultricies et leo sed, facilisis efficitur dolor. Mauris tristique commodo ligula. Aenean pellentesque neque volutpat, mollis mauris ac, suscipit ex. Nam laoreet, diam sit amet porttitor mollis, elit neque consectetur eros, sed accumsan nunc diam ac mi. Fusce pretium pharetra aug, id venenatis eros mattis in. Pellentesque at ante nunc</p>
-                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-
-                    <a href="/candidature/candidatures.html" class="btn btn-primary btn-lg">Retour</a>
+                    <div style="background-image:url('/{{ candidature.path_pic_fit }}');"
+                         class="square-pic-candidature"></div>
                 </div>
+            </div>
+            <div class="row">
+
+                <div class="col-xs-12 col-md-6 col-md-offset-3 ">
+                    {% if candidature.presentation!=''  %}
+                        <hr />
+                        <p>{{ candidature.presentation_nl2br|raw }} </p>
+                    {% endif %}
+
+                    {% if candidature.url_video!=''  %}
+                        <hr />
+                        <p class="text-center"><a href="{{ candidature.url_video }}"  target="_blank" class="btn btn-default"> Voir la vidéo </a></p>
+                    {% endif %}
+                </div>
+
             </div>
         </div>
         <div class="text-center p-t-x4 p-b-x4">

@@ -331,6 +331,11 @@ class Candidature	{
         return str_replace(basename($this->getPath_pic()),"photo-fit.jpg",$this->getPath_pic());
     }
 
+    public function getPresentation_nl2br()
+    {
+        return nl2br($this->getPresentation());
+    }
+
     /*
     ********************************************************************************************
     *                             FIN FONCTIONS PERSONNALISES                     	           *

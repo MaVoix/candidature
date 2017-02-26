@@ -128,6 +128,8 @@ class CandidatureListe extends Liste
             ]
         ]);
 
+        $this->setTri("RAND()");
+
     }
 
     public function applyRules4ListAdmin()
