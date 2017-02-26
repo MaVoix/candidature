@@ -153,8 +153,13 @@ body{
 
 
 .wrapper-page{
-    padding:120px 0;
+    padding:20px 0;
 }
+
+.wrapper-menu{
+    margin-top:120px;
+}
+
 
 .toast-message {
     font-size: 14px;
