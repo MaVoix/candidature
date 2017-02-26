@@ -16,6 +16,7 @@ class App
         $twig->addGlobal("oMe", $oMe );
         $twig->addGlobal("urlPage", $oNavigate->getUrl() );
         $twig->addGlobal("urlPageEncoded", urlencode($oNavigate->getUrl()) );
+        $twig->addGlobal("urlSite", ConfigService::get("urlSite"));
 
         if(file_exists( self::TWIG_TEMPLATE_DIR."/".$oNavigate->getTemplate()))
         {
