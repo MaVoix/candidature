@@ -174,4 +174,29 @@ class CandidatureListe extends Liste
         return $this;
     }
 
+
+    public function applyRules4GetCandidatAdmin($id)
+    {
+        $this->setAllFields();
+
+        $this->addCriteres([
+            [
+                "field" => "id",
+                "compare" => "=",
+                "value" => vars::secureInjection($id)
+            ]
+        ]);
+
+
+        $this->addCriteres([
+            [
+                "field" => "date_deleted",
+                "compare" => "IS NULL",
+                "value" => ""
+            ]
+        ]);
+
+        return $this;
+    }
+
 }

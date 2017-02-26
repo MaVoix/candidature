@@ -99,6 +99,13 @@ $(document).ready(function () {
     });
 
 
+    //select text value on click
+    $("input.jsSelectOnClick").on('click', function() { $(this).select(); });
+
+    //historyback button
+    $(".jsBackButton").on('click', function() {   window.history.back(); });
+
+
     //click link
     $body.on("click", ".click-send-ajax", function (e)
     {

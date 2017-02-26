@@ -2,37 +2,42 @@
 
 
 {% block body %}
-<div class="wrapper-page">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-                <h1>CANDIDATURES</h1>
-                <p>Vous trouverez ici la liste des candidature.</p>
-                <p>//TODO FORM TRI (date/code postal/modéré/non-modéré)</p>
-            </div>
-
-            {% for candidature in candidatures %}
-
-                <div class="col-xs-12 col-md-6 col-lg-4 p-b-x4 online">
-                    <div>
-                        <h3>{{ candidature.civility }} {{ candidature.firstname }} {{ candidature.name }}</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dictum ipsum, sed pretium est. Vestibulum congue nunc nec velit dictum ultricies eu eget eros. Nulla facilisi. Aliquam egestas vehicula nunc, at ultrices mauris pellentesque a. Phasellus bibendum malesuada sollicitudin. Mauris eu lectus et mi finibus egestas. Suspendisse quis est ac leo viverra tempus pretium non nisi. Donec sem nisi, tristique et pellentesque id, commodo convallis nunc. Nulla imperdiet id urna eu condimentum. Sed id eleifend libero, vel vehicula arcu.</p>
-                        <a href="/candidature/fiche.html?id=XX" target="_blank" class="btn btn-primary btn-block">Fiche complete</a>
-                        <div class="m-t-x4">
-                            <a href="#" class="btn btn-danger btn-block">Supprimer</a>
-                            <a href="#" class="btn btn-default btn-block btn-default">Passer Hors-ligne</a>
-                        </div>
-                    </div>
+    <div class="wrapper-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
+                    <h1>CANDIDATURES</h1>
+                    <p>Vous trouverez ici la liste des candidature.</p>
+                    <p>//TODO FORM TRI (date/code postal/modéré/non-modéré)</p>
                 </div>
 
-            {% endfor %}
+                {% for candidature in candidatures %}
+
+                    <div class="col-xs-12 col-md-6 col-lg-4 p-b-x4 online">
+                        <div>
+                            <h3>{{ candidature.civility }} {{ candidature.firstname }} {{ candidature.name }}</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et dictum ipsum, sed
+                                pretium est. Vestibulum congue nunc nec velit dictum ultricies eu eget eros. Nulla
+                                facilisi. Aliquam egestas vehicula nunc, at ultrices mauris pellentesque a. Phasellus
+                                bibendum malesuada sollicitudin. Mauris eu lectus et mi finibus egestas. Suspendisse
+                                quis est ac leo viverra tempus pretium non nisi. Donec sem nisi, tristique et
+                                pellentesque id, commodo convallis nunc. Nulla imperdiet id urna eu condimentum. Sed id
+                                eleifend libero, vel vehicula arcu.</p>
+                            <a href="/candidature/fiche.html?id={{ candidature.id }}" class="btn btn-primary btn-block">Fiche
+                                complete</a>
+                            <div class="m-t-x4">
+                                <a href="#" class="btn btn-danger btn-block">Supprimer</a>
+                                <a href="#" class="btn btn-default btn-block btn-default">Passer Hors-ligne</a>
+                                <a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}"
+                                   class="btn btn-info btn-block">Editer</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
 
 
-
-
-
-
-
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

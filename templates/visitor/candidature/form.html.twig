@@ -6,84 +6,94 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-md-offset-3">
-                    <form action="/candidature/save.json" id="formcandidature" method="post" autocomplete="off" data-ajax="true"
+                    <form action="/candidature/save.json" id="formcandidature" method="post" autocomplete="off"
+                          data-ajax="true"
                           enctype="multipart/form-data">
-                        {%  if candidature.id!='' %}
-                            <input type="hidden" id="id" name="id" value="{{ candidature.id }}" />
-                            <input type="hidden" id="key" name="key" value="{{ key }}" />
+                        {% if candidature.id!='' %}
+                            <input type="hidden" id="id" name="id" value="{{ candidature.id }}"/>
+                            <input type="hidden" id="key" name="key" value="{{ key }}"/>
                         {% endif %}
                         <h1>CANDIDATURE MAVOIX</h1>
-                        <hr />
+                        <hr/>
                         <h2>Coordonnées</h2>
                         <div class="form-group">
                             <label for="civilite" class="control-label">Civilité : *</label>
                             <select id="civilie" name="civilite" class="form-control">
                                 <option value="">Choisir ...</option>
-                                <option value="M." {%  if candidature.civility=='M.' %} selected {%  endif %}>M.</option>
-                                <option value="Mme" {%  if candidature.civility=='Mme' %} selected {%  endif %}>Mme</option>
+                                <option value="M." {% if candidature.civility=='M.' %} selected {% endif %}>M.</option>
+                                <option value="Mme" {% if candidature.civility=='Mme' %} selected {% endif %}>Mme
+                                </option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="nom" class="control-label">Nom : *</label>
-                            <input type="text" class="form-control" id="nom" name="nom" value="{{ candidature.name|upper }}"
+                            <input type="text" class="form-control" id="nom" name="nom"
+                                   value="{{ candidature.name|upper }}"
                                    placeholder="Nom">
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="control-label">Prénom : *</label>
-                            <input type="text" class="form-control" id="prenom" name="prenom" value="{{ candidature.firstname|capitalize }}"
-                                   placeholder="Prénom" >
+                            <input type="text" class="form-control" id="prenom" name="prenom"
+                                   value="{{ candidature.firstname|capitalize }}"
+                                   placeholder="Prénom">
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="control-label">E-mail : *</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ candidature.email }}"
+                            <input type="email" class="form-control" id="email" name="email"
+                                   value="{{ candidature.email }}"
                                    placeholder="xxxxxx@xxxxx.com ">
                         </div>
                         <div class="form-group">
                             <label for="video" class="control-label">Téléphone : *</label>
                             <div class="input-group">
                                 <div class="input-group-addon">+33(0)</div>
-                                <input type="text" class="form-control" id="tel" name="tel" placeholder="XXXXXXXXX"  value="{{ candidature.tel }}">
+                                <input type="text" class="form-control" id="tel" name="tel" placeholder="XXXXXXXXX"
+                                       value="{{ candidature.tel }}">
                             </div>
-                            <p class="help-block form-text text-muted" >
+                            <p class="help-block form-text text-muted">
                                 Ne pas saisir le 0 de l'indicatif.</p>
                         </div>
-                        <hr />
+                        <hr/>
                         <h2>Adresse</h2>
                         <div class="form-group">
                             <label for="ad1" class="control-label">Adresse champ 1 : *</label>
                             <input type="text" class="form-control" id="ad1" name="ad1"
-                                   placeholder="N° | type de voie | nom de la voie"  value="{{ candidature.ad1 }}">
+                                   placeholder="N° | type de voie | nom de la voie" value="{{ candidature.ad1 }}">
                         </div>
                         <div class="form-group">
                             <label for="ad2" class="control-label">Adresse champ 2 :</label>
-                            <input type="text" class="form-control" id="ad2" name="ad2"  value="{{ candidature.ad2 }}"
+                            <input type="text" class="form-control" id="ad2" name="ad2" value="{{ candidature.ad2 }}"
                                    placeholder="Immeuble, Résidence, Z.I ...">
                         </div>
                         <div class="form-group">
                             <label for="ad3" class="control-label">Adresse champ 3 :</label>
-                            <input type="text" class="form-control" id="ad3" name="ad3"  value="{{ candidature.ad3 }}"
+                            <input type="text" class="form-control" id="ad3" name="ad3" value="{{ candidature.ad3 }}"
                                    placeholder="BP, TSA, Lieu dit">
                         </div>
                         <div class="form-group">
                             <label for="cp" class="control-label">Code postal : *</label>
-                            <input type="text" class="form-control" id="cp" name="cp"  value="{{ candidature.zipcode }}"
+                            <input type="text" class="form-control" id="cp" name="cp" value="{{ candidature.zipcode }}"
                                    placeholder="XXXXX">
                         </div>
                         <div class="form-group">
                             <label for="ville" class="control-label">Ville : *</label>
-                            <input type="text" class="form-control" id="ville" name="ville"  value="{{ candidature.city }}"
+                            <input type="text" class="form-control" id="ville" name="ville"
+                                   value="{{ candidature.city }}"
                                    placeholder="Nom de la ville">
                         </div>
-                        <hr />
+                        <hr/>
                         <h2>Témoignage/Présentation</h2>
                         <div class="form-group">
                             <label for="imagefile" class="control-label">Une Photo :</label>
-                            <div class="drop-zone" style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}" ></div>
+                            <div class="drop-zone"
+                                 style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}"></div>
                             <div class="input-group image-preview">
                                 <input type="file" accept="image/jpeg" name="image" id="imagefile"/>
-                                <input type="hidden" id="imageData" name="imageData" value="{%  if candidature.path_pic!='' %}{{ base64image }}{% endif %}"/>
-                                <input type="hidden" id="imageFilename" name="imageFilename" value="{%  if candidature.path_pic!='' %}{{ nameimage}}{% endif %}"/>
+                                <input type="hidden" id="imageData" name="imageData"
+                                       value="{% if candidature.path_pic!='' %}{{ base64image }}{% endif %}"/>
+                                <input type="hidden" id="imageFilename" name="imageFilename"
+                                       value="{% if candidature.path_pic!='' %}{{ nameimage }}{% endif %}"/>
                                 <input type="text" class="form-control image-preview-filename" disabled="disabled">
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default image-preview-clear"
@@ -93,7 +103,8 @@
                                     <div class="btn btn-default image-preview-input">
                                         <span class="fa fa-folder-open"></span>
                                         <span class="image-preview-input-title">Choisir</span>
-                                        <input type="hidden" name="MAX_FILE_SIZE" value="{{ ConfigService.get("max-filesize")*1024*1024 }}"/>
+                                        <input type="hidden" name="MAX_FILE_SIZE"
+                                               value="{{ ConfigService.get("max-filesize")*1024*1024 }}"/>
                                     </div>
                                 </span>
                             </div>
@@ -101,60 +112,87 @@
 
                         <div class="form-group">
                             <label for="presentation" class="control-label">Texte de présentation :</label>
-                            <textarea class="form-control" rows="8" id="presentation" name="presentation"> {{ candidature.presentation }}</textarea>
+                            <textarea class="form-control" rows="8" id="presentation"
+                                      name="presentation"> {{ candidature.presentation }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="video" class="control-label">Lien vidéo : </label>
                             <div class="input-group">
                                 <div class="input-group-addon">http://</div>
-                                <input type="text" class="form-control" id="video" name="video" placeholder="lienversvotrevideo.com"  value="{{ candidature.url_video }}">
+                                <input type="text" class="form-control" id="video" name="video"
+                                       placeholder="lienversvotrevideo.com" value="{{ candidature.url_video }}">
                             </div>
-                            <p class="help-block form-text text-muted" >
+                            <p class="help-block form-text text-muted">
                                 Youtube, Vimeo ou Dailymotion</p>
                         </div>
-                        <hr />
+                        <hr/>
                         <h2>Engagements</h2>
                         <div class="form-group ">
                             <div class="checkbox">
                                 <label class="control-label">
-                                    <input id="engagement-1" value="ok" type="checkbox" name="engagement-1" {{ checkedengagement }}>
+                                    <input id="engagement-1" value="ok" type="checkbox"
+                                           name="engagement-1" {{ checkedengagement }}>
                                     <span class="cr"><i class="cr-icon fa fa-check"></i></span>
                                 </label>
-                                <label class="label-checkbox" for="engagement-1">Engagement 1 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent dictum, libero non auctor consequat, velit felis venenatis nibh</label>
+                                <label class="label-checkbox" for="engagement-1">Engagement 1 : Lorem ipsum dolor sit
+                                    amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent
+                                    dictum, libero non auctor consequat, velit felis venenatis nibh</label>
                             </div>
                         </div>
-                        <hr />
+                        <hr/>
                         <div class="form-group ">
                             <div class="checkbox">
                                 <label class="control-label">
-                                    <input id="engagement-2" value="ok" type="checkbox" name="engagement-2" {{ checkedengagement }}>
+                                    <input id="engagement-2" value="ok" type="checkbox"
+                                           name="engagement-2" {{ checkedengagement }}>
                                     <span class="cr"><i class="cr-icon fa fa-check"></i></span>
                                 </label>
-                                <label class="label-checkbox" for="engagement-2">Engagement 2 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent dictum, libero non auctor consequat, velit felis venenatis nibh</label>
+                                <label class="label-checkbox" for="engagement-2">Engagement 2 : Lorem ipsum dolor sit
+                                    amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent
+                                    dictum, libero non auctor consequat, velit felis venenatis nibh</label>
                             </div>
                         </div>
-                        <hr />
+                        <hr/>
                         <div class="form-group ">
                             <div class="checkbox">
                                 <label class="control-label">
-                                    <input id="engagement-3" value="ok" type="checkbox" name="engagement-3" {{ checkedengagement }}>
+                                    <input id="engagement-3" value="ok" type="checkbox"
+                                           name="engagement-3" {{ checkedengagement }}>
                                     <span class="cr"><i class="cr-icon fa fa-check"></i></span>
                                 </label>
-                                <label class="label-checkbox" for="engagement-3">Engagement 3 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent dictum, libero non auctor consequat, velit felis venenatis nibh</label>
+                                <label class="label-checkbox" for="engagement-3">Engagement 3 : Lorem ipsum dolor sit
+                                    amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent
+                                    dictum, libero non auctor consequat, velit felis venenatis nibh</label>
                             </div>
                         </div>
-                        <hr />
+                        <hr/>
                         <h2>Attestation</h2>
 
 
                         <div class="form-group">
                             <p>Si vous disposez déjà de votre attestation d'inscription à une liste électorale</p>
-                            <label for="attestation" class="control-label">Attestation d’inscription liste électorale :</label>
-                            <input type="file" class="form-control" accept="application/pdf"  id="attestation" name="attestation"   >
+                            <label for="attestation" class="control-label">Attestation d’inscription liste électorale
+                                :</label>
+                            <input type="file" class="form-control" accept="application/pdf" id="attestation"
+                                   name="attestation">
                         </div>
-                        <hr />
-                        <div class="text-center"><button type="submit" class="btn btn-primary ">Envoyer ma candidature</button></div>
-
+                        <hr/>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary ">
+                                {% if candidature.id!='' %}
+                                    Enregistrer
+                                {% else %}
+                                    Envoyer ma candidature
+                                {% endif %}
+                            </button>
+                        </div>
+                        {% if oMe.type=='admin' %}
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary jsBackButton">
+                                    Retour
+                                </button>
+                            </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>
