@@ -79,11 +79,25 @@
                                 {%  else %}
                                     <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-video-o pull-left" aria-hidden="true"></i> Lien vidéo</button>
                                 {% endif %}
-                            {%  if candidature.path_certificate!=''  %}
+                           {# {%  if candidature.path_certificate!=''  %}
                                 <a href="/{{ candidature.path_certificate }}" download="attestation.pdf" class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Télécharger PDF</a>
                                 {%  else %}
                                     <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i>Télécharger PDF</button>
-                            {% endif %}
+                            {% endif %}#}
+                                {%  if candidature.path_idcard!=''  %}
+                                    <a href="/{{ candidature.path_idcard }}"  download="{{ candidature.path_idcard|basename }}"  class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Carte Identité</a>
+                                {%  else %}
+                                    <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Carte Identité</button>
+                                {% endif %}
+
+                                {%  if candidature.path_criminal_record !=''  %}
+                                    <a href="/{{ candidature.path_criminal_record }}" download="{{ candidature.path_criminal_record|basename }}" class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier judiciaire</a>
+                                {%  else %}
+                                    <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier judiciaire</button>
+                                {% endif %}
+
+
+
                             </div>
                             <div class="m-t-x4">
                                 <label class="checkbox-inline">

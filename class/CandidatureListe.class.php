@@ -29,6 +29,8 @@ class CandidatureListe extends Liste
         "url_video",
         "path_pic",
         "path_certificate",
+        "path_idcard",
+        "path_criminal_record",
         "is_certificate",
         "key_edit"
     );
