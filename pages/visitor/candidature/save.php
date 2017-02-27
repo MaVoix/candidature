@@ -45,6 +45,22 @@ foreach($aMandoryFields as $sField){
     }
 }
 
+if (array_key_exists("idcard", $_FILES)) {
+    if ($_FILES["idcard"]["tmp_name"] == "") {
+        array_push($aResponse["required"], array("field" => "idcard"));
+    }
+}else{
+    array_push($aResponse["required"], array("field" => "idcard"));
+}
+
+if (array_key_exists("criminal_record", $_FILES)) {
+    if ($_FILES["criminal_record"]["tmp_name"] == "") {
+        array_push($aResponse["required"], array("field" => "criminal_record"));
+    }
+}else{
+    array_push($aResponse["required"], array("field" => "criminal_record"));
+}
+
 if (!isset($_POST["ad2"])) {
     $_POST["ad3"]="";
 }
@@ -222,6 +238,8 @@ if($nError==0){
 
     $outputFilePhotoFit= $outputDir."photo-fit.jpg";
     $outputFileCerificat=$outputDir."certificate.pdf";
+    $outputFileIdcard=$outputDir."idcard.pdf";
+    $outputFileCriminalRecord=$outputDir."extrait-judiciaire.pdf";
 
 
     //PIC
@@ -242,7 +260,49 @@ if($nError==0){
 
 
     //PDF
-    if (array_key_exists("attestation", $_FILES)) {
+    if (array_key_exists("idcard", $_FILES)) {
+        if(file_exists($_FILES['idcard']['tmp_name'])){
+            if (@move_uploaded_file($_FILES['idcard']['tmp_name'], $outputFileIdcard)) {
+                if (!in_array(mime_content_type($outputFileIdcard), array("application/pdf",$aLimitMime))) {
+                    $nError++;
+                    $aResponse["message"]["text"] = "Carte d'identité : Format de fichier PDF non reconnu.";
+                    array_push($aResponse["required"],array("field"=>"idcard"));
+                }else{
+                    $Candidature->setPath_certificate($outputFileIdcard);
+                }
+            } else {
+                $aResponse["message"]["text"] = "Carte d'identité : Erreur lors de l'enregistrement de votre fichier PDF.";
+                array_push($aResponse["required"],array("field"=>"idcard"));
+                $nError++;
+            }
+        }
+    }else{
+        array_push($aResponse["required"],array("field"=>"idcard"));
+        $nError++;
+    }
+
+    if (array_key_exists("criminal_record", $_FILES)) {
+        if(file_exists($_FILES['criminal_record']['tmp_name'])){
+            if (@move_uploaded_file($_FILES['criminal_record']['tmp_name'],  $outputFileCriminalRecord)) {
+                if (!in_array(mime_content_type( $outputFileCriminalRecord), array("application/pdf",$aLimitMime))) {
+                    $nError++;
+                    $aResponse["message"]["text"] = "Extrait judiciaire : Format de fichier PDF non reconnu.";
+                    array_push($aResponse["required"],array("field"=>"criminal_record"));
+                }else{
+                    $Candidature->setPath_certificate( $outputFileCriminalRecord);
+                }
+            } else {
+                $aResponse["message"]["text"] = "Extrait judiciaire : Erreur lors de l'enregistrement de votre fichier PDF.";
+                array_push($aResponse["required"],array("field"=>"criminal_record"));
+                $nError++;
+            }
+        }
+    }else{
+        array_push($aResponse["required"],array("field"=>"criminal_record"));
+        $nError++;
+    }
+
+   /* if (array_key_exists("attestation", $_FILES)) {
         if(file_exists($_FILES['attestation']['tmp_name'])){
             if (@move_uploaded_file($_FILES['attestation']['tmp_name'], $outputFileCerificat)) {
                 if (!in_array(mime_content_type($outputFileCerificat), array("application/pdf"))) {
@@ -257,7 +317,7 @@ if($nError==0){
             }
         }
 
-    }
+    }*/
 
     if( $nError==0){
 

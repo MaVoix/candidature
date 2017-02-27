@@ -169,8 +169,32 @@
                         </div>
                         <hr/>
                         <h2>Documents joints</h2>
-
                         <div class="form-group">
+
+                            <label for="idcard" class="control-label">Carte d'identité (jpg, png ou pdf)
+                                : *</label>
+
+
+                            <input type="file" class="form-control" accept="application/pdf, image/*" id="idcard"
+                                   name="idcard">
+                            {%  if candidature.path_idcard!=''  %}
+                                <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
+                            {%  endif %}
+                        </div>
+                        <div class="form-group">
+
+                            <label for="criminal_record" class="control-label">Extrait de casier judiciaire (jpg, png ou pdf)
+                                : *</label>
+
+
+                            <input type="file" class="form-control" accept="application/pdf, image/*" id="criminal_record"
+                                   name="criminal_record">
+                            {%  if candidature.path_idcard!=''  %}
+                                <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
+                            {%  endif %}
+                        </div>
+
+                        {#<div class="form-group">
                             <p>Si vous disposez déjà de votre attestation d'inscription à une liste électorale</p>
                             <label for="attestation" class="control-label">Attestation d’inscription liste électorale
                                 :</label>
@@ -181,7 +205,7 @@
                             {%  if candidature.path_certificate!=''  %}
                                 <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
                             {%  endif %}
-                        </div>
+                        </div>#}
                         <hr/>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary ">
