@@ -92,7 +92,13 @@ if(!$bPresentation && !$bVideoPresentation){
     array_push($aResponse["required"], array("field" => "presentation"));
     array_push($aResponse["required"], array("field" => "video"));
 }
-
+if( $nError==0 ) {
+    if (!$bVideoPresentation && strlen($_POST["presentation"])<140 ){
+        $nError++;
+        $aResponse["message"]["text"] = "Le texte de présentation doit faire au moins 140 caractères";
+        array_push($aResponse["required"], array("field" => "presentation"));
+    }
+}
 
 //Values
 if( $nError==0 ) {
@@ -230,7 +236,7 @@ if($nError==0){
     $Candidature->setAd3($_POST["ad3"]);
     $Candidature->setCity($_POST["ville"]);
     $Candidature->setUrl_video($_POST["video"]);
-    $Candidature->setPresentation($_POST["presentation"]);
+    $Candidature->setPresentation(vars::cleanInput($_POST["presentation"]));
     $Candidature->setZipcode($_POST["cp"]);
 
 
