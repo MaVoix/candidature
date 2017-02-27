@@ -10,6 +10,10 @@ class Twig_Extension_Filter extends Twig_Extension
                 return preg_replace("/^([a-z]+:\\/{2,2})/isU", "", $url);
             }),
             new \Twig_SimpleFilter('phone', array($this, 'phoneFilter')),
+            new \Twig_SimpleFilter('basename', function($sPath) {
+                return basename($sPath);
+            }
+            ),
         ];
     }
 
@@ -22,6 +26,9 @@ class Twig_Extension_Filter extends Twig_Extension
     {
         return ($num) ? '0' . substr($num, 0, 1) . '.' . substr($num, 1, 2) . '.' . substr($num, 3, 2) . '.' . substr($num, 5, 2) . '.' . substr($num, 7, 2) : '&nbsp;';
     }
+
+
+
 
 
 }

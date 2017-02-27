@@ -45,6 +45,9 @@ foreach($aMandoryFields as $sField){
     }
 }
 
+
+//mandory files
+/*
 if (array_key_exists("idcard", $_FILES)) {
     if ($_FILES["idcard"]["tmp_name"] == "") {
         array_push($aResponse["required"], array("field" => "idcard"));
@@ -59,7 +62,7 @@ if (array_key_exists("criminal_record", $_FILES)) {
     }
 }else{
     array_push($aResponse["required"], array("field" => "criminal_record"));
-}
+}*/
 
 if (!isset($_POST["ad2"])) {
     $_POST["ad3"]="";
@@ -145,7 +148,7 @@ if ( $nError==0 ){
 $aLimitMime = ConfigService::get("mime-type-limit");
 $aMime = array_keys(ConfigService::get("mime-type-limit"));
 
-if ($nError == 0) {
+ if ($nError == 0) {
     if (!isset($_POST["imageFilename"]) || $_POST["imageFilename"] == "") {
         $nError++;
         $aResponse["message"]["text"] = "N'oubliez pas d'envoyer votre photo !";
@@ -263,43 +266,37 @@ if($nError==0){
     if (array_key_exists("idcard", $_FILES)) {
         if(file_exists($_FILES['idcard']['tmp_name'])){
             if (@move_uploaded_file($_FILES['idcard']['tmp_name'], $outputFileIdcard)) {
-                if (!in_array(mime_content_type($outputFileIdcard), array("application/pdf",$aLimitMime))) {
+                if (!in_array(mime_content_type($outputFileIdcard), array_merge(array("application/pdf"),$aMime) )) {
                     $nError++;
-                    $aResponse["message"]["text"] = "Carte d'identité : Format de fichier PDF non reconnu.";
+                    $aResponse["message"]["text"] = "Carte d'identité : Format de fichier non reconnu.";
                     array_push($aResponse["required"],array("field"=>"idcard"));
                 }else{
                     $Candidature->setPath_idcard($outputFileIdcard);
                 }
             } else {
-                $aResponse["message"]["text"] = "Carte d'identité : Erreur lors de l'enregistrement de votre fichier PDF.";
+                $aResponse["message"]["text"] = "Carte d'identité : Erreur lors de l'enregistrement de votre fichier.";
                 array_push($aResponse["required"],array("field"=>"idcard"));
                 $nError++;
             }
         }
-    }else{
-        array_push($aResponse["required"],array("field"=>"idcard"));
-        $nError++;
     }
 
     if (array_key_exists("criminal_record", $_FILES)) {
         if(file_exists($_FILES['criminal_record']['tmp_name'])){
             if (@move_uploaded_file($_FILES['criminal_record']['tmp_name'],  $outputFileCriminalRecord)) {
-                if (!in_array(mime_content_type( $outputFileCriminalRecord), array("application/pdf",$aLimitMime))) {
+                if (!in_array(mime_content_type( $outputFileCriminalRecord), array_merge(array("application/pdf"),$aMime) )) {
                     $nError++;
-                    $aResponse["message"]["text"] = "Extrait judiciaire : Format de fichier PDF non reconnu.";
+                    $aResponse["message"]["text"] = "Extrait judiciaire : Format de fichier non reconnu.";
                     array_push($aResponse["required"],array("field"=>"criminal_record"));
                 }else{
                     $Candidature->setPath_criminal_record($outputFileCriminalRecord);
                 }
             } else {
-                $aResponse["message"]["text"] = "Extrait judiciaire : Erreur lors de l'enregistrement de votre fichier PDF.";
+                $aResponse["message"]["text"] = "Extrait judiciaire : Erreur lors de l'enregistrement de votre fichier.";
                 array_push($aResponse["required"],array("field"=>"criminal_record"));
                 $nError++;
             }
         }
-    }else{
-        array_push($aResponse["required"],array("field"=>"criminal_record"));
-        $nError++;
     }
 
    /* if (array_key_exists("attestation", $_FILES)) {

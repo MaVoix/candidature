@@ -67,11 +67,23 @@
                         <p class="text-center"><a href="{{ candidature.url_video }}"  target="_blank" class="btn btn-default"> Voir la vidéo </a></p>
                     {% endif %}
 
-                    {%  if candidature.path_certificate!=''  %}
+                    {#{%  if candidature.path_certificate!=''  %}
                     <p class="text-center">
                     <a href="/{{ candidature.path_certificate }}" download="attestation.pdf" class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Télécharger PDF</a>
                     </p>
-                    {%  endif %}
+                    {%  endif %}#}
+
+                    {%  if candidature.path_idcard!=''  %}
+                        <a href="/{{ candidature.path_idcard }}"  download="{{ candidature.path_idcard|basename }}"  class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Carte Identité</a>
+                    {%  else %}
+                        <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Carte Identité</button>
+                    {% endif %}
+
+                    {%  if candidature.path_criminal_record !=''  %}
+                        <a href="/{{ candidature.path_criminal_record }}" download="{{ candidature.path_criminal_record|basename }}" class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier judiciaire</a>
+                    {%  else %}
+                        <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier judiciaire</button>
+                    {% endif %}
 
 
 
