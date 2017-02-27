@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 26 Février 2017 à 18:55
+-- Généré le :  Lun 27 Février 2017 à 22:53
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -48,6 +48,8 @@ CREATE TABLE `candidature` (
   `url_video` varchar(255) NOT NULL,
   `path_pic` varchar(255) NOT NULL,
   `path_certificate` varchar(255) NOT NULL,
+  `path_idcard` varchar(255) NOT NULL,
+  `path_criminal_record` varchar(255) NOT NULL,
   `is_certificate` tinyint(1) NOT NULL DEFAULT '0',
   `key_edit` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -100,5 +102,3 @@ ALTER TABLE `user`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-ALTER TABLE `candidature` ADD `path_idcard` VARCHAR(255) NOT NULL AFTER `path_certificate`, ADD `path_criminal_record` VARCHAR(255) NOT NULL AFTER `path_idcard`;
