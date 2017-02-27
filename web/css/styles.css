@@ -207,3 +207,44 @@ body{
     padding:20px 40px 10px 10px;
     width:100%;
 }
+
+@font-face {
+    font-family: 'myriad';
+    font-style: normal;
+    src: url('../fonts/Myriad.eot');
+    src: local('myriad'), url('../fonts/Myriad.eot') format('embedded-opentype'), url('../fonts/Myriad.woff') format('woff');
+}
+.myriad {
+    font-family: 'myriad' !important;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+li,
+a {
+    font-family: 'myriad' !important;
+
+}
+
+.topmenu {
+  background-color: #f2e732;
+}
+
+.navbar-right {
+  font-weight: bold;
+
+}
+
+.navbar-right a {
+  color: black;
+}
+
+#logo {
+  padding-top: 7px;
+}
