@@ -5,7 +5,7 @@
     <meta property="og:title" content="#MAVOIX - Candidature" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ urlPage }}" />
-    <meta property="og:image" content="{{ urlSite }}/{{ candidature.path_pic_fit }}" />
+    <meta property="og:image" content="{{ urlSiteHTTP }}/{{ candidature.path_pic_fit }}" />
     <meta property="og:description" content="{% if candidature.presentation==''  %} Candidature {{ candidature.firstname|capitalize }} {{ candidature.name|first|upper }}.{% else %} {{ candidature.presentation }} {% endif %}" />
     <meta name="description" content="{% if candidature.presentation==''  %} Candidature {{ candidature.firstname|capitalize }} {{ candidature.name|first|upper }}.{% else %} {{ candidature.presentation }} {% endif %}" />
 {% endblock %}
