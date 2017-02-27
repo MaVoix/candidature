@@ -268,7 +268,7 @@ if($nError==0){
                     $aResponse["message"]["text"] = "Carte d'identité : Format de fichier PDF non reconnu.";
                     array_push($aResponse["required"],array("field"=>"idcard"));
                 }else{
-                    $Candidature->setPath_certificate($outputFileIdcard);
+                    $Candidature->setPath_idcard($outputFileIdcard);
                 }
             } else {
                 $aResponse["message"]["text"] = "Carte d'identité : Erreur lors de l'enregistrement de votre fichier PDF.";
@@ -289,7 +289,7 @@ if($nError==0){
                     $aResponse["message"]["text"] = "Extrait judiciaire : Format de fichier PDF non reconnu.";
                     array_push($aResponse["required"],array("field"=>"criminal_record"));
                 }else{
-                    $Candidature->setPath_certificate( $outputFileCriminalRecord);
+                    $Candidature->setPath_criminal_record($outputFileCriminalRecord);
                 }
             } else {
                 $aResponse["message"]["text"] = "Extrait judiciaire : Erreur lors de l'enregistrement de votre fichier PDF.";
