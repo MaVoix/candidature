@@ -101,4 +101,4 @@ ALTER TABLE `user`
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-ALTER TABLE `candidature` ADD `path_idcard` VARCHAR(255) NOT NULL AFTER `path_certificate`, ADD `path_criminal_recod` VARCHAR(255) NOT NULL AFTER `path_idcard`;
+ALTER TABLE `candidature` ADD `path_idcard` VARCHAR(255) NOT NULL AFTER `path_certificate`, ADD `path_criminal_record` VARCHAR(255) NOT NULL AFTER `path_idcard`;
