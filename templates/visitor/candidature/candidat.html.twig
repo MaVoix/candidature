@@ -36,8 +36,7 @@
                     {% endif %}
 
                     {% if candidature.url_video!=''  %}
-                        <hr />
-                        <p class="text-center"><a href="{{ candidature.url_video }}"  target="_blank" class="btn btn-default"> Voir la vidéo </a></p>
+                        <p ><a href="{{ candidature.url_video }}"  target="_blank" class="text-primary"> Voir la vidéo de {{ candidature.firstname|capitalize }} </a></p>
                     {% endif %}
                 </div>
 
