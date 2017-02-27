@@ -168,11 +168,11 @@
                             </div>
                         </div>
                         <hr/>
-                        <h2>Documents joints</h2>
+                        <h2>Documents joints <small>(PDF, JPG ou PNG)</small></h2>
                         <div class="form-group">
 
-                            <label for="idcard" class="control-label">Carte d'identité (jpg, png ou pdf)
-                                : *</label>
+                            <label for="idcard" class="control-label">Copie de votre carte d'identité recto/verso ou de votre passeport
+                                :</label>
 
 
                             <input type="file" class="form-control" accept="application/pdf, image/*" id="idcard"
@@ -183,12 +183,12 @@
                         </div>
                         <div class="form-group">
 
-                            <label for="criminal_record" class="control-label">Extrait de casier judiciaire (jpg, png ou pdf)
-                                : *</label>
+                            <label for="criminal_record" class="control-label">Extrait de casier judiciaire B3 :</label>
 
-
+                            <div class="help-block">Ce document peut être téléchargé sur <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank" class="text-primary">ce site Web</a></div>
                             <input type="file" class="form-control" accept="application/pdf, image/*" id="criminal_record"
                                    name="criminal_record">
+
                             {%  if candidature.path_idcard!=''  %}
                                 <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
                             {%  endif %}
