@@ -16,8 +16,8 @@ if(isset($_GET["key"]) && isset($_GET["id"])){
         $data = file_get_contents($Candidature->getPath_pic());
         $aDataScript["base64image"]= 'data:image/' . $type . ';base64,' . base64_encode($data);
         $aDataScript["key"]=$_GET["key"];
-
-
+    }else{
+        header("Location: /candidature/candidatures.html");
     }
 
 }

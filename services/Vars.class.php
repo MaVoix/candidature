@@ -13,6 +13,14 @@ class Vars
     }
 
 
+    public static function pushIfNotInArray(&$array, $value)
+    {
+        if( !in_array($value, $array) )
+        {
+            $array[] = $value;
+        }
+    }
+
 
 
 }

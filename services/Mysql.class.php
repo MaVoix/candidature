@@ -56,12 +56,7 @@ class Mysql extends PDO {
 		}
 	}
 	
-	//envoi l'erreur par e-mail
-	private function sendErrorByMail(){	
-		if($this->sErreur){				
-			Mail::sendMailBug(array("titre"=>"BUG SQL ".ConfigService::get("idSite"),"body"=>str_replace('display:none;','',$this->sErreur)));			
-		}			
-	}
+
 	
 	//requete SELECT
 	public function select($sRequete){	

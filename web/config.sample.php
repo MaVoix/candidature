@@ -15,6 +15,17 @@ $_CONFIG["bdd-login"]                       = "login"; //login mysql database
 $_CONFIG["bdd-pass"]                        = "pass"; //pass mysql database
 $_CONFIG["bdd-base"]                        = "base"; //database name
 
+//mail
+$_CONFIG["mail-expediteur-mail"]	        ="contact@mavoix.info";
+$_CONFIG["mail-expediteur-nom"]		        ="MAVOIX";
+$_CONFIG["mail-bcc"]				        =array();
+$_CONFIG["mail-reply-mail"]			        ="contact@mavoix.info";
+$_CONFIG["mail-reply-nom"]			        ="MAVOIX";
+$_CONFIG["mail-isSMTP"]				        =false; //server smtp enable (use php mail function if false)
+$_CONFIG["mail-smtp-serveur"]		        ="-"; //server smtp
+$_CONFIG["mail-smtp-login"]			        ="-"; //server smtp login
+$_CONFIG["mail-smtp-pass"]			        ="-"; //server smtp pass
+
 // MAIN
 $_CONFIG["idSite"]                          = "appelcandidature"; //for unique session var prefix
 $_CONFIG["types"]			                = "visitor|admin>visitor"; //set hierarchy of user type ex: "type1|type2>type1|type3>type1|admin|type3>type2>type1"
@@ -27,4 +38,6 @@ $_CONFIG["max-height"]                      = 4000; // in PX
 $_CONFIG["min-width"]                       = 600; // in PX
 $_CONFIG["min-height"]                      = 600; // in PX
 $_CONFIG["mime-type-limit"]                 = array('image/jpeg'=>'jpg','image/png'=>'png');
+
+
 

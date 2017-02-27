@@ -263,7 +263,15 @@ if($nError==0){
 
         $Candidature->save();
 
+        $TwigEngine = App::getTwig();
+        $sBodyMailHTML = $TwigEngine->render("visitor/mail/body.html.twig", [
+            "candidature" => $Candidature
+        ]);
+        $sBodyMailTXT = $TwigEngine->render("visitor/mail/body.txt.twig", [
+            "candidature" => $Candidature
+        ]);
 
+        Mail::sendMail($Candidature->getEmail(), "Confirmation de candidature" ,$sBodyMailHTML, $sBodyMailTXT , true);
 
         $aResponse["redirect"] = "/candidature/success.html";
         $aResponse["durationMessage"] = "2000";
