@@ -28,6 +28,8 @@ class Candidature	{
     private $sUrl_video;
     private $sPath_pic;
     private $sPath_certificate;
+    private $sPath_idcard;
+    private $sPath_criminal_recod;
     private $bIs_certificate;
     private $sKey_edit;
 
@@ -113,7 +115,14 @@ class Candidature	{
         }
     }
 
-
+    /**
+     * Fonction permettant de supprimer fictivement un objet (en lui passant un date supprime)
+     */
+    public function supprime()
+    {
+        $this->setDate_supprime(date("Y-m-d H:i:s"));
+        $this->save();
+    }
 
     /**
      * Fonction permettant de supprimer réellement un objet (en faisant un DELETE )
@@ -236,6 +245,16 @@ class Candidature	{
             $aData["path_certificate"]=$this->getPath_certificate();
         }
 
+        if(isset($this->aDataSet["path_idcard"]))
+        {
+            $aData["path_idcard"]=$this->getPath_idcard();
+        }
+
+        if(isset($this->aDataSet["path_criminal_recod"]))
+        {
+            $aData["path_criminal_recod"]=$this->getPath_criminal_recod();
+        }
+
         if(isset($this->aDataSet["is_certificate"]))
         {
             $aData["is_certificate"]=$this->getIs_certificate();
@@ -282,6 +301,8 @@ class Candidature	{
         $this->setUrl_video(NULL);
         $this->setPath_pic(NULL);
         $this->setPath_certificate(NULL);
+        $this->setPath_idcard(NULL);
+        $this->setPath_criminal_recod(NULL);
         $this->setIs_certificate(0);
         $this->setKey_edit(NULL);
     }
@@ -311,6 +332,8 @@ class Candidature	{
             "url_video" => $this->getUrl_video(),
             "path_pic" => $this->getPath_pic(),
             "path_certificate" => $this->getPath_certificate(),
+            "path_idcard" => $this->getPath_idcard(),
+            "path_criminal_recod" => $this->getPath_criminal_recod(),
             "is_certificate" => $this->getIs_certificate(),
             "key_edit" => $this->getKey_edit()
         ];
@@ -1179,6 +1202,104 @@ class Candidature	{
                 echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
             }
             return $this->sPath_certificate;
+        }
+    }
+
+
+
+    /**
+     * Set le champ path_idcard
+     * @param string $sPath_idcard nouvelle valeur pour le champ path_idcard
+     */
+    public function setPath_idcard($sPath_idcard)
+    {
+        if( is_null($sPath_idcard) ) $sPath_idcard='';
+        $this->sPath_idcard = $sPath_idcard;
+        $this->aDataSet["path_idcard"]=1;
+    }
+
+
+
+    /**
+     * Get le champ path_idcard
+     * @return string valeur du champ path_idcard
+     */
+    public function getPath_idcard()
+    {
+        if( !is_null($this->sPath_idcard) )
+        {
+            if( $this->sPath_idcard==='' )
+            {
+                return NULL;
+            }
+            else
+            {
+                return $this->sPath_idcard;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('path_idcard'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->sPath_idcard;
+        }
+    }
+
+    public function Pathcard()
+    {
+        if( $this->sPath_idcard){
+            $oPathcard = new Pathcard(array("id"=>$this->sPath_idcard));
+            $oPathcard->HydrateFromBDD(array("*"));
+            return $oPathcard;
+        }else{
+            return NULL;
+        }
+    }
+
+
+    /**
+     * Set le champ path_criminal_recod
+     * @param string $sPath_criminal_recod nouvelle valeur pour le champ path_criminal_recod
+     */
+    public function setPath_criminal_recod($sPath_criminal_recod)
+    {
+        if( is_null($sPath_criminal_recod) ) $sPath_criminal_recod='';
+        $this->sPath_criminal_recod = $sPath_criminal_recod;
+        $this->aDataSet["path_criminal_recod"]=1;
+    }
+
+
+
+    /**
+     * Get le champ path_criminal_recod
+     * @return string valeur du champ path_criminal_recod
+     */
+    public function getPath_criminal_recod()
+    {
+        if( !is_null($this->sPath_criminal_recod) )
+        {
+            if( $this->sPath_criminal_recod==='' )
+            {
+                return NULL;
+            }
+            else
+            {
+                return $this->sPath_criminal_recod;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('path_criminal_recod'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->sPath_criminal_recod;
         }
     }
 
