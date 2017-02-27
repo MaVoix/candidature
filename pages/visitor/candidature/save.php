@@ -35,7 +35,7 @@ if(isset($_POST["id"]) && isset($_POST["key"])){
 
 
 //mandatory fields
-$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","engagement-1","engagement-2","engagement-3");
+$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","engagement-1","engagement-2","engagement-3","imageFilename");
 
 foreach($aMandoryFields as $sField){
     if (!isset($_POST[$sField]) || $_POST[$sField] == "") {
