@@ -67,9 +67,10 @@
                 {% for candidature in candidatures %}
                     <div class="col-xs-12 col-md-6 col-lg-4 p-b-x4 {{ candidature.state }}" data-id-candidature="{{ candidature.id }}">
                         <div>
-                            <h3>{{ candidature.civility }} {{ candidature.firstname }} {{ candidature.name }}</h3>
+                            <div data-url="/candidature/fiche.html?id={{ candidature.id }}" class="jsLink" style="cursor:pointer;">
+                                <h3>{{ candidature.civility }} {{ candidature.firstname }} {{ candidature.name }}</h3>
                             <p class="m-b-x2">{{ candidature.city }}({{ candidature.zipcode }})</p>
-                            <div style="background-image:url('/{{ candidature.path_pic_fit }}')" class="square-pic-candidature " ></div>
+                                <div style="background-image:url('/{{ candidature.path_pic_fit }}')" class="square-pic-candidature " ></div></div>
 
                             <div class="m-t-x2">
                             <a href="/candidature/fiche.html?id={{ candidature.id }}" class="btn btn-primary btn-block">Fiche

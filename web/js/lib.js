@@ -117,6 +117,10 @@ $(document).ready(function () {
         }
     });
 
+    $body.on('click','.jsLink',function(){
+        window.location.href=$(this).data("url");
+    });
+
 
     //click link
     $body.on("click", ".click-send-ajax", function (e)
