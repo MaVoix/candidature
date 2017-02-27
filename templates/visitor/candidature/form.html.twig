@@ -21,7 +21,7 @@
                             <select id="civilite" name="civilite" class="form-control">
                                 <option value="">Choisir ...</option>
                                 <option value="M." {% if candidature.civility=='M.' %} selected {% endif %}>M.</option>
-                                <option value="Mme" {% if candidature.civility=='Mme' %} selected {% endif %}>Mme
+                                <option value="Mme. {% if candidature.civility=='Mme' %} selected {% endif %}>Mme
                                 </option>
                             </select>
                         </div>
@@ -85,7 +85,7 @@
                         <hr/>
                         <h2>Témoignage/Présentation</h2>
                         <div class="form-group">
-                            <label for="imagefile" class="control-label">Une Photo :</label>
+                            <label for="imagefile" class="control-label">Photo : *</label>
 
                             <div class="input-group image-preview">
                                 <input type="file" accept="image/jpeg" name="image" id="imagefile"/>
