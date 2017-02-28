@@ -264,7 +264,7 @@ footer a, footer a:hover, footer a:visited {
   color: #f2e732;
 }
 
-button.btn-primary {
+button.btn-primary,button.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary, .btn.focus, .btn:focus {
   background-color: white;
   border-color: black;
   color: black;
@@ -272,7 +272,22 @@ button.btn-primary {
   transition: all 0.4s;
 }
 
-button.btn-primary:hover {
+button.btn-primary:hover, .btn:hover {
   background-color: #f2e732;
   color: black;
 }
+
+.form-control:focus {
+    border-color: #f2e732;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(242, 231, 50, 0.6);
+}
+
+.button.btn-primary, button.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary, .btn.focus, .btn:focus, .btn.active, .btn:active{
+    border-color: black;
+    box-shadow: none;
+    outline:5px auto #f2e732;
+}
+
+
+
+
