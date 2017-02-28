@@ -31,6 +31,8 @@ class Candidature	{
     private $sPath_idcard;
     private $sPath_criminal_record;
     private $bIs_certificate;
+    private $bIs_idcard;
+    private $bIs_criminal_record;
     private $sKey_edit;
 
 
@@ -260,6 +262,16 @@ class Candidature	{
             $aData["is_certificate"]=$this->getIs_certificate();
         }
 
+        if(isset($this->aDataSet["is_idcard"]))
+        {
+            $aData["is_idcard"]=$this->getIs_idcard();
+        }
+
+        if(isset($this->aDataSet["is_criminal_record"]))
+        {
+            $aData["is_criminal_record"]=$this->getIs_criminal_record();
+        }
+
         if(isset($this->aDataSet["key_edit"]))
         {
             $aData["key_edit"]=$this->getKey_edit();
@@ -304,6 +316,8 @@ class Candidature	{
         $this->setPath_idcard(NULL);
         $this->setPath_criminal_record(NULL);
         $this->setIs_certificate(0);
+        $this->setIs_idcard(0);
+        $this->setIs_criminal_record(0);
         $this->setKey_edit(NULL);
     }
 
@@ -335,6 +349,8 @@ class Candidature	{
             "path_idcard" => $this->getPath_idcard(),
             "path_criminal_record" => $this->getPath_criminal_record(),
             "is_certificate" => $this->getIs_certificate(),
+            "is_idcard" => $this->getIs_idcard(),
+            "is_criminal_record" => $this->getIs_criminal_record(),
             "key_edit" => $this->getKey_edit()
         ];
 
@@ -1347,6 +1363,110 @@ class Candidature	{
                 echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
             }
             return $this->bIs_certificate;
+        }
+    }
+
+
+
+    /**
+     * Set le champ is_idcard
+     * @param bool $bIs_idcard nouvelle valeur pour le champ is_idcard
+     */
+    public function setIs_idcard($bIs_idcard)
+    {
+        if( is_null($bIs_idcard) ) $bIs_idcard='';
+        if( is_bool($bIs_idcard)  ||  $bIs_idcard==1 || $bIs_idcard==0 || $bIs_idcard=='' )
+        {
+            $this->bIs_idcard = $bIs_idcard;
+            $this->aDataSet["is_idcard"]=1;
+        }
+    }
+
+
+
+    /**
+     * Get le champ is_idcard
+     * @return bool valeur du champ is_idcard
+     */
+    public function getIs_idcard()
+    {
+        if( !is_null($this->bIs_idcard) )
+        {
+            if( $this->bIs_idcard==='' )
+            {
+                return NULL;
+            }
+            else
+            {
+                return $this->bIs_idcard;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('is_idcard'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->bIs_idcard;
+        }
+    }
+
+    public function Iscard()
+    {
+        if( $this->bIs_idcard){
+            $oIscard = new Iscard(array("id"=>$this->bIs_idcard));
+            $oIscard->HydrateFromBDD(array("*"));
+            return $oIscard;
+        }else{
+            return NULL;
+        }
+    }
+
+
+    /**
+     * Set le champ is_criminal_record
+     * @param bool $bIs_criminal_record nouvelle valeur pour le champ is_criminal_record
+     */
+    public function setIs_criminal_record($bIs_criminal_record)
+    {
+        if( is_null($bIs_criminal_record) ) $bIs_criminal_record='';
+        if( is_bool($bIs_criminal_record)  ||  $bIs_criminal_record==1 || $bIs_criminal_record==0 || $bIs_criminal_record=='' )
+        {
+            $this->bIs_criminal_record = $bIs_criminal_record;
+            $this->aDataSet["is_criminal_record"]=1;
+        }
+    }
+
+
+
+    /**
+     * Get le champ is_criminal_record
+     * @return bool valeur du champ is_criminal_record
+     */
+    public function getIs_criminal_record()
+    {
+        if( !is_null($this->bIs_criminal_record) )
+        {
+            if( $this->bIs_criminal_record==='' )
+            {
+                return NULL;
+            }
+            else
+            {
+                return $this->bIs_criminal_record;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('is_criminal_record'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->bIs_criminal_record;
         }
     }
 
