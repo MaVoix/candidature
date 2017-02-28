@@ -185,13 +185,13 @@ if ($nError == 0 ) {
 if ($nError == 0 ) {
     if (!in_array(mime_content_type($_FILES['image']['tmp_name']), $aMime)) {
         $nError++;
-        $aResponse["message"]["text"] = "Format de fichier photo non reconnu.";
+        $aResponse["message"]["text"] = "Format de fichier de votre photo non reconnu.";
     }
 }
 if ($nError == 0) {
     if (filesize($_FILES['image']['tmp_name']) > ConfigService::get("max-filesize") * 1024 * 1024) {
         $nError++;
-        $aResponse["message"]["text"] = "Le fichier dépasse le poids maximum autorisé. (" . ConfigService::get("max-filesize") . " Mb )";
+        $aResponse["message"]["text"] = "Votre photo dépasse le poids maximum autorisé. (" . ConfigService::get("max-filesize") . " Mb )";
     }
 }
 
@@ -204,7 +204,7 @@ if ($nError == 0) {
         $img->getHeight() < ConfigService::get("min-height") || $img->getHeight() > ConfigService::get("max-height")
     ) {
         $nError++;
-        $aResponse["message"]["text"] = "Les dimensions de l'image ne sont pas valides (environ 1000x1000)";
+        $aResponse["message"]["text"] = "Les dimensions de votre photo ne sont pas valides (environ 1000x1000)";
     }
 
 }
@@ -262,7 +262,7 @@ if($nError==0){
         $img->toFile($outputFilePhotoFit, "image/jpeg", 100);
         $Candidature->setPath_pic($outputFilePhoto);
     }else{
-        $aResponse["message"]["text"] = "Erreur lors de l'enregistrement de votre image.";
+        $aResponse["message"]["text"] = "Erreur lors de l'enregistrement de votre photo.";
         $nError++;
     }
     @unlink($_FILES['image']['tmp_name']);
