@@ -252,6 +252,51 @@ class CandidatureListe extends Liste
                     ]
                 ]);
                 break;
+            case "is_idcard" :
+                $this->addCriteres([
+                    [
+                        "field" => "is_idcard",
+                        "compare" => "=",
+                        "value" => "1"
+                    ]
+                ]);
+                break;
+            case "is_criminal_record" :
+                $this->addCriteres([
+                    [
+                        "field" => "is_criminal_record",
+                        "compare" => "=",
+                        "value" => "1"
+                    ]
+                ]);
+                break;
+            case "not_certificate" :
+                $this->addCriteres([
+                    [
+                        "field" => "is_certificate",
+                        "compare" => "=",
+                        "value" => "0"
+                    ]
+                ]);
+                break;
+            case "not_idcard" :
+                $this->addCriteres([
+                    [
+                        "field" => "is_idcard",
+                        "compare" => "=",
+                        "value" => "0"
+                    ]
+                ]);
+                break;
+            case "not_criminal_record" :
+                $this->addCriteres([
+                    [
+                        "field" => "is_criminal_record",
+                        "compare" => "=",
+                        "value" => "0"
+                    ]
+                ]);
+                break;
             }
 
 

@@ -35,6 +35,11 @@
                                 <option value="online" {% if filter=='online' %} selected {% endif %}>En ligne</option>
                                 <option value="offline"  {% if filter=='offline' %} selected {% endif %}>Hors ligne</option>
                                 <option value="is_certificate"  {% if filter=='is_certificate' %} selected {% endif %}>Attestation valide</option>
+                                <option value="not_certificate"  {% if filter=='is_certificate' %} selected {% endif %}>Attestation non-valide</option>
+                                <option value="is_idcard"  {% if filter=='is_idcard' %} selected {% endif %}>Carte ID valide</option>
+                                <option value="not_idcard"  {% if filter=='not_idcard' %} selected {% endif %}>Carte ID non-valide</option>
+                                <option value="is_criminal_record"  {% if filter=='is_criminal_record' %} selected {% endif %}>Extrait judiciaire valide</option>
+                                <option value="not_criminal_record"  {% if filter=='not_criminal_record' %} selected {% endif %}>Extrait judiciaire non-valide</option>
                                 </option>
                             </select>
                         </div>
@@ -105,9 +110,20 @@
                                     <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success" data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
                                 </label>
                             </div>
-                            <div class="m-t-x4">
+                            <hr />
+                            <div class="m-t">
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_certificate=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/certificate-valid.json" data-param="id={{ candidature.id }}"> ATTESTATION VALIDE
+                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_certificate=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/certificate-valid.json" data-param="id={{ candidature.id }}"> Attestation VALIDE
+                                </label>
+                            </div>
+                            <div class="m-t">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_idcard=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte ID VALIDE
+                                </label>
+                            </div>
+                            <div class="m-t">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_criminal_record=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/criminal-record-valid.json" data-param="id={{ candidature.id }}"> Extrait judiciaire VALIDE
                                 </label>
                             </div>
                             <div class="m-t-x4">
