@@ -177,14 +177,15 @@
     border-radius: 5px;
 
 }
-#progress-wrp .status{
-    padding-top:10px;
-    width:280px;
-    margin-left:-140px;
-    left:50%;
-    text-align:center;
-    position:absolute;
-    color: #000000;
+#progress-wrp .status {
+    padding-top: 10px;
+    width: 280px;
+    margin-left: -140px;
+    left: 50%;
+    text-align: center;
+    position: absolute;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 .online,.offline{
