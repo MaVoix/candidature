@@ -85,7 +85,8 @@
                         <hr/>
                         <h2>Témoignage/Présentation</h2>
                         <div class="form-group">
-                            <label for="imagefile" class="control-label">Photo : *</label>
+                            <label for="imagefile" class="control-label">Photo : * </label>
+
 
                             <div class="input-group image-preview">
                                 <input type="file" accept="image/jpeg" name="image" id="imagefile"/>
@@ -107,6 +108,8 @@
                                     </div>
                                 </span>
                             </div>
+
+                            <div class="help-block">Idéalement format carré (entre {{ ConfigService.get("min-width") }}px et {{ ConfigService.get("max-height") }}px ). {{  ConfigService.get("max-filesize") }}Mo max</div>
 
                             <div class="drop-zone"
                                  style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}"></div>
@@ -174,7 +177,7 @@
                         <div class="form-group">
                         <p>La fourniture de ces documents est un impératif légal pour tout candidat aux élections législatives. Nous devons donc les vérifier pour valider votre participation au tirage au sort.</p>
 
-                            <label for="idcard" class="control-label">Copie de votre carte d'identité recto/verso ou de votre passeport
+                            <label for="idcard" class="control-label">Copie de votre carte d'identité recto/verso ou de votre passeport ({{  ConfigService.get("max-filesize") }}Mo max)
                                 :</label>
 
 
@@ -186,9 +189,10 @@
                         </div>
                         <div class="form-group">
 
-                            <label for="criminal_record" class="control-label">Extrait de casier judiciaire B3 :</label>
+                            <label for="criminal_record" class="control-label">Extrait de casier judiciaire B3 ({{  ConfigService.get("max-filesize") }}Mo max) :</label>
 
                             <div class="help-block">Vous pouvez demander au Ministère de la Justice de vous envoyer ce document par la Poste sur <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank" class="text-primary">ce site Web</a></div>
+
                             <input type="file" class="form-control" accept="application/pdf, image/*" id="criminal_record"
                                    name="criminal_record">
 
