@@ -252,12 +252,12 @@ if($nError==0){
 
 
     //PIC
-    if (copy($_FILES['image']['tmp_name'], $outputFilePhoto)) {
+    if (@copy($_FILES['image']['tmp_name'], $outputFilePhoto)) {
         $img = new claviska\ SimpleImage($outputFilePhoto);
-        $exif = $img->getExif();
+        /*$exif = $img->getExif();
         if (array_key_exists("Orientation", $exif)) {
             $img->autoOrient();
-        }
+        }*/
         $img->bestFit(800, 800);
         $img->toFile($outputFilePhotoFit, "image/jpeg", 100);
         $Candidature->setPath_pic($outputFilePhoto);
