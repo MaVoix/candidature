@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 27 Février 2017 à 22:53
+-- Généré le :  Mar 28 Février 2017 à 20:45
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -51,6 +51,8 @@ CREATE TABLE `candidature` (
   `path_idcard` varchar(255) NOT NULL,
   `path_criminal_record` varchar(255) NOT NULL,
   `is_certificate` tinyint(1) NOT NULL DEFAULT '0',
+  `is_idcard` tinyint(1) NOT NULL DEFAULT '0',
+  `is_criminal_record` tinyint(1) NOT NULL DEFAULT '0',
   `key_edit` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
