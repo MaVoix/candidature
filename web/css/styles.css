@@ -263,3 +263,16 @@ footer {
 footer a, footer a:hover, footer a:visited {
   color: #f2e732;
 }
+
+button.btn-primary {
+  background-color: white;
+  border-color: black;
+  color: black;
+  font-size: 1.2em;
+  transition: all 0.4s;
+}
+
+button.btn-primary:hover {
+  background-color: #f2e732;
+  color: black;
+}
