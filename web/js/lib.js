@@ -121,6 +121,11 @@ $(document).ready(function () {
         window.location.href=$(this).data("url");
     });
 
+    //refresh Captcha
+    $body.on('click','.jsCaptchaRefresh',function(){
+        var  date=new Date();
+        $(".jsCaptcha").attr("src","/captcha/image.jpg?v="+date.getTime());
+    });
 
     //click link
     $body.on("click", ".click-send-ajax", function (e)

@@ -21,8 +21,7 @@
                             <select id="civilite" name="civilite" class="form-control">
                                 <option value="">Choisir ...</option>
                                 <option value="M." {% if candidature.civility=='M.' %} selected {% endif %}>M.</option>
-                                <option value="Mme." {% if candidature.civility=='Mme' %} selected {% endif %}>Mme
-                                </option>
+                                <option value="Mme" {% if candidature.civility=='Mme' or candidature.civility=='Mme.' %} selected {% endif %}>Mme</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -213,7 +212,21 @@
                                 <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
                             {%  endif %}
                         </div>#}
+
+                        {% if ConfigService.get("enable-captcha")== 1  %}
                         <hr/>
+                        <div class="form-group">
+                            <label for="captcha" class="control-label">Code de sécurité : *</label>
+                            <div class="p-b">
+                            <img src="/captcha/image.jpg" class="jsCaptcha" style="border:1px solid #000000;"/><br /><a href="javascript:void(0);" class="text-primary jsCaptchaRefresh" style="color:#000000;"> Ce code est illisible !  </a>
+                            </div>
+                                <input type="text" class="form-control" id="captcha" name="captcha"
+                                   value=""
+                                   placeholder="copiez ici le code de sécurité">
+                        </div>
+                            {% endif  %}
+
+                        <hr />
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary ">
                                 {% if candidature.id!='' %}

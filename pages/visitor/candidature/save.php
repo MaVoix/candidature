@@ -45,6 +45,20 @@ foreach($aMandoryFields as $sField){
     }
 }
 
+if(ConfigService::get("enable-captcha")){
+    if (!isset($_POST["captcha"]) || $_POST["captcha"] == "") {
+        $nError++;
+        array_push($aResponse["required"], array("field" => "captcha"));
+        $_POST["captcha"]="";
+    }else{
+       if(SessionService::get("captcha-value") !=  $_POST["captcha"]){
+           $nError++;
+           $aResponse["message"]["text"] = "Le code de sécurité est incorrect.";
+           $_POST["captcha"]="";
+       }
+    }
+}
+
 
 //mandory files
 /*
