@@ -44,14 +44,12 @@
                                    placeholder="xxxxxx@xxxxx.com ">
                         </div>
                         <div class="form-group">
-                            <label for="video" class="control-label">Téléphone : *</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">+33(0)</div>
-                                <input type="text" class="form-control" id="tel" name="tel" placeholder="XXXXXXXXX"
-                                       value="{{ candidature.tel }}">
-                            </div>
-                            <p class="help-block form-text text-muted">
-                                Ne pas saisir le 0 de l'indicatif.</p>
+                            <label for="phone" class="control-label">Téléphone : *</label>
+
+                                <br /><input id="phone" type="tel" class="form-control" name="phone">
+                                <input type="hidden" class="form-control" id="tel" name="tel" placeholder="XXXXXXXXX"
+                                       value="{{ candidature.tel }}">{# <button type="button" class="jsTestPhone">TEST</button> #}
+
                         </div>
                         <div class="form-group">
                             <label for="ad1" class="control-label">Adresse champ 1 : *</label>

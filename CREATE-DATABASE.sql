@@ -3,13 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 28 Février 2017 à 20:45
+-- Généré le :  Mer 01 Mars 2017 à 18:04
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -42,8 +40,9 @@ CREATE TABLE `candidature` (
   `ad3` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
   `zipcode` varchar(10) NOT NULL,
+  `country` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `tel` varchar(10) NOT NULL,
+  `tel` varchar(100) NOT NULL,
   `presentation` text NOT NULL,
   `url_video` varchar(255) NOT NULL,
   `path_pic` varchar(255) NOT NULL,
@@ -94,13 +93,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `candidature`
 --
 ALTER TABLE `candidature`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

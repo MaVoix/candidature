@@ -106,6 +106,20 @@ $(document).ready(function () {
     //historyback button
     $(".jsBackButton").on('click', function() {  window.history.back(); });
 
+    //tel international plugin
+    $("#phone").intlTelInput({
+        utilsScript: "/js/plugins/intlTelInput/utils.js",
+        preferredCountries : ["fr"]
+    });
+    $(".jsTestPhone").on('click', function() {
+        var tel=$("#tel");
+        if(tel.length>0){
+            tel.val($("#phone").intlTelInput("getNumber"));
+            tel.attr('type','text');
+        }
+
+    });
+
     //toggle offline/online
     $body.on('change','.jsSwitchAjax',function() {
         var $element = $(this);
@@ -155,6 +169,10 @@ $(document).ready(function () {
     //click form
     $body.on('submit', 'form[data-ajax="true"]', function (e) {
         e.preventDefault();
+        var tel=$("#tel");
+        if(tel.length>0){
+            tel.val($("#phone").intlTelInput("getNumber"));
+        }
 
         if (!isSendingForm) {
             var $form = $(this);

@@ -123,20 +123,22 @@ if( $nError==0 ) {
     }
 }
 
-if( $nError==0 ) {
+//comment this line for international values
+/*if( $nError==0 ) {
     if( !is_numeric($_POST["tel"]) || substr($_POST["tel"],1)==0 || strlen($_POST["tel"])!=9){
         $aResponse["message"]["text"] = "Le numéro de téléphone est incorrect.(9 chiffres)";
         array_push($aResponse["required"],array("field"=>"tel"));
         $nError++;
     }
 }
+
 if( $nError==0 ) {
     if( ( !is_numeric($_POST["cp"]) && substr(strtoupper($_POST["cp"]),0,2)!="2A" && substr(strtoupper($_POST["cp"]),0,2)!="2B" ) || strlen($_POST["cp"])!=5){
         $aResponse["message"]["text"] = "Le code postal est incorrect.";
         array_push($aResponse["required"],array("field"=>"cp"));
         $nError++;
     }
-}
+}*/
 
 //link
 if ( $nError==0 ){
