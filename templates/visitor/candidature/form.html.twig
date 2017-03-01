@@ -15,7 +15,7 @@
                         {% endif %}
                         <h1>Candidature #MAVOIX</h1>
                         <hr/>
-                        <h2>Coordonnées</h2>
+                        <h2>Votre Identité</h2>
                         <div class="form-group">
                             <label for="civilite" class="control-label">Civilité : *</label>
                             <select id="civilite" name="civilite" class="form-control">
@@ -53,8 +53,6 @@
                             <p class="help-block form-text text-muted">
                                 Ne pas saisir le 0 de l'indicatif.</p>
                         </div>
-                        <hr/>
-                        <h2>Adresse</h2>
                         <div class="form-group">
                             <label for="ad1" class="control-label">Adresse champ 1 : *</label>
                             <input type="text" class="form-control" id="ad1" name="ad1"
@@ -82,7 +80,7 @@
                                    placeholder="Nom de la ville">
                         </div>
                         <hr/>
-                        <h2>Témoignage/Présentation</h2>
+                        <h2>Votre candidature</h2>
                         <div class="form-group">
                             <label for="imagefile" class="control-label">Photo : * </label>
 
@@ -132,6 +130,34 @@
                                 Youtube, Vimeo ou Dailymotion (lien complet avec http..)</p>
                         </div>
                         <hr/>
+                        <h2>Pièces justificatives <small>(PDF, JPG ou PNG)</small></h2>
+                        <div class="form-group">
+                            <p>La fourniture de ces documents est un impératif légal pour tout candidat aux élections législatives. Nous devons donc les vérifier pour valider votre participation au tirage au sort.</p>
+
+                            <label for="idcard" class="control-label">Copie de votre carte d'identité recto/verso ou de votre passeport ({{  ConfigService.get("max-filesize") }}Mo max)
+                                :</label>
+
+
+                            <input type="file" class="form-control" accept="application/pdf, image/*" id="idcard"
+                                   name="idcard">
+                            {%  if candidature.path_idcard!=''  %}
+                                <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
+                            {%  endif %}
+                        </div>
+                        <div class="form-group">
+
+                            <label for="criminal_record" class="control-label">Extrait de casier judiciaire B3 ({{  ConfigService.get("max-filesize") }}Mo max) :</label>
+
+                            <div class="help-block">Vous pouvez demander au Ministère de la Justice de vous envoyer ce document par la Poste sur <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank" class="text-primary">ce site Web</a></div>
+
+                            <input type="file" class="form-control" accept="application/pdf, image/*" id="criminal_record"
+                                   name="criminal_record">
+
+                            {%  if candidature.path_criminal_record!=''  %}
+                                <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
+                            {%  endif %}
+                        </div>
+                        <hr/>
                         <h2>Engagements *</h2>
                         <div class="form-group ">
                             <div class="checkbox">
@@ -171,34 +197,7 @@
                                     dictum, libero non auctor consequat, velit felis venenatis nibh</label>
                             </div>
                         </div>
-                        <hr/>
-                        <h2>Documents joints <small>(PDF, JPG ou PNG)</small></h2>
-                        <div class="form-group">
-                        <p>La fourniture de ces documents est un impératif légal pour tout candidat aux élections législatives. Nous devons donc les vérifier pour valider votre participation au tirage au sort.</p>
 
-                            <label for="idcard" class="control-label">Copie de votre carte d'identité recto/verso ou de votre passeport ({{  ConfigService.get("max-filesize") }}Mo max)
-                                :</label>
-
-
-                            <input type="file" class="form-control" accept="application/pdf, image/*" id="idcard"
-                                   name="idcard">
-                            {%  if candidature.path_idcard!=''  %}
-                                <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
-                            {%  endif %}
-                        </div>
-                        <div class="form-group">
-
-                            <label for="criminal_record" class="control-label">Extrait de casier judiciaire B3 ({{  ConfigService.get("max-filesize") }}Mo max) :</label>
-
-                            <div class="help-block">Vous pouvez demander au Ministère de la Justice de vous envoyer ce document par la Poste sur <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank" class="text-primary">ce site Web</a></div>
-
-                            <input type="file" class="form-control" accept="application/pdf, image/*" id="criminal_record"
-                                   name="criminal_record">
-
-                            {%  if candidature.path_criminal_record!=''  %}
-                                <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
-                            {%  endif %}
-                        </div>
 
                         {#<div class="form-group">
                             <p>Si vous disposez déjà de votre attestation d'inscription à une liste électorale</p>
