@@ -285,6 +285,8 @@ if($nError==0){
     //PDF
     if (array_key_exists("idcard", $_FILES)) {
         if(file_exists($_FILES['idcard']['tmp_name'])){
+            $extension=pathinfo($_FILES['idcard']['name'], PATHINFO_EXTENSION);
+            $outputFileIdcard=$outputDir."idcard.".$extension;
             if (@move_uploaded_file($_FILES['idcard']['tmp_name'], $outputFileIdcard)) {
                 if (!in_array(mime_content_type($outputFileIdcard), array_merge(array("application/pdf"),$aMime) )) {
                     $nError++;
@@ -303,6 +305,8 @@ if($nError==0){
 
     if (array_key_exists("criminal_record", $_FILES)) {
         if(file_exists($_FILES['criminal_record']['tmp_name'])){
+            $extension=pathinfo($_FILES['criminal_record']['name'], PATHINFO_EXTENSION);
+            $outputFileCriminalRecord=$outputDir."extrait-judiciaire.".$extension;
             if (@move_uploaded_file($_FILES['criminal_record']['tmp_name'],  $outputFileCriminalRecord)) {
                 if (!in_array(mime_content_type( $outputFileCriminalRecord), array_merge(array("application/pdf"),$aMime) )) {
                     $nError++;
