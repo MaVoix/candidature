@@ -109,22 +109,46 @@
             {% endif %}
 
 
-            <div class="row m-t-x4">
+
+
+
+
+
+
+
+            <div class="row ">
                 <div class="col-xs-12 col-md-6 col-md-offset-3 ">
-                    <div class="row">
-                    <div class="col-xs-2 ">
-                        <a href="javascript:void(0);" class="btn btn-danger  click-send-ajax-confirm" data-modal-title="Confirmation"  data-modal-body="Êtes-vous sûr de vouloir supprimer définitivement cette candidature ? <br> <i>En cas de doutes, il est préférable de simplement passer cette canidature hors ligne.</i><p class='m-t-x2'><b>A NOTER : Cette intervention n'efface pas complétement les données en base</b></p>" data-modal-confirm="Supprimer"  data-modal-cancel="Annuler" data-url="/candidature/delete.json" data-param='{"id":"{{ candidature.id }}","from":"fiche"}'  ><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="col-xs-5">
-                        <label class="checkbox-inline" >
-                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
-                        </label>
-                    </div>
-                    <div class="col-xs-5">
+
+
+                    <hr />
+                    <div class="m-t">
                         <label class="checkbox-inline">
-                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_certificate=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/certificate-valid.json" data-param="id={{ candidature.id }}"> ATTESTATION VALIDE
+                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_certificate=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/certificate-valid.json" data-param="id={{ candidature.id }}"> Attestation VALIDE
                         </label>
                     </div>
+                    <div class="m-t">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_idcard=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte ID VALIDE
+                        </label>
+                    </div>
+                    <div class="m-t">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_criminal_record=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/criminal-record-valid.json" data-param="id={{ candidature.id }}"> Extrait judiciaire VALIDE
+                        </label>
+                    </div>
+                    <hr />
+
+                    <div class="row m-t-x4">
+                        <div class="col-xs-6 ">
+                            <a href="javascript:void(0);" class="btn btn-danger  click-send-ajax-confirm" data-modal-title="Confirmation"  data-modal-body="Êtes-vous sûr de vouloir supprimer définitivement cette candidature ? <br> <i>En cas de doutes, il est préférable de simplement passer cette canidature hors ligne.</i><p class='m-t-x2'><b>A NOTER : Cette intervention n'efface pas complétement les données en base</b></p>" data-modal-confirm="Supprimer"  data-modal-cancel="Annuler" data-url="/candidature/delete.json" data-param='{"id":"{{ candidature.id }}","from":"fiche"}'  ><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="col-xs-6">
+                            <label class="checkbox-inline" >
+                                <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
                 </div>
         </div>
