@@ -24,7 +24,9 @@ class Twig_Extension_Filter extends Twig_Extension
 
     public function phoneFilter($num)
     {
-        return ($num) ? '0' . substr($num, 0, 1) . '.' . substr($num, 1, 2) . '.' . substr($num, 3, 2) . '.' . substr($num, 5, 2) . '.' . substr($num, 7, 2) : '&nbsp;';
+       // return ($num) ? '0' . substr($num, 0, 1) . '.' . substr($num, 1, 2) . '.' . substr($num, 3, 2) . '.' . substr($num, 5, 2) . '.' . substr($num, 7, 2) : '&nbsp;';
+        //comment for international
+        return $num;
     }
 
 

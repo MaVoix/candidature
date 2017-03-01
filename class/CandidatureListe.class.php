@@ -23,6 +23,7 @@ class CandidatureListe extends Liste
         "ad3",
         "city",
         "zipcode",
+        "country",
         "email",
         "tel",
         "presentation",

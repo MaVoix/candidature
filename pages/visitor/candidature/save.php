@@ -35,7 +35,7 @@ if(isset($_POST["id"]) && isset($_POST["key"])){
 
 
 //mandatory fields
-$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","engagement-1","engagement-2","engagement-3","imageFilename");
+$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","pays","engagement-1","engagement-2","engagement-3","imageFilename");
 
 foreach($aMandoryFields as $sField){
     if (!isset($_POST[$sField]) || $_POST[$sField] == "") {
@@ -44,6 +44,7 @@ foreach($aMandoryFields as $sField){
         $_POST[$sField]="";
     }
 }
+
 
 if(ConfigService::get("enable-captcha")){
     if (!isset($_POST["captcha"]) || $_POST["captcha"] == "") {
@@ -251,9 +252,11 @@ if($nError==0){
     $Candidature->setAd2($_POST["ad2"]);
     $Candidature->setAd3($_POST["ad3"]);
     $Candidature->setCity($_POST["ville"]);
+    $Candidature->setZipcode($_POST["cp"]);
+    $Candidature->setCountry($_POST["pays"]);
     $Candidature->setUrl_video($_POST["video"]);
     $Candidature->setPresentation(vars::cleanInput($_POST["presentation"]));
-    $Candidature->setZipcode($_POST["cp"]);
+
 
 
     //save Files
@@ -353,8 +356,9 @@ if($nError==0){
         $sBodyMailTXT = $TwigEngine->render("visitor/mail/body.txt.twig", [
             "candidature" => $Candidature
         ]);
-
-        Mail::sendMail($Candidature->getEmail(), "Confirmation de candidature" ,$sBodyMailHTML, $sBodyMailTXT , true);
+        if(!$bEdit) {
+            Mail::sendMail($Candidature->getEmail(), "Confirmation de candidature", $sBodyMailHTML, $sBodyMailTXT, true);
+        }
 
         $aResponse["redirect"] = "/candidature/success.html";
         $aResponse["durationMessage"] = "2000";

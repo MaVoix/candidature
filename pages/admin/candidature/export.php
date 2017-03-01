@@ -14,7 +14,7 @@ foreach($aObj as $oCandidat){
     $sCSV.=";";
     $sCSV.=$oCandidat->getEmail();
     $sCSV.=";";
-    $sCSV.=substr(chunk_split("0".$oCandidat->getTel(),2,"."),0,14);
+    $sCSV.=$oCandidat->getTel();
     $sCSV.=";";
     $sCSV.=$oCandidat->getCity();
     $sCSV.=";";

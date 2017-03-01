@@ -20,6 +20,10 @@ if(isset($_GET["key"]) && isset($_GET["id"])){
         header("Location: /candidature/candidatures.html");
     }
 
+}else{
+    $aDataScript["candidature"]=array("country"=>"France");
 }
+
+
 
 

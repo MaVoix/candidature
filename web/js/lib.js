@@ -113,7 +113,8 @@ $(document).ready(function () {
     });
     $(".jsTestPhone").on('click', function() {
         var tel=$("#tel");
-        if(tel.length>0){
+        var phone=$("#phone");
+        if(phone.length>0){
             tel.val($("#phone").intlTelInput("getNumber"));
             tel.attr('type','text');
         }
@@ -170,8 +171,10 @@ $(document).ready(function () {
     $body.on('submit', 'form[data-ajax="true"]', function (e) {
         e.preventDefault();
         var tel=$("#tel");
-        if(tel.length>0){
+        var phone=$("#phone");
+        if(phone.length>0){
             tel.val($("#phone").intlTelInput("getNumber"));
+            tel.attr('type','text');
         }
 
         if (!isSendingForm) {
