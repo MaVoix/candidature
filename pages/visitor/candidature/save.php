@@ -218,7 +218,7 @@ if ($nError == 0) {
         $img->getHeight() < ConfigService::get("min-height") || $img->getHeight() > ConfigService::get("max-height")
     ) {
         $nError++;
-        $aResponse["message"]["text"] = "Les dimensions de votre photo ne sont pas valides (environ 1000x1000)";
+        $aResponse["message"]["text"] = "Les dimensions de votre photo ne sont pas valides ( entre ".ConfigService::get("min-width")."px et ".ConfigService::get("max-height")."px )";
     }
 
 }
