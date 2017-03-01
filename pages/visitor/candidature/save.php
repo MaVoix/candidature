@@ -347,7 +347,7 @@ if($nError==0){
 
     if( $nError==0){
 
-        $Candidature->save();
+        $Candidature->saveWithPDOSecure();
 
         $TwigEngine = App::getTwig();
         $sBodyMailHTML = $TwigEngine->render("visitor/mail/body.html.twig", [

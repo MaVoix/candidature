@@ -40,7 +40,7 @@ class Mysql extends PDO {
         SessionService::set("erreur-sql",0);
 
         try{
-            parent::__construct('mysql:host='.$this->sHost.';dbname='.$this->sDb, $this->sLogin, $this->sPwd, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8') );
+            parent::__construct('mysql:host='.$this->sHost.';dbname='.$this->sDb, $this->sLogin, $this->sPwd, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=''") );
             parent::setAttribute(PDO::ATTR_STATEMENT_CLASS, array ('MysqlStatement', array($this)));
             parent::exec("SET CHARACTER SET utf8");
         }catch(PDOException $e){

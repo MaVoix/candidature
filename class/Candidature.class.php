@@ -383,6 +383,169 @@ class Candidature	{
         return nl2br($this->getPresentation());
     }
 
+    public function saveWithPDOSecure(){
+
+        $aData=array();
+
+        if(isset($this->aDataSet["date_created"]))
+        {
+            $aData["date_created"]=$this->getDate_created();
+        }
+
+        if(isset($this->aDataSet["date_amended"]))
+        {
+            $aData["date_amended"]=$this->getDate_amended();
+        }
+
+        if(isset($this->aDataSet["date_deleted"]))
+        {
+            $aData["date_deleted"]=$this->getDate_deleted();
+        }
+
+        if(isset($this->aDataSet["state"]))
+        {
+            $aData["state"]=$this->getState();
+        }
+
+        if(isset($this->aDataSet["civility"]))
+        {
+            $aData["civility"]=$this->getCivility();
+        }
+
+        if(isset($this->aDataSet["firstname"]))
+        {
+            $aData["firstname"]=$this->getFirstname();
+        }
+
+        if(isset($this->aDataSet["name"]))
+        {
+            $aData["name"]=$this->getName();
+        }
+
+        if(isset($this->aDataSet["ad1"]))
+        {
+            $aData["ad1"]=$this->getAd1();
+        }
+
+        if(isset($this->aDataSet["ad2"]))
+        {
+            $aData["ad2"]=$this->getAd2();
+        }
+
+        if(isset($this->aDataSet["ad3"]))
+        {
+            $aData["ad3"]=$this->getAd3();
+        }
+
+        if(isset($this->aDataSet["city"]))
+        {
+            $aData["city"]=$this->getCity();
+        }
+
+        if(isset($this->aDataSet["zipcode"]))
+        {
+            $aData["zipcode"]=$this->getZipcode();
+        }
+
+        if(isset($this->aDataSet["country"]))
+        {
+            $aData["country"]=$this->getCountry();
+        }
+
+        if(isset($this->aDataSet["email"]))
+        {
+            $aData["email"]=$this->getEmail();
+        }
+
+        if(isset($this->aDataSet["tel"]))
+        {
+            $aData["tel"]=$this->getTel();
+        }
+
+        if(isset($this->aDataSet["presentation"]))
+        {
+            $aData["presentation"]=$this->getPresentation();
+        }
+
+        if(isset($this->aDataSet["url_video"]))
+        {
+            $aData["url_video"]=$this->getUrl_video();
+        }
+
+        if(isset($this->aDataSet["path_pic"]))
+        {
+            $aData["path_pic"]=$this->getPath_pic();
+        }
+
+        if(isset($this->aDataSet["path_certificate"]))
+        {
+            $aData["path_certificate"]=$this->getPath_certificate();
+        }
+
+        if(isset($this->aDataSet["path_idcard"]))
+        {
+            $aData["path_idcard"]=$this->getPath_idcard();
+        }
+
+        if(isset($this->aDataSet["path_criminal_record"]))
+        {
+            $aData["path_criminal_record"]=$this->getPath_criminal_record();
+        }
+
+        if(isset($this->aDataSet["is_certificate"]))
+        {
+            $aData["is_certificate"]=$this->getIs_certificate();
+        }
+
+        if(isset($this->aDataSet["is_idcard"]))
+        {
+            $aData["is_idcard"]=$this->getIs_idcard();
+        }
+
+        if(isset($this->aDataSet["is_criminal_record"]))
+        {
+            $aData["is_criminal_record"]=$this->getIs_criminal_record();
+        }
+
+        if(isset($this->aDataSet["key_edit"]))
+        {
+            $aData["key_edit"]=$this->getKey_edit();
+        }
+
+        if($this->getId()>0)
+        {
+            $sSql="";
+            $aDataBind=array();
+            foreach($aData as $key=>$value){
+                if($sSql!=""){ $sSql.=",";}
+
+                $sSql.=" $key = :$key ";
+                $aDataBind[":".$key]=(string)$value;
+            }
+            $St=DbLink::getInstance($this->_sDbInstance)->prepare("UPDATE candidature SET ".$sSql." WHERE id= :id ");
+            $aDataBind[":id"]=$this->getId();
+            $St->execute($aDataBind);
+        }
+        else
+        {
+            $sSqlCol="";
+            $sSqlVal="";
+            $aDataBind=array();
+            foreach($aData as $key=>$value){
+                if($sSqlCol!=""){ $sSqlCol.=",";}
+                if($sSqlVal!=""){ $sSqlVal.=",";}
+                $sSqlCol.="`".$key."`";
+                $sSqlVal.=" :".$key." ";
+                $aDataBind[":".$key]=(string)$value;
+            }
+            $St=DbLink::getInstance($this->_sDbInstance)->prepare("INSERT INTO candidature (".$sSqlCol.") VALUES (".$sSqlVal.")");
+            $St->execute($aDataBind);
+            $this->setId(DbLink::getInstance($this->_sDbInstance)->lastInsertId());
+
+        }
+        $this->aDataSet=array();
+    }
+
 
     /*
     ********************************************************************************************
