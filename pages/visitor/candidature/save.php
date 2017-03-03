@@ -35,7 +35,7 @@ if(isset($_POST["id"]) && isset($_POST["key"])){
 
 
 //mandatory fields
-$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","pays","engagement-a1","engagement-a2","engagement-a3","engagement-a4","engagement-a5","engagement-1","engagement-2","engagement-3","imageFilename");
+$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","pays","engagement-a1","engagement-a2","engagement-a3","engagement-a4","engagement-a5","engagement-a6","engagement-a7","engagement-a8","engagement-a9","engagement-a10","engagement-a11","imageFilename");
 
 foreach($aMandoryFields as $sField){
     if (!isset($_POST[$sField]) || $_POST[$sField] == "") {
@@ -62,7 +62,7 @@ if(ConfigService::get("enable-captcha")){
 
 
 //mandory files
-/*
+
 if (array_key_exists("idcard", $_FILES)) {
     if ($_FILES["idcard"]["tmp_name"] == "") {
         array_push($aResponse["required"], array("field" => "idcard"));
@@ -70,7 +70,7 @@ if (array_key_exists("idcard", $_FILES)) {
 }else{
     array_push($aResponse["required"], array("field" => "idcard"));
 }
-
+/*
 if (array_key_exists("criminal_record", $_FILES)) {
     if ($_FILES["criminal_record"]["tmp_name"] == "") {
         array_push($aResponse["required"], array("field" => "criminal_record"));

@@ -13,27 +13,29 @@
                             <input type="hidden" id="id" name="id" value="{{ candidature.id }}"/>
                             <input type="hidden" id="key" name="key" value="{{ key }}"/>
                         {% endif %}
-                        <h1>Bienvenue dans l’expérimentation inédite</h2>
-                        <hr/>
-                        <img src="/css/images/mavoix.png"/>
+                        <div style="margin:auto">
+                        <h1>Bienvenue dans l’expérimentation inédite #MAVOIX</h1>
+                        </div>
 
-                        <p>Femmes et hommes de toute la France, nous sommes heureu·ses·x de vous accueillir aujourd’hui. C'est pour nous un honneur de mettre à votre service le fruit du travail de nombreux mois pour co-construire #MAVOIX de manière horizontale et coopérative. À l'approche des élections législatives, c'est à votre tour de saisir l'opportunité de vous engager au service des Françaises et des Français.</p>
+                        <hr/>
+
+                        <p>Femmes et hommes de toute la France, nous sommes heureu·ses·x de vous accueillir aujourd’hui.</p>
+                        <p>C'est pour nous un honneur de mettre à votre service le fruit du travail de nombreux mois pour co-construire #MAVOIX de manière horizontale et coopérative. À l'approche des élections législatives, c'est à votre tour de saisir l'opportunité de vous engager au service des Françaises et des Français.</p>
                         <p>Votre mission une fois élu·e à l'Assemblée nationale : relayer leurs décisions leur permettant d’être  véritablement acteurs et actrices des lois. Il s'agirait d'un événement inédit et historique. </p>
 
-                        <p>Tout d'abord, voici quelques questions afin de nous assurer que vous êtes bel et bien engagé à devenir un député #MAVOIX et que vous remplissez les conditions légales.</p>
+                        <p>Documents requis pour valider le formulaire :</p>
 
-                        <div class="form-group engagements-a">
-                            <div class="checkbox">
+                        <ul>
+                        <li>une photo ayant une bonne résolution (votre bouche, votre visage, une photo qui vous inspire)</li>
+                        <li>une copie de votre carte d'identité (recto/verso) ou de votre passeport. Le document doit être en cours de validité.</li>
+                        </ul>
 
-                                <label class="label-checkbox" for="engagement-a1"><strong>Acceptez-vous d’être un·e député·e. d’un genre nouveau, facilitateur et facilitatrice de démocratie, qui relaie en temps réel les décisions des citoyens exprimées à travers une plateforme numérique logiciel libre, sur chaque loi, pendant cinq ans ?</strong></label>
-                                <label class="control-label">
-                                    <input id="engagement-a1" value="ok" type="checkbox"
-                                           name="engagement-a1" {{ checkedengagement }}>
-                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
-                                </label>
-                                <span>Oui *</span>
-                            </div>
-                        </div>
+                        <p>Document requis pour valider votre participation au tirage au sort :</p>
+                        <ul>
+                            <li>un extrait de casier judiciaire 3B. Sa validité étant de trois mois, il ne serait pas valable pour le deuxième tour des élections législatives, qui a lieu le 11 juin, si vous nous le transmettiez aujourd'hui. Nous vous recontacterons un peu plus tard pour vous indiquer la procédure à suivre pour nous le transmettre. </li>
+                        </ul>
+
+                        <p>Avant de remplir le formulaire, voici quelques questions afin de nous assurer que vous êtes bel et bien engagé·e à devenir un·e député·e #MAVOIX et que vous remplissez les conditions légales.</p>
 
                         <div class="form-group engagements-a">
                             <div class="checkbox">
@@ -47,6 +49,8 @@
                                 <span>Oui *</span>
                             </div>
                         </div>
+
+                        <h2>Éligibilité</h2>
 
 
                         <div class="form-group engagements-a">
@@ -88,20 +92,128 @@
                             </div>
                         </div>
 
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a5"><strong>Vous certifiez ne pas être candidat ou remplaçant, à quelque titre que ce soit, dans un autre cadre que ce tirage au sort, pour les prochaines élections législatives (articles <a href="https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006070239&idArticle=LEGIARTI000006353359&dateTexte=&categorieLien=cid" target="_blank">L155</a> et <a href="https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=566075D029CAD61A67C6CB6397BBF360.tpdila21v_3?idArticle=LEGIARTI000006353366&cidTexte=LEGITEXT000006070239&dateTexte=20120618" target="_blank">L156</a> du code électoral) :</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a5" value="ok" type="checkbox"
+                                           name="engagement-a5" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Oui *</span>
+                            </div>
+                        </div>
+
+                        <h2>Participation au tirage au sort</h2>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a6"><strong> Vous vous engagez à valider votre participation au tirage au sort en acceptant son règlement (nous vous l'enverrons) établi par un officier assermenté.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a6" value="ok" type="checkbox"
+                                           name="engagement-a6" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a7"><strong>Vous vous engagez à suivre les cours d’éducation civique en ligne (20 minutes par jour pendant 7 jours) sur la fabrique de la loi et le rôle spécifique du député #MAVOIX.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a7" value="ok" type="checkbox"
+                                           name="engagement-a7" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a8"><strong>Vous vous engagez à contribuer au collectif local le plus près de chez vous dans la mesure de vos disponibilités (environ une réunion par mois et plus si vous pouvez).</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a8" value="ok" type="checkbox"
+                                           name="engagement-a8" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a9"><strong>Vous vous engagez à participer physiquement au tirage au sort le 6 mai à Paris ou y être représenté·e si vous résidez à l’étranger.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a9" value="ok" type="checkbox"
+                                           name="engagement-a9" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <h2>Si vous êtes tiré·e au sort</h2>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a10"><strong>Vous vous engagez à déposer votre candidature au 1er et au 2ème tour des élections à la préfecture de la circonscription où vous aurez été désigné·e de manière aléatoire. Vous serez accompagné·e du collectif #MAVOIX local pour vos démarches et ouvrir le compte de campagne avec le ou la mandataire financier formé·e par le collectif. Le collectif local se chargera de trouver la banque. Vous avez pris bonne note que la circonscription qui vous sera attribué pourra être n'importe où en France et ne dépend pas de votre lieu de résidence. En revanche, vous pourrez faire campagne pour #MAVOIX près de chez vous.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a10" value="ok" type="checkbox"
+                                           name="engagement-a10" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <h2>Si vous êtes élu·e député·e</h2>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a11"><strong>Vous vous engagez à toucher votre indemnité mensuelle de 5 357,34 € net et à allouer les <a href="http://www2.assemblee-nationale.fr/decouvrir-l-assemblee/role-et-pouvoirs-de-l-assemblee-nationale/le-depute/la-situation-materielle-du-depute#eztoc32750_0_0_1" target="_blank">autres moyens financiers à votre disposition</a> au fonctionnement commun de l’expérimentation #MAVOIX tels que la location de serveurs, le développement informatique, la sécurisation de la plateforme, la mise en place de jury citoyens (liste non exhaustive). Ceci concerne le crédit affecté à la rémunération des collaborateurs, l’indemnité représentative de frais de mandat, la réserve parlementaire, ainsi quet tout autre moyen financier mis à disposition du député, à l'exception de son indémnité personnelle.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a11" value="ok" type="checkbox"
+                                           name="engagement-a11" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a1"><strong>Vous vous engagez à être un·e député·e. d’un genre nouveau, facilitateur et facilitatrice de démocratie, qui relaie en temps réel les décisions des citoyen·ne·s exprimées à travers une plateforme numérique logiciel libre, sur chaque loi, pendant cinq ans.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a1" value="ok" type="checkbox"
+                                           name="engagement-a1" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <p>Ce n'est pas un engagement à la légèr : ce sont cinq années à consacrer à votre mission. Vous ne pourrez pas continuer votre activité professionnelle en parallèle si vous en aviez une.</p>
+
+                        <p>En terme logistique, il vous sera nécessaire de mettre en place une organisation familiale. Des moyens sont à votre service pour cela, nous serons à vos côtés pour vous y aider.</p>
+
+                        <p>Il y aura une grande curiosité des médias naturellement, vous ne serez plus anonyme, mais les règles très strictes vis-à-vis des médias dans #MAVOIX vous aideront à vous en protéger. </p>
+
                         <p>En avant pour votre inscription ! Dans 10 minutes, vous nous aurez rejoint dans cette belle aventure ! </p>
 
-                        <p>Documents requis pour valider le formulaire :</p>
 
-                        <ul>
-                        <li>une photo ayant une bonne résolution (comme vous voulez : votre bouche, votre visage, une photo qui vous inspire)</li>
-                        <li>une copie de votre carte d'identité (recto/verso) ou de votre passeport. Le document doit être en cours de validité.</li>
-                        </ul>
 
-                        <p>Documents requis pour valider votre participation au tirage au sort :</p>
-                        <ul>
-                            <li>un extrait de casier judiciaire 3B. Sa validité étant de trois mois, il ne serait pas valable pour le deuxième tour des élections législatives, qui a lieu le 11 juin, si vous nous le transmettiez aujourd'hui. Nous vous recontacterons un peu plus tard pour vous indiquer la procédure à suivre pour nous le transmettre. </li>
-                        </ul>
-                        <h2>Votre Identité</h2>
+
+                        <h2>Votre identité</h2>
                         <div class="form-group">
                             <label for="civilite" class="control-label">Civilité : *</label>
                             <select id="civilite" name="civilite" class="form-control">
