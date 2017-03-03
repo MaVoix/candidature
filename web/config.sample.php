@@ -7,7 +7,7 @@ $_CONFIG["twig_auto_reload"]                = false; //set true to disable cache
 $_CONFIG["version-css"]                     = "1"; //var to force browser cache reload CSS, use : strtotime("now") for always reload
 $_CONFIG["version-js"]                      = "1"; //var to force browser cache reload JS, use : strtotime("now") for always reload
 $_CONFIG["urlSite"]                         = "http://candidature.mavoix.info"; //url site without "/" at the end
-$_CONFIG["key"]                             = "Am!D4UZ.dbf"; //string for generate key links
+$_CONFIG["key"]                             = "changeit"; //string for generate key links
 
 // mysql
 $_CONFIG["bdd-serveur"]                     = "localhost"; //server mysql database
@@ -39,6 +39,3 @@ $_CONFIG["min-width"]                       = 600; // in PX
 $_CONFIG["min-height"]                      = 600; // in PX
 $_CONFIG["mime-type-limit"]                 = array('image/jpeg'=>'jpg','image/png'=>'png');
 $_CONFIG["enable-captcha"]                  = true; //enable or disable captcha
-
-
-
