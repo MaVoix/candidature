@@ -1,0 +1,34 @@
+{% extends "visitor/base.html.twig" %}
+
+
+{% block body %}
+    <div class="wrapper-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h1>Les {{ candidatures|length }} volontaires pour être candidat·e·s #MAVOIX</h1>
+                    <p>Les candidats présentés par #MAVOIX aux élections législatives seront désignés le 6 mai par tirage au sort.</p>
+                </div>
+                <div class="row">
+                    {% for candidature in candidatures %}
+                        <div class="col-xs-6 col-md-4 col-lg-3 p-t-x2">
+                            <form method="get" action="/candidature/candidat.html">
+                                <input type="hidden" name="id" value="{{ candidature.id }}" >
+                                <button type="submit" class="no-button">
+                                    <div class="text-center sticker-name">
+                                        <h3>{{ candidature.firstname|capitalize }} {{ candidature.name|first|upper }}
+                                            .<br/>
+                                            <small>{{ candidature.city }} ({{ candidature.zipcode }})</small>
+                                        </h3>
+                                    </div>
+                                    <div style="background-image:url('/{{ candidature.path_pic_fit }}');"
+                                         class="square-pic-candidature"></div>
+                                </button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

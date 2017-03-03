@@ -1,0 +1,656 @@
+{% extends "visitor/base.html.twig" %}
+
+
+{% block body %}
+    <div class="wrapper-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <form action="/candidature/save.json" id="formcandidature" method="post" autocomplete="off"
+                          data-ajax="true"
+                          enctype="multipart/form-data">
+                        {% if candidature.id!='' %}
+                            <input type="hidden" id="id" name="id" value="{{ candidature.id }}"/>
+                            <input type="hidden" id="key" name="key" value="{{ key }}"/>
+                        {% endif %}
+                        <div style="margin:auto">
+                        <h1>Bienvenue dans l’expérimentation inédite #MAVOIX</h1>
+                        </div>
+
+                        <hr/>
+
+                        <p>Femmes et hommes de toute la France, nous sommes heureu·ses·x de vous accueillir aujourd’hui.</p>
+                        <p>C'est pour nous un honneur de mettre à votre service le fruit du travail de nombreux mois pour co-construire #MAVOIX de manière horizontale et coopérative. À l'approche des élections législatives, c'est à votre tour de saisir l'opportunité de vous engager au service des Françaises et des Français.</p>
+                        <p>Votre mission une fois élu·e à l'Assemblée nationale : relayer leurs décisions leur permettant d’être  véritablement acteurs et actrices des lois. Il s'agirait d'un événement inédit et historique. </p>
+
+                        <p>Documents requis pour valider le formulaire :</p>
+
+                        <ul>
+                        <li>une photo ayant une bonne résolution (votre bouche, votre visage, une photo qui vous inspire)</li>
+                        <li>une copie de votre carte d'identité (recto/verso) ou de votre passeport. Le document doit être en cours de validité.</li>
+                        </ul>
+
+                        <p>Document requis pour valider votre participation au tirage au sort :</p>
+                        <ul>
+                            <li>un extrait de casier judiciaire 3B. Sa validité étant de trois mois, il ne serait pas valable pour le deuxième tour des élections législatives, qui a lieu le 11 juin, si vous nous le transmettiez aujourd'hui. Nous vous recontacterons un peu plus tard pour vous indiquer la procédure à suivre pour nous le transmettre. </li>
+                        </ul>
+
+                        <p>Avant de remplir le formulaire, voici quelques questions afin de nous assurer que vous êtes bel et bien engagé·e à devenir un·e député·e #MAVOIX et que vous remplissez les conditions légales.</p>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a2"><strong>Vous portez-vous volontaire lors du tirage au sort #MAVOIX, organisé le 6 mai 2017 à Paris, qui désignera les femmes et les hommes que nous présenterons aux élections législatives dans une cinquantaine de circonscriptions en France, soit une centaine de femmes et d’hommes désigné·e·s ?</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a2" value="ok" type="checkbox"
+                                           name="engagement-a2" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Oui *</span>
+                            </div>
+                        </div>
+
+                        <h2>Éligibilité</h2>
+
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a3"><strong>Vous certifiez être éligible dans <em>toutes</em> les circonscriptions du territoire français, et que vous n'exercez donc pas <a href="https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=566075D029CAD61A67C6CB6397BBF360.tpdila21v_3?idArticle=LEGIARTI000027439826&cidTexte=LEGITEXT000006070239&dateTexte=20170303" title="Professions incompatibles" target="_blank">une des professions</a> incompatibles avec une candidature aux élections législatives :</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a3" value="ok" type="checkbox"
+                                           name="engagement-a3" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Oui *</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a4"><strong>Vous certifiez ne pas être placé·e sous tutelle ou curatelle (<a href="https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=566075D029CAD61A67C6CB6397BBF360.tpdila21v_3?idArticle=LEGIARTI000023882638&cidTexte=LEGITEXT000006070239&dateTexte=20110621" target="_blank">article LO129 du code électoral</a>) :</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a4" value="ok" type="checkbox"
+                                           name="engagement-a4" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Oui *</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a5"><strong>Vous certifiez ne pas être candidat ou remplaçant, à quelque titre que ce soit, dans un autre cadre que ce tirage au sort, pour les prochaines élections législatives (articles <a href="https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006070239&idArticle=LEGIARTI000006353359&dateTexte=&categorieLien=cid" target="_blank">L155</a> et <a href="https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=566075D029CAD61A67C6CB6397BBF360.tpdila21v_3?idArticle=LEGIARTI000006353366&cidTexte=LEGITEXT000006070239&dateTexte=20120618" target="_blank">L156</a> du code électoral) :</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a5" value="ok" type="checkbox"
+                                           name="engagement-a5" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Oui *</span>
+                            </div>
+                        </div>
+
+                        <h2>Participation au tirage au sort</h2>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a6"><strong> Vous vous engagez à valider votre participation au tirage au sort en acceptant son règlement (nous vous l'enverrons) établi par un officier assermenté.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a6" value="ok" type="checkbox"
+                                           name="engagement-a6" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a7"><strong>Vous vous engagez à suivre les cours d’éducation civique en ligne (20 minutes par jour pendant 7 jours) sur la fabrique de la loi et le rôle spécifique du député #MAVOIX.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a7" value="ok" type="checkbox"
+                                           name="engagement-a7" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a8"><strong>Vous vous engagez à contribuer au collectif local le plus près de chez vous dans la mesure de vos disponibilités (environ une réunion par mois et plus si vous pouvez).</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a8" value="ok" type="checkbox"
+                                           name="engagement-a8" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a9"><strong>Vous vous engagez à participer physiquement au tirage au sort le 6 mai à Paris ou y être représenté·e si vous résidez à l’étranger.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a9" value="ok" type="checkbox"
+                                           name="engagement-a9" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <h2>Si vous êtes tiré·e au sort</h2>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a10"><strong>Vous vous engagez à déposer votre candidature au 1er et au 2ème tour des élections à la préfecture de la circonscription où vous aurez été désigné·e de manière aléatoire. Vous serez accompagné·e du collectif #MAVOIX local pour vos démarches et ouvrir le compte de campagne avec le ou la mandataire financier formé·e par le collectif. Le collectif local se chargera de trouver la banque. Vous avez pris bonne note que la circonscription qui vous sera attribué pourra être n'importe où en France et ne dépend pas de votre lieu de résidence. En revanche, vous pourrez faire campagne pour #MAVOIX près de chez vous.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a10" value="ok" type="checkbox"
+                                           name="engagement-a10" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <h2>Si vous êtes élu·e député·e</h2>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a11"><strong>Vous vous engagez à toucher votre indemnité mensuelle de 5 357,34 € net et à allouer les <a href="http://www2.assemblee-nationale.fr/decouvrir-l-assemblee/role-et-pouvoirs-de-l-assemblee-nationale/le-depute/la-situation-materielle-du-depute#eztoc32750_0_0_1" target="_blank">autres moyens financiers à votre disposition</a> au fonctionnement commun de l’expérimentation #MAVOIX tels que la location de serveurs, le développement informatique, la sécurisation de la plateforme, la mise en place de juries citoyens (liste non exhaustive). Ceci concerne le crédit affecté à la rémunération des collaborateurs, l’indemnité représentative de frais de mandat, la réserve parlementaire, ainsi quet tout autre moyen financier mis à disposition du député, à l'exception de son indémnité personnelle.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a11" value="ok" type="checkbox"
+                                           name="engagement-a11" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group engagements-a">
+                            <div class="checkbox">
+
+                                <label class="label-checkbox" for="engagement-a1"><strong>Vous vous engagez à être un·e député·e. d’un genre nouveau, facilitateur et facilitatrice de démocratie, qui relaie en temps réel les décisions des citoyen·ne·s exprimées à travers une plateforme numérique logiciel libre, sur chaque loi, pendant cinq ans.</strong></label>
+                                <label class="control-label">
+                                    <input id="engagement-a1" value="ok" type="checkbox"
+                                           name="engagement-a1" {{ checkedengagement }}>
+                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                </label>
+                                <span>Je m'y engage *</span>
+                            </div>
+                        </div>
+
+                        <p>Ce n'est pas un engagement à la légère : ce sont cinq années à consacrer à votre mission. Vous ne pourrez pas continuer votre activité professionnelle en parallèle si vous en aviez une.</p>
+
+                        <p>En terme logistique, il vous sera nécessaire de mettre en place une organisation familiale. Des moyens sont à votre service pour cela, nous serons à vos côtés pour vous y aider.</p>
+
+                        <p>Il y aura une grande curiosité des médias naturellement, vous ne serez plus anonyme, mais les règles très strictes vis-à-vis des médias dans #MAVOIX vous aideront à vous en protéger. </p>
+
+                        <p>En avant pour votre inscription ! Dans 10 minutes, vous nous aurez rejoint dans cette belle aventure ! </p>
+
+
+
+
+                        <h2>Votre identité</h2>
+                        <div class="form-group">
+                            <label for="civilite" class="control-label">Civilité : *</label>
+                            <select id="civilite" name="civilite" class="form-control">
+                                <option value="">Choisir ...</option>
+                                <option value="M." {% if candidature.civility=='M.' %} selected {% endif %}>M.</option>
+                                <option value="Mme" {% if candidature.civility=='Mme' or candidature.civility=='Mme.' %} selected {% endif %}>Mme</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nom" class="control-label">Nom : *</label>
+                            <input type="text" class="form-control" id="nom" name="nom"
+                                   value="{{ candidature.name|upper }}"
+                                   placeholder="Nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom" class="control-label">Prénom : *</label>
+                            <input type="text" class="form-control" id="prenom" name="prenom"
+                                   value="{{ candidature.firstname|capitalize }}"
+                                   placeholder="Prénom">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="control-label">E-mail : *</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   value="{{ candidature.email }}"
+                                   placeholder="xxxxxx@xxxxx.com ">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="control-label">Téléphone : *</label>
+                            {% if candidature.tel!=''  %}
+                                        <input type="text" class="form-control" id="tel" name="tel" placeholder="+33XXXXXXXXX"
+                                               value="{{ candidature.tel }}">
+                                <p class="help-block">Format international par ex. : +33661616161</p>
+                                {%  else %}
+                                    <br /><input id="phone" type="tel" class="form-control" name="phone" >
+                                    <input type="hidden" class="form-control" id="tel" name="tel" placeholder="XXXXXXXXX"
+                                           value="{{ candidature.tel }}"> {# <button type="button" class="jsTestPhone">TEST</button> #}
+                                {% endif %}
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="ad1" class="control-label">Adresse champ 1 : *</label>
+                            <input type="text" class="form-control" id="ad1" name="ad1"
+                                   placeholder="N° | type de voie | nom de la voie" value="{{ candidature.ad1 }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="ad2" class="control-label">Adresse champ 2 :</label>
+                            <input type="text" class="form-control" id="ad2" name="ad2" value="{{ candidature.ad2 }}"
+                                   placeholder="Immeuble, Résidence, Z.I ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="ad3" class="control-label">Adresse champ 3 :</label>
+                            <input type="text" class="form-control" id="ad3" name="ad3" value="{{ candidature.ad3 }}"
+                                   placeholder="BP, TSA, Lieu dit">
+                        </div>
+                        <div class="form-group">
+                            <label for="cp" class="control-label">Code postal : *</label>
+                            <input type="text" class="form-control" id="cp" name="cp" value="{{ candidature.zipcode }}"
+                                   placeholder="XXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="ville" class="control-label">Ville : *</label>
+                            <input type="text" class="form-control" id="ville" name="ville"
+                                   value="{{ candidature.city }}"
+                                   placeholder="Nom de la ville">
+                        </div>
+                        <div class="form-group">
+                            <label for="pays" class="control-label">Pays : *</label>
+                           <select id="pays" class="form-control"  name="pays">
+                               <option value="" {% if candidature.country=='' %} selected {% endif %} >Choisir ...</option>
+    <option value="Afghanistan" {% if candidature.country=='Afghanistan' %} selected {% endif %} >Afghanistan</option>
+    <option value="Albanie"{% if candidature.country=='Albanie' %} selected {% endif %}>Albanie</option>
+    <option value="Antarctique"{% if candidature.country=='Antarctique' %} selected {% endif %}>Antarctique</option>
+    <option value="Algérie"{% if candidature.country=='Algérie' %} selected {% endif %}>Algérie</option>
+    <option value="Samoa Américaines"{% if candidature.country=='Samoa Américaines' %} selected {% endif %}>Samoa Américaines</option>
+    <option value="Andorre"{% if candidature.country=='Andorre' %} selected {% endif %}>Andorre</option>
+    <option value="Angola"{% if candidature.country=='Angola' %} selected {% endif %}>Angola</option>
+    <option value="Antigua-et-Barbuda"{% if candidature.country=='Antigua-et-Barbuda' %} selected {% endif %}>Antigua-et-Barbuda</option>
+    <option value="Azerbaïdjan"{% if candidature.country=='Azerbaïdjan' %} selected {% endif %}>Azerbaïdjan</option>
+    <option value="Argentine"{% if candidature.country=='Argentine' %} selected {% endif %}>Argentine</option>
+    <option value="Australie"{% if candidature.country=='Australie' %} selected {% endif %}>Australie</option>
+    <option value="Autriche"{% if candidature.country=='Autriche' %} selected {% endif %}>Autriche</option>
+    <option value="Bahamas"{% if candidature.country=='Bahamas' %} selected {% endif %}>Bahamas</option>
+    <option value="Bahreïn"{% if candidature.country=='Bahreïn' %} selected {% endif %}>Bahreïn</option>
+    <option value="Bangladesh"{% if candidature.country=='Bangladesh' %} selected {% endif %}>Bangladesh</option>
+    <option value="Arménie"{% if candidature.country=='Arménie' %} selected {% endif %}>Arménie</option>
+    <option value="Barbade"{% if candidature.country=='Barbade' %} selected {% endif %}>Barbade</option>
+    <option value="Belgique"{% if candidature.country=='Belgique' %} selected {% endif %}>Belgique</option>
+    <option value="Bermudes"{% if candidature.country=='Bermudes' %} selected {% endif %}>Bermudes</option>
+    <option value="Bhoutan"{% if candidature.country=='Bhoutan' %} selected {% endif %}>Bhoutan</option>
+    <option value="Bolivie"{% if candidature.country=='Bolivie' %} selected {% endif %}>Bolivie</option>
+    <option value="Bosnie-Herzégovine"{% if candidature.country=='Bosnie-Herzégovine' %} selected {% endif %}>Bosnie-Herzégovine</option>
+    <option value="Botswana"{% if candidature.country=='Botswana' %} selected {% endif %}>Botswana</option>
+    <option value="Île Bouvet"{% if candidature.country=='Île Bouvet' %} selected {% endif %}>Île Bouvet</option>
+    <option value="Brésil"{% if candidature.country=='Brésil' %} selected {% endif %}>Brésil</option>
+    <option value="Belize"{% if candidature.country=='Belize' %} selected {% endif %}>Belize</option>
+    <option value="Territoire Britannique de l'Océan Indien"{% if candidature.country=='Territoire Britannique de l\'Océan Indien' %} selected {% endif %}>Territoire Britannique de l'Océan Indien</option>
+<option value="Îles Salomon"{% if candidature.country=='Îles Salomon' %} selected {% endif %}>Îles Salomon</option>
+<option value="Îles Vierges Britanniques"{% if candidature.country=='Îles Vierges Britanniques' %} selected {% endif %}>Îles Vierges Britanniques</option>
+<option value="Brunéi Darussalam"{% if candidature.country=='Brunéi Darussalam' %} selected {% endif %}>Brunéi Darussalam</option>
+<option value="Bulgarie"{% if candidature.country=='Bulgarie' %} selected {% endif %}>Bulgarie</option>
+<option value="Myanmar"{% if candidature.country=='Myanmar' %} selected {% endif %}>Myanmar</option>
+<option value="Burundi"{% if candidature.country=='Burundi' %} selected {% endif %}>Burundi</option>
+<option value="Bélarus"{% if candidature.country=='Bélarus' %} selected {% endif %}>Bélarus</option>
+<option value="Cambodge"{% if candidature.country=='Cambodge' %} selected {% endif %}>Cambodge</option>
+<option value="Cameroun"{% if candidature.country=='Cameroun' %} selected {% endif %}>Cameroun</option>
+<option value="Canada"{% if candidature.country=='Canada' %} selected {% endif %}>Canada</option>
+<option value="Cap-vert"{% if candidature.country=='Cap-vert' %} selected {% endif %}>Cap-vert</option>
+<option value="Îles Caïmanes"{% if candidature.country=='Îles Caïmanes' %} selected {% endif %}>Îles Caïmanes</option>
+<option value="République Centrafricaine"{% if candidature.country=='République Centrafricaine' %} selected {% endif %}>République Centrafricaine</option>
+<option value="Sri Lanka"{% if candidature.country=='Sri Lanka' %} selected {% endif %}>Sri Lanka</option>
+<option value="Tchad"{% if candidature.country=='Tchad' %} selected {% endif %}>Tchad</option>
+<option value="Chili"{% if candidature.country=='Chili' %} selected {% endif %}>Chili</option>
+<option value="Chine"{% if candidature.country=='Chine' %} selected {% endif %}>Chine</option>
+<option value="Taïwan"{% if candidature.country=='Taïwan' %} selected {% endif %}>Taïwan</option>
+<option value="Île Christmas"{% if candidature.country=='Île Christmas' %} selected {% endif %}>Île Christmas</option>
+<option value="Îles Cocos (Keeling)"{% if candidature.country=='Îles Cocos (Keeling)' %} selected {% endif %}>Îles Cocos (Keeling)</option>
+<option value="Colombie"{% if candidature.country=='Colombie' %} selected {% endif %}>Colombie</option>
+<option value="Comores"{% if candidature.country=='Comores' %} selected {% endif %}>Comores</option>
+<option value="Mayotte"{% if candidature.country=='Mayotte' %} selected {% endif %}>Mayotte</option>
+<option value="République du Congo"{% if candidature.country=='République du Congo' %} selected {% endif %}>République du Congo</option>
+<option value="République Démocratique du Congo"{% if candidature.country=='République Démocratique du Congo' %} selected {% endif %}>République Démocratique du Congo</option>
+<option value="Îles Cook"{% if candidature.country=='Îles Cook' %} selected {% endif %}>Îles Cook</option>
+<option value="Costa Rica"{% if candidature.country=='Costa Rica' %} selected {% endif %}>Costa Rica</option>
+<option value="Croatie"{% if candidature.country=='Croatie' %} selected {% endif %}>Croatie</option>
+<option value="Cuba"{% if candidature.country=='Cuba' %} selected {% endif %}>Cuba</option>
+<option value="Chypre"{% if candidature.country=='Chypre' %} selected {% endif %}>Chypre</option>
+<option value="République Tchèque"{% if candidature.country=='République Tchèque' %} selected {% endif %}>République Tchèque</option>
+<option value="Bénin"{% if candidature.country=='Bénin' %} selected {% endif %}>Bénin</option>
+<option value="Danemark"{% if candidature.country=='Danemark' %} selected {% endif %}>Danemark</option>
+<option value="Dominique"{% if candidature.country=='Dominique' %} selected {% endif %}>Dominique</option>
+<option value="République Dominicaine"{% if candidature.country=='République Dominicaine' %} selected {% endif %}>République Dominicaine</option>
+<option value="Équateur"{% if candidature.country=='Équateur' %} selected {% endif %}>Équateur</option>
+<option value="El Salvador"{% if candidature.country=='El Salvador' %} selected {% endif %}>El Salvador</option>
+<option value="Guinée Équatoriale"{% if candidature.country=='Guinée Équatoriale' %} selected {% endif %}>Guinée Équatoriale</option>
+<option value="Éthiopie"{% if candidature.country=='Éthiopie' %} selected {% endif %}>Éthiopie</option>
+<option value="Érythrée"{% if candidature.country=='Érythrée' %} selected {% endif %}>Érythrée</option>
+<option value="Estonie"{% if candidature.country=='Estonie' %} selected {% endif %}>Estonie</option>
+<option value="Îles Féroé"{% if candidature.country=='Îles Féroé' %} selected {% endif %}>Îles Féroé</option>
+<option value="Îles (malvinas) Falkland"{% if candidature.country=='Îles (malvinas) Falkland' %} selected {% endif %}>Îles (malvinas) Falkland</option>
+<option value="Géorgie du Sud et les Îles Sandwich du Sud"{% if candidature.country=='Géorgie du Sud et les Îles Sandwich du Sud' %} selected {% endif %}>Géorgie du Sud et les Îles Sandwich du Sud</option>
+<option value="Fidji"{% if candidature.country=='Fidji' %} selected {% endif %}>Fidji</option>
+<option value="Finlande"{% if candidature.country=='Finlande' %} selected {% endif %}>Finlande</option>
+<option value="Îles Åland"{% if candidature.country=='Îles Åland' %} selected {% endif %}>Îles Åland</option>
+<option value="France"{% if candidature.country=='France' %} selected {% endif %}>France</option>
+<option value="Guyane Française"{% if candidature.country=='Guyane Française' %} selected {% endif %}>Guyane Française</option>
+<option value="Polynésie Française"{% if candidature.country=='Polynésie Française' %} selected {% endif %}>Polynésie Française</option>
+<option value="Terres Australes Françaises"{% if candidature.country=='Terres Australes Françaises' %} selected {% endif %}>Terres Australes Françaises</option>
+<option value="Djibouti"{% if candidature.country=='Djibouti' %} selected {% endif %}>Djibouti</option>
+<option value="Gabon"{% if candidature.country=='Gabon' %} selected {% endif %}>Gabon</option>
+<option value="Géorgie"{% if candidature.country=='Géorgie' %} selected {% endif %}>Géorgie</option>
+<option value="Gambie"{% if candidature.country=='Gambie' %} selected {% endif %}>Gambie</option>
+<option value="Territoire Palestinien Occupé"{% if candidature.country=='Territoire Palestinien Occupé' %} selected {% endif %}>Territoire Palestinien Occupé</option>
+<option value="Allemagne"{% if candidature.country=='Allemagne' %} selected {% endif %}>Allemagne</option>
+<option value="Ghana"{% if candidature.country=='Ghana' %} selected {% endif %}>Ghana</option>
+<option value="Gibraltar"{% if candidature.country=='Gibraltar' %} selected {% endif %}>Gibraltar</option>
+<option value="Kiribati"{% if candidature.country=='Kiribati' %} selected {% endif %}>Kiribati</option>
+<option value="Grèce"{% if candidature.country=='Grèce' %} selected {% endif %}>Grèce</option>
+<option value="Groenland"{% if candidature.country=='Groenland' %} selected {% endif %}>Groenland</option>
+<option value="Grenade"{% if candidature.country=='Grenade' %} selected {% endif %}>Grenade</option>
+<option value="Guadeloupe"{% if candidature.country=='Guadeloupe' %} selected {% endif %}>Guadeloupe</option>
+<option value="Guam"{% if candidature.country=='Guam' %} selected {% endif %}>Guam</option>
+<option value="Guatemala"{% if candidature.country=='Guatemala' %} selected {% endif %}>Guatemala</option>
+<option value="Guinée"{% if candidature.country=='Guinée' %} selected {% endif %}>Guinée</option>
+<option value="Guyana"{% if candidature.country=='Guyana' %} selected {% endif %}>Guyana</option>
+<option value="Haïti"{% if candidature.country=='Haïti' %} selected {% endif %}>Haïti</option>
+<option value="Îles Heard et Mcdonald"{% if candidature.country=='Îles Heard et Mcdonald' %} selected {% endif %}>Îles Heard et Mcdonald</option>
+<option value="Saint-Siège (état de la Cité du Vatican)"{% if candidature.country=='Saint-Siège (état de la Cité du Vatican)' %} selected {% endif %}>Saint-Siège (état de la Cité du Vatican)</option>
+<option value="Honduras"{% if candidature.country=='Honduras' %} selected {% endif %}>Honduras</option>
+<option value="Hong-Kong"{% if candidature.country=='Hong-Kong' %} selected {% endif %}>Hong-Kong</option>
+<option value="Hongrie"{% if candidature.country=='Hongrie' %} selected {% endif %}>Hongrie</option>
+<option value="Islande"{% if candidature.country=='Islande' %} selected {% endif %}>Islande</option>
+<option value="Inde"{% if candidature.country=='Inde' %} selected {% endif %}>Inde</option>
+<option value="Indonésie"{% if candidature.country=='Indonésie' %} selected {% endif %}>Indonésie</option>
+<option value="République Islamique d'Iran"{% if candidature.country=='République Islamique d\'Iran' %} selected {% endif %}>République Islamique d'Iran</option>
+<option value="Iraq"{% if candidature.country=='Iraq' %} selected {% endif %}>Iraq</option>
+<option value="Irlande"{% if candidature.country=='Irlande' %} selected {% endif %}>Irlande</option>
+<option value="Israël"{% if candidature.country=='Israël' %} selected {% endif %}>Israël</option>
+<option value="Italie"{% if candidature.country=='Italie' %} selected {% endif %}>Italie</option>
+<option value="Côte d'Ivoire"{% if candidature.country=='Côte d\'Ivoire' %} selected {% endif %}>Côte d'Ivoire</option>
+<option value="Jamaïque"{% if candidature.country=='Jamaïque' %} selected {% endif %}>Jamaïque</option>
+<option value="Japon"{% if candidature.country=='Japon' %} selected {% endif %}>Japon</option>
+<option value="Kazakhstan"{% if candidature.country=='Kazakhstan' %} selected {% endif %}>Kazakhstan</option>
+<option value="Jordanie"{% if candidature.country=='Jordanie' %} selected {% endif %}>Jordanie</option>
+<option value="Kenya"{% if candidature.country=='Kenya' %} selected {% endif %}>Kenya</option>
+<option value="République Populaire Démocratique de Corée"{% if candidature.country=='République Populaire Démocratique de Corée' %} selected {% endif %}>République Populaire Démocratique de Corée</option>
+<option value="République de Corée"{% if candidature.country=='République de Corée' %} selected {% endif %}>République de Corée</option>
+<option value="Koweït"{% if candidature.country=='Koweït' %} selected {% endif %}>Koweït</option>
+<option value="Kirghizistan"{% if candidature.country=='Kirghizistan' %} selected {% endif %}>Kirghizistan</option>
+<option value="République Démocratique Populaire Lao"{% if candidature.country=='République Démocratique Populaire Lao' %} selected {% endif %}>République Démocratique Populaire Lao</option>
+<option value="Liban"{% if candidature.country=='Liban' %} selected {% endif %}>Liban</option>
+<option value="Lesotho"{% if candidature.country=='Lesotho' %} selected {% endif %}>Lesotho</option>
+<option value="Lettonie"{% if candidature.country=='Lettonie' %} selected {% endif %}>Lettonie</option>
+<option value="Libéria"{% if candidature.country=='Libéria' %} selected {% endif %}>Libéria</option>
+<option value="Jamahiriya Arabe Libyenne"{% if candidature.country=='Jamahiriya Arabe Libyenne' %} selected {% endif %}>Jamahiriya Arabe Libyenne</option>
+<option value="Liechtenstein"{% if candidature.country=='Liechtenstein' %} selected {% endif %}>Liechtenstein</option>
+<option value="Lituanie"{% if candidature.country=='Lituanie' %} selected {% endif %}>Lituanie</option>
+<option value="Luxembourg"{% if candidature.country=='Luxembourg' %} selected {% endif %}>Luxembourg</option>
+<option value="Macao"{% if candidature.country=='Macao' %} selected {% endif %}>Macao</option>
+<option value="Madagascar"{% if candidature.country=='Madagascar' %} selected {% endif %}>Madagascar</option>
+<option value="Malawi"{% if candidature.country=='Malawi' %} selected {% endif %}>Malawi</option>
+<option value="Malaisie"{% if candidature.country=='Malaisie' %} selected {% endif %}>Malaisie</option>
+<option value="Maldives"{% if candidature.country=='Maldives' %} selected {% endif %}>Maldives</option>
+<option value="Mali"{% if candidature.country=='Mali' %} selected {% endif %}>Mali</option>
+<option value="Malte"{% if candidature.country=='Malte' %} selected {% endif %}>Malte</option>
+<option value="Martinique"{% if candidature.country=='Martinique' %} selected {% endif %}>Martinique</option>
+<option value="Mauritanie"{% if candidature.country=='Mauritanie' %} selected {% endif %}>Mauritanie</option>
+<option value="Maurice"{% if candidature.country=='Maurice' %} selected {% endif %}>Maurice</option>
+<option value="Mexique"{% if candidature.country=='Mexique' %} selected {% endif %}>Mexique</option>
+<option value="Monaco"{% if candidature.country=='Monaco' %} selected {% endif %}>Monaco</option>
+<option value="Mongolie"{% if candidature.country=='Mongolie' %} selected {% endif %}>Mongolie</option>
+<option value="République de Moldova"{% if candidature.country=='République de Moldova' %} selected {% endif %}>République de Moldova</option>
+<option value="Montserrat"{% if candidature.country=='Montserrat' %} selected {% endif %}>Montserrat</option>
+<option value="Maroc"{% if candidature.country=='Maroc' %} selected {% endif %}>Maroc</option>
+<option value="Mozambique"{% if candidature.country=='Mozambique' %} selected {% endif %}>Mozambique</option>
+<option value="Oman"{% if candidature.country=='Oman' %} selected {% endif %}>Oman</option>
+<option value="Namibie"{% if candidature.country=='Namibie' %} selected {% endif %}>Namibie</option>
+<option value="Nauru"{% if candidature.country=='Nauru' %} selected {% endif %}>Nauru</option>
+<option value="Népal"{% if candidature.country=='Népal' %} selected {% endif %}>Népal</option>
+<option value="Pays-Bas"{% if candidature.country=='Pays-Bas' %} selected {% endif %}>Pays-Bas</option>
+<option value="Antilles Néerlandaises"{% if candidature.country=='Antilles Néerlandaises' %} selected {% endif %}>Antilles Néerlandaises</option>
+<option value="Aruba"{% if candidature.country=='Aruba' %} selected {% endif %}>Aruba</option>
+<option value="Nouvelle-Calédonie"{% if candidature.country=='Nouvelle-Calédonie' %} selected {% endif %}>Nouvelle-Calédonie</option>
+<option value="Vanuatu"{% if candidature.country=='Vanuatu' %} selected {% endif %}>Vanuatu</option>
+<option value="Nouvelle-Zélande"{% if candidature.country=='Nouvelle-Zélande' %} selected {% endif %}>Nouvelle-Zélande</option>
+<option value="Nicaragua"{% if candidature.country=='Nicaragua' %} selected {% endif %}>Nicaragua</option>
+<option value="Niger"{% if candidature.country=='Niger' %} selected {% endif %}>Niger</option>
+<option value="Nigéria"{% if candidature.country=='Nigéria' %} selected {% endif %}>Nigéria</option>
+<option value="Niué"{% if candidature.country=='Niué' %} selected {% endif %}>Niué</option>
+<option value="Île Norfolk"{% if candidature.country=='Île Norfolk' %} selected {% endif %}>Île Norfolk</option>
+<option value="Norvège"{% if candidature.country=='Norvège' %} selected {% endif %}>Norvège</option>
+<option value="Îles Mariannes du Nord"{% if candidature.country=='Îles Mariannes du Nord' %} selected {% endif %}>Îles Mariannes du Nord</option>
+<option value="Îles Mineures Éloignées des États-Unis"{% if candidature.country=='Îles Mineures Éloignées des États-Unis' %} selected {% endif %}>Îles Mineures Éloignées des États-Unis</option>
+<option value="États Fédérés de Micronésie"{% if candidature.country=='États Fédérés de Micronésie' %} selected {% endif %}>États Fédérés de Micronésie</option>
+<option value="Îles Marshall"{% if candidature.country=='Îles Marshall' %} selected {% endif %}>Îles Marshall</option>
+<option value="Palaos"{% if candidature.country=='Palaos' %} selected {% endif %}>Palaos</option>
+<option value="Pakistan"{% if candidature.country=='Pakistan' %} selected {% endif %}>Pakistan</option>
+<option value="Panama"{% if candidature.country=='Panama' %} selected {% endif %}>Panama</option>
+<option value="Papouasie-Nouvelle-Guinée"{% if candidature.country=='Papouasie-Nouvelle-Guinée' %} selected {% endif %}>Papouasie-Nouvelle-Guinée</option>
+<option value="Paraguay"{% if candidature.country=='Paraguay' %} selected {% endif %}>Paraguay</option>
+<option value="Pérou"{% if candidature.country=='Pérou' %} selected {% endif %}>Pérou</option>
+<option value="Philippines"{% if candidature.country=='Philippines' %} selected {% endif %}>Philippines</option>
+<option value="Pitcairn"{% if candidature.country=='Pitcairn' %} selected {% endif %}>Pitcairn</option>
+<option value="Pologne"{% if candidature.country=='Pologne' %} selected {% endif %}>Pologne</option>
+<option value="Portugal"{% if candidature.country=='Portugal' %} selected {% endif %}>Portugal</option>
+<option value="Guinée-Bissau"{% if candidature.country=='Guinée-Bissau' %} selected {% endif %}>Guinée-Bissau</option>
+<option value="Timor-Leste"{% if candidature.country=='Timor-Leste' %} selected {% endif %}>Timor-Leste</option>
+<option value="Porto Rico"{% if candidature.country=='Porto Rico' %} selected {% endif %}>Porto Rico</option>
+<option value="Qatar"{% if candidature.country=='Qatar' %} selected {% endif %}>Qatar</option>
+<option value="Réunion"{% if candidature.country=='Réunion' %} selected {% endif %}>Réunion</option>
+<option value="Roumanie"{% if candidature.country=='Roumanie' %} selected {% endif %}>Roumanie</option>
+<option value="Fédération de Russie"{% if candidature.country=='Fédération de Russie' %} selected {% endif %}>Fédération de Russie</option>
+<option value="Rwanda"{% if candidature.country=='Rwanda' %} selected {% endif %}>Rwanda</option>
+<option value="Sainte-Hélène"{% if candidature.country=='Sainte-Hélène' %} selected {% endif %}>Sainte-Hélène</option>
+<option value="Saint-Kitts-et-Nevis"{% if candidature.country=='Saint-Kitts-et-Nevis' %} selected {% endif %}>Saint-Kitts-et-Nevis</option>
+<option value="Anguilla"{% if candidature.country=='Anguilla' %} selected {% endif %}>Anguilla</option>
+<option value="Sainte-Lucie"{% if candidature.country=='Sainte-Lucie' %} selected {% endif %}>Sainte-Lucie</option>
+<option value="Saint-Pierre-et-Miquelon"{% if candidature.country=='Saint-Pierre-et-Miquelon' %} selected {% endif %}>Saint-Pierre-et-Miquelon</option>
+<option value="Saint-Vincent-et-les Grenadines"{% if candidature.country=='Saint-Vincent-et-les Grenadines' %} selected {% endif %}>Saint-Vincent-et-les Grenadines</option>
+<option value="Saint-Marin"{% if candidature.country=='Saint-Marin' %} selected {% endif %}>Saint-Marin</option>
+<option value="Sao Tomé-et-Principe"{% if candidature.country=='Sao Tomé-et-Principe' %} selected {% endif %}>Sao Tomé-et-Principe</option>
+<option value="Arabie Saoudite"{% if candidature.country=='Arabie Saoudite' %} selected {% endif %}>Arabie Saoudite</option>
+<option value="Sénégal"{% if candidature.country=='Sénégal' %} selected {% endif %}>Sénégal</option>
+<option value="Seychelles"{% if candidature.country=='Seychelles' %} selected {% endif %}>Seychelles</option>
+<option value="Sierra Leone"{% if candidature.country=='Sierra Leone' %} selected {% endif %}>Sierra Leone</option>
+<option value="Singapour"{% if candidature.country=='Singapour' %} selected {% endif %}>Singapour</option>
+<option value="Slovaquie"{% if candidature.country=='Slovaquie' %} selected {% endif %}>Slovaquie</option>
+<option value="Viet Nam"{% if candidature.country=='Viet Nam' %} selected {% endif %}>Viet Nam</option>
+<option value="Slovénie"{% if candidature.country=='Slovénie' %} selected {% endif %}>Slovénie</option>
+<option value="Somalie"{% if candidature.country=='Somalie' %} selected {% endif %}>Somalie</option>
+<option value="Afrique du Sud"{% if candidature.country=='Afrique du Sud' %} selected {% endif %}>Afrique du Sud</option>
+<option value="Zimbabwe"{% if candidature.country=='Zimbabwe' %} selected {% endif %}>Zimbabwe</option>
+<option value="Espagne"{% if candidature.country=='Espagne' %} selected {% endif %}>Espagne</option>
+<option value="Sahara Occidental"{% if candidature.country=='Sahara Occidental' %} selected {% endif %}>Sahara Occidental</option>
+<option value="Soudan"{% if candidature.country=='Soudan' %} selected {% endif %}>Soudan</option>
+<option value="Suriname"{% if candidature.country=='Suriname' %} selected {% endif %}>Suriname</option>
+<option value="Svalbard etÎle Jan Mayen"{% if candidature.country=='Svalbard etÎle Jan Mayen' %} selected {% endif %}>Svalbard etÎle Jan Mayen</option>
+<option value="Swaziland"{% if candidature.country=='Swaziland' %} selected {% endif %}>Swaziland</option>
+<option value="Suède"{% if candidature.country=='Suède' %} selected {% endif %}>Suède</option>
+<option value="Suisse"{% if candidature.country=='Suisse' %} selected {% endif %}>Suisse</option>
+<option value="République Arabe Syrienne"{% if candidature.country=='République Arabe Syrienne' %} selected {% endif %}>République Arabe Syrienne</option>
+<option value="Tadjikistan"{% if candidature.country=='Tadjikistan' %} selected {% endif %}>Tadjikistan</option>
+<option value="Thaïlande"{% if candidature.country=='Thaïlande' %} selected {% endif %}>Thaïlande</option>
+<option value="Togo"{% if candidature.country=='Togo' %} selected {% endif %}>Togo</option>
+<option value="Tokelau"{% if candidature.country=='Tokelau' %} selected {% endif %}>Tokelau</option>
+<option value="Tonga"{% if candidature.country=='Tonga' %} selected {% endif %}>Tonga</option>
+<option value="Trinité-et-Tobago"{% if candidature.country=='Trinité-et-Tobago' %} selected {% endif %}>Trinité-et-Tobago</option>
+<option value="Émirats Arabes Unis"{% if candidature.country=='Émirats Arabes Unis' %} selected {% endif %}>Émirats Arabes Unis</option>
+<option value="Tunisie"{% if candidature.country=='Tunisie' %} selected {% endif %}>Tunisie</option>
+<option value="Turquie"{% if candidature.country=='Turquie' %} selected {% endif %}>Turquie</option>
+<option value="Turkménistan"{% if candidature.country=='Turkménistan' %} selected {% endif %}>Turkménistan</option>
+<option value="Îles Turks et Caïques"{% if candidature.country=='Îles Turks et Caïques' %} selected {% endif %}>Îles Turks et Caïques</option>
+<option value="Tuvalu"{% if candidature.country=='Tuvalu' %} selected {% endif %}>Tuvalu</option>
+<option value="Ouganda"{% if candidature.country=='Ouganda' %} selected {% endif %}>Ouganda</option>
+<option value="Ukraine"{% if candidature.country=='Ukraine' %} selected {% endif %}>Ukraine</option>
+<option value="L'ex-République Yougoslave de Macédoine"{% if candidature.country=='L\'ex-République Yougoslave de Macédoine' %} selected {% endif %}>L'ex-République Yougoslave de Macédoine</option>
+<option value="Égypte"{% if candidature.country=='Égypte' %} selected {% endif %}>Égypte</option>
+<option value="Royaume-Uni"{% if candidature.country=='Royaume-Uni' %} selected {% endif %}>Royaume-Uni</option>
+<option value="Île de Man"{% if candidature.country=='Île de Man' %} selected {% endif %}>Île de Man</option>
+<option value="République-Unie de Tanzanie"{% if candidature.country=='République-Unie de Tanzanie' %} selected {% endif %}>République-Unie de Tanzanie</option>
+<option value="États-Unis"{% if candidature.country=='États-Unis' %} selected {% endif %}>États-Unis</option>
+<option value="Îles Vierges des États-Unis"{% if candidature.country=='Îles Vierges des États-Unis' %} selected {% endif %}>Îles Vierges des États-Unis</option>
+<option value="Burkina Faso"{% if candidature.country=='Burkina Faso' %} selected {% endif %}>Burkina Faso</option>
+<option value="Uruguay"{% if candidature.country=='Uruguay' %} selected {% endif %}>Uruguay</option>
+<option value="Ouzbékistan"{% if candidature.country=='Ouzbékistan' %} selected {% endif %}>Ouzbékistan</option>
+<option value="Venezuela"{% if candidature.country=='Venezuela' %} selected {% endif %}>Venezuela</option>
+<option value="Wallis et Futuna"{% if candidature.country=='Wallis et Futuna' %} selected {% endif %}>Wallis et Futuna</option>
+<option value="Samoa"{% if candidature.country=='Samoa' %} selected {% endif %}>Samoa</option>
+<option value="Yémen"{% if candidature.country=='Yémen' %} selected {% endif %}>Yémen</option>
+<option value="Serbie-et-Monténégro"{% if candidature.country=='Serbie-et-Monténégro' %} selected {% endif %}>Serbie-et-Monténégro</option>
+<option value="Zambie"{% if candidature.country=='Zambie' %} selected {% endif %}>Zambie</option>
+
+
+                           </select>
+                        </div>
+                        <hr/>
+                        <h2>Votre candidature</h2>
+                        <div class="form-group">
+                            <label for="imagefile" class="control-label">Photo : * </label>
+
+
+                            <div class="input-group image-preview">
+                                <input type="file" accept="image/jpeg" name="image" id="imagefile"/>
+                                <input type="hidden" id="imageData" name="imageData"
+                                       value="{% if candidature.path_pic!='' %}{{ base64image }}{% endif %}"/>
+                                <input type="hidden" id="imageFilename" name="imageFilename"
+                                       value="{% if candidature.path_pic!='' %}{{ nameimage }}{% endif %}"/>
+                                <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default image-preview-clear"
+                                            style="display:none;">
+                                        <span class="fa fa-times"></span>
+                                    </button>
+                                    <div class="btn btn-default image-preview-input">
+                                        <span class="fa fa-folder-open"></span>
+                                        <span class="image-preview-input-title">Choisir</span>
+                                        <input type="hidden" name="MAX_FILE_SIZE"
+                                               value="{{ ConfigService.get("max-filesize")*1024*1024 }}"/>
+                                    </div>
+                                </span>
+                            </div>
+
+                            <div class="help-block">Idéalement format carré (entre {{ ConfigService.get("min-width") }}px et {{ ConfigService.get("max-height") }}px ). {{  ConfigService.get("max-filesize") }}Mo max</div>
+
+                            <div class="drop-zone"
+                                 style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}"></div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="presentation" class="control-label">Texte de présentation :</label>
+                            <textarea class="form-control" rows="8" id="presentation"
+                                      name="presentation"> {{ candidature.presentation }}</textarea>
+                            <p class="help-block form-text text-muted">
+                                140 caractères minimum</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="video" class="control-label">Lien vidéo : </label>
+
+                                <input type="text" class="form-control" id="video" name="video"
+                                       placeholder="http://www.lienversvotrevideo.com" value="{{ candidature.url_video }}">
+
+                            <p class="help-block form-text text-muted">
+                                Youtube, Vimeo ou Dailymotion (lien complet avec http..)</p>
+                        </div>
+                        <hr/>
+                        <h2>Pièces justificatives <small>(PDF, JPG ou PNG)</small></h2>
+                        <div class="form-group">
+                            <p>La fourniture de ces documents est un impératif légal (<a href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025375501&cidTexte=LEGITEXT000006070239&dateTexte=20170303" target="_blank" title="article R99 du code électoral">article R99 du code électoral</a>) pour tout candidat aux élections législatives. Nous devons donc les vérifier pour valider votre participation au tirage au sort.</p>
+
+                            <label for="idcard" class="control-label">Copie de votre carte d'identité (recto/verso) ou de votre passeport. Le document doit être en cours de validité. ({{  ConfigService.get("max-filesize") }} Mo maximum)
+                                :</label>
+
+                            <input type="file" class="form-control" accept="application/pdf, image/*" id="idcard"
+                                   name="idcard">
+                            {%  if candidature.path_idcard!=''  %}
+                                <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
+                            {%  endif %}
+                            <br/>
+                            <p><strong>Un extrait de casier judiciaire 3B</strong>. Sa validité étant de trois mois, il ne serait pas valable pour le deuxième tour des élections législatives, qui a lieu le 11 juin, si vous nous le transmettiez aujourd'hui. Nous vous recontacterons un peu plus tard pour vous indiquer la procédure à suivre pour nous le transmettre.</p>
+                        </div>
+
+
+
+
+                        <!-- <div class="form-group">
+
+                            <label for="criminal_record" class="control-label">Extrait de casier judiciaire B3 ({{  ConfigService.get("max-filesize") }} Mo maximum) :</label>
+
+                            <div class="help-block">Vous pouvez demander au Ministère de la Justice de vous envoyer ce document par la Poste sur <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank" class="text-primary">ce site Web</a></div>
+
+                            <input type="file" class="form-control" accept="application/pdf, image/*" id="criminal_record"
+                                   name="criminal_record">
+
+                            {%  if candidature.path_criminal_record!=''  %}
+                                <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
+                            {%  endif %}
+                        </div> -->
+                        <hr/>
+                        {#<div class="form-group">
+                            <p>Si vous disposez déjà de votre attestation d'inscription à une liste électorale</p>
+                            <label for="attestation" class="control-label">Attestation d’inscription liste électorale
+                                :</label>
+
+
+                            <input type="file" class="form-control" accept="application/pdf" id="attestation"
+                                   name="attestation">
+                            {%  if candidature.path_certificate!=''  %}
+                                <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
+                            {%  endif %}
+                        </div>#}
+
+                        {% if ConfigService.get("enable-captcha")== 1  %}
+                        <div class="form-group">
+                            <label for="captcha" class="control-label">Code de sécurité : *</label>
+                            <div class="p-b">
+                            <img src="/captcha/image.jpg" class="jsCaptcha" style="border:1px solid #000000;"/><br /><a href="javascript:void(0);" class="text-primary jsCaptchaRefresh" style="color:#000000;"> Ce code est illisible !  </a>
+                            </div>
+                                <input type="text" class="form-control" id="captcha" name="captcha"
+                                   value=""
+                                   placeholder="copiez ici le code de sécurité">
+                        </div>
+                            {% endif  %}
+
+                        <hr />
+                        <p>En cliquant le bouton ci-dessous, vous reconnaissez avoir pris connaissance de notre <a href="/home/mentions-legales.html">politique de gestion des données personnelles</a>.</p>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary ">
+                                {% if candidature.id!='' %}
+                                    Enregistrer
+                                {% else %}
+                                    Envoyer ma candidature
+                                {% endif %}
+                            </button>
+                        </div>
+                        {% if oMe.type=='admin' %}
+                            <div class="text-center p-t-x4 p-b-x4">
+                                <button type="button" class="btn btn-primary jsBackButton">
+                                    Retour
+                                </button>
+                            </div>
+                        {% endif %}
+                        <div class="text-center p-t-x4 p-b-x4">
+                            <div class="fb-share-button" data-href="{{ urlPage }}" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlPageEncoded }}&amp;src=sdkpreparse">Partager</a></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

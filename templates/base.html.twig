@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% block meta %}{% endblock %}
+    <title>{% block title %}Candidature #MAVOIX{% endblock %}</title>
+    <!-- Bonjour :) On peut vous aider ? -->
+
+
+
+
+    <link rel="icon" type="image/png" href="/css/images/favicon.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/font-awesome.min.css?v={{ ConfigService.get("version-css") }}">
+    <link rel="stylesheet" href="/css/plugins.css?v={{ ConfigService.get("version-css") }}">
+    <link rel="stylesheet" href="/css/styles.css?v={{ ConfigService.get("version-css") }}">
+    <!--
+    Trop complexe de reproduire le menu de mavoix.info à l'identique, pour l'instant.
+
+    <link rel='stylesheet' id='divi-fonts-css'  href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&#038;subset=latin,latin-ext' type='text/css' media='all' />
+    <link rel='stylesheet' id='divi-style-css'  href='/css/wp-style.css?v={{ ConfigService.get("version-css") }}' type='text/css' media='all' />
+    <link rel='stylesheet' id='uaf_client_css-css'  href='/css/wp-uaf.css?v={{ ConfigService.get("version-css") }}' type='text/css' media='all' />
+     <link rel='stylesheet' id='et-shortcodes-css-css'  href='http://beta.mavoix.info/website/wp-content/themes/Divi/epanel/shortcodes/css/shortcodes.css?ver=3.0.34' type='text/css' media='all' />
+    <link rel='stylesheet' id='et-shortcodes-responsive-css-css'  href='http://beta.mavoix.info/website/wp-content/themes/Divi/epanel/shortcodes/css/shortcodes_responsive.css?ver=3.0.34' type='text/css' media='all' />
+
+    <link rel="stylesheet" href="/css/wp-custom.css?v={{ ConfigService.get("version-css") }}"> -->
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+<div id="loading">
+    <div class="loading-display"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+        <div class="loading-display"><!--<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span>-->
+            <h5 class="no-margin ">Chargement <i class="fa fa-spinner fa-spin  fa-fw"></i></h5>
+        </div>
+        <div id="progress-wrp">
+            <div class="progress-bar"></div ><div class="status typo">0%</div>
+        </div>
+    </div>
+</div>
+
+{% embed oMe.type ~ "/menu.html.twig" %}{% endembed %}
+{% block header %}{% endblock %}
+{% block body %}{% endblock %}
+{% block footer %}{% endblock %}
+<footer class="footer">
+    <div class="container">
+      <p class="m-b m-t">
+        <a href="/home/mentions-legales.html">Mentions légales</a>  |  <a href="https://github.com/mavoix/candidature">Code source</a>
+      </p>
+    </div>
+</footer>
+<div class="modal fade" tabindex="-1" role="dialog" id="modalConfirm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title text-primary" id="modal-title" ></h2>
+            </div>
+            <div class="modal-body" id="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default typo" data-dismiss="modal" id="modal-cancel">Annuler</button>
+                <button type="button" class="btn btn-primary typo" id="modal-confirm">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="/js/plugins/pace/pace.js?v={{ ConfigService.get("version-js") }}"></script>
+<script src="/js/plugins/toastr/toastr.min.js?v={{ ConfigService.get("version-js") }}"></script>
+<script src="/js/plugins/upload-preview/upload-preview.js?v={{ ConfigService.get("version-js") }}"></script>
+<script src="/js/plugins/intlTelInput/intlTelInput.min.js?v={{ ConfigService.get("version-js") }}"></script>
+<script src="/js/lib.js?v={{ ConfigService.get("version-js") }}"></script>
+ {% block javascripts %}{% endblock %}
+</body>
+</html>

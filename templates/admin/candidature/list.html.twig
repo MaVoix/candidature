@@ -1,0 +1,144 @@
+{% extends "admin/base.html.twig" %}
+
+{%  block css %}
+    {{ parent() }}
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+{% endblock %}
+
+{%  block javascripts %}
+    {{ parent() }}
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
+                    <h1>Administration</h1>
+                </div>
+                <div class="p-b-x4">
+                <form action="/candidature/list.html" method="post" autocomplete="off"  data-ajax="true">
+                <div class="col-xs-12 m-b-x2">
+                    <label for="search" class="control-label">Chercher :</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                   value="{{ search }}" autofocus  id="search" name="search" placeholder="Nom, prénom, ville, code postal ...">
+                            <span class="input-group-btn"><button type="submit"  class="btn btn-default"><i class="fa fa-search"></i> Go</button>
+                            </span>                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6" >
+                    <div class="form-group">
+                            <label for="filter" class="control-label">Filtrer :</label>
+                            <select id="filter" name="filter" class="form-control submitOnChange">
+                                <option value="">Tous</option>
+                                <option value="online" {% if filter=='online' %} selected {% endif %}>En ligne</option>
+                                <option value="offline"  {% if filter=='offline' %} selected {% endif %}>Hors ligne</option>
+                                <option value="is_certificate"  {% if filter=='is_certificate' %} selected {% endif %}>Attestation valide</option>
+                                <option value="not_certificate"  {% if filter=='is_certificate' %} selected {% endif %}>Attestation non-valide</option>
+                                <option value="is_idcard"  {% if filter=='is_idcard' %} selected {% endif %}>Carte ID valide</option>
+                                <option value="not_idcard"  {% if filter=='not_idcard' %} selected {% endif %}>Carte ID non-valide</option>
+                                <option value="is_criminal_record"  {% if filter=='is_criminal_record' %} selected {% endif %}>Extrait judiciaire valide</option>
+                                <option value="not_criminal_record"  {% if filter=='not_criminal_record' %} selected {% endif %}>Extrait judiciaire non-valide</option>
+                                </option>
+                            </select>
+                        </div>
+
+
+                </div>
+                    <div class="col-xs-12 col-md-6" >
+                        <div class="form-group">
+                            <label for="order" class="control-label">Trier par :</label>
+                            <select id="order" name="order" class="form-control submitOnChange">
+                                <option value="date_created--desc"  {% if order=='date_created--desc' %} selected {% endif %}>Date (derniers inscrits)</option>
+                                <option value="date_created--asc"  {% if order=='date_created--asc' %} selected {% endif %}>Date (premiers inscrits)</option>
+                                <option value="name--asc"  {% if order=='name--asc' %} selected {% endif %}>Nom</option>
+                                <option value="firstname--asc"  {% if order=='firstname--asc' %} selected {% endif %}>Prénom</option>
+                                <option value="city--asc"  {% if order=='city--asc' %} selected {% endif %}>Ville</option>
+                                <option value="zipcode--asc"  {% if order=='zipcode--asc' %} selected {% endif %}>Code postal</option>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 m-b-x2">
+                        <a href="/candidature/export.csv" class="btn btn-default pull-left" download="export.csv" >Export CSV</a>
+                        <button type="button" class="btn btn-default pull-right jsBtReset" >Affichage par défaut</button>
+                    </div>
+
+                </form>
+                </div>
+                <div class="updatableContent" data-updateIndex="1">
+
+                {% for candidature in candidatures %}
+                    <div class="col-xs-12 col-md-6 col-lg-4 p-b-x4 {{ candidature.state }}" data-id-candidature="{{ candidature.id }}">
+                        <div>
+                            <div data-url="/candidature/fiche.html?id={{ candidature.id }}" class="jsLink" style="cursor:pointer;">
+                                <h3>{{ candidature.civility }} {{ candidature.firstname }} {{ candidature.name }}</h3>
+                            <p class="m-b-x2">{{ candidature.city }}({{ candidature.zipcode }})</p>
+                                <div style="background-image:url('/{{ candidature.path_pic_fit }}')" class="square-pic-candidature " ></div></div>
+
+                            <div class="m-t-x2">
+                            <a href="/candidature/fiche.html?id={{ candidature.id }}" class="btn btn-primary btn-block">Fiche
+                                complete</a>
+                                {%  if candidature.url_video!=''  %}
+                                    <a href="{{ candidature.url_video }}" target="_blank" class="btn btn-primary btn-block"><i class="fa fa-file-video-o pull-left" aria-hidden="true"></i> Lien vidéo</a>
+                                {%  else %}
+                                    <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-video-o pull-left" aria-hidden="true"></i> Lien vidéo</button>
+                                {% endif %}
+                           {# {%  if candidature.path_certificate!=''  %}
+                                <a href="/{{ candidature.path_certificate }}" download="attestation.pdf" class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Télécharger PDF</a>
+                                {%  else %}
+                                    <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i>Télécharger PDF</button>
+                            {% endif %}#}
+                                {%  if candidature.path_idcard!=''  %}
+                                    <a href="/{{ candidature.path_idcard }}"  download="{{ candidature.path_idcard|basename }}"  class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Carte Identité</a>
+                                {%  else %}
+                                    <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Carte Identité</button>
+                                {% endif %}
+
+                                {%  if candidature.path_criminal_record !=''  %}
+                                    <a href="/{{ candidature.path_criminal_record }}" download="{{ candidature.path_criminal_record|basename }}" class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier judiciaire</a>
+                                {%  else %}
+                                    <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier judiciaire</button>
+                                {% endif %}
+
+
+
+                            </div>
+                            <div class="m-t-x4">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success" data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
+                                </label>
+                            </div>
+                            <hr />
+                            <div class="m-t">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_certificate=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/certificate-valid.json" data-param="id={{ candidature.id }}"> Attestation VALIDE
+                                </label>
+                            </div>
+                            <div class="m-t">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_idcard=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte ID VALIDE
+                                </label>
+                            </div>
+                            <div class="m-t">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_criminal_record=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/criminal-record-valid.json" data-param="id={{ candidature.id }}"> Extrait judiciaire VALIDE
+                                </label>
+                            </div>
+                            <div class="m-t-x4">
+                                <a href="javascript:void(0);" class="btn btn-danger btn-block click-send-ajax-confirm" data-modal-title="Confirmation"  data-modal-body="Êtes-vous sûr de vouloir supprimer définitivement cette candidature ? <br> <i>En cas de doutes, il est préférable de simplement passer cette canidature hors ligne.</i><p class='m-t-x2'><b>A NOTER : Cette intervention n'efface pas complétement les données en base</b></p>" data-modal-confirm="Supprimer"  data-modal-cancel="Annuler" data-url="/candidature/delete.json" data-param='{"id":"{{ candidature.id }}","from":"list"}'  ><i class="fa fa-trash pull-left" aria-hidden="true"></i> Supprimer</a>
+
+                                <a href="{%  if candidature.state=='offline'  %}{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}{% else %}javascript:void(0);{% endif %}  "
+                                   class="btn btn-info btn-block"   {%  if candidature.state=='online'  %}disabled{% endif %} >Editer</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
