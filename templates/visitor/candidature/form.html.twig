@@ -583,22 +583,26 @@
                         <hr/>
                         <h2>Pièces justificatives <small>(PDF, JPG ou PNG)</small></h2>
                         <div class="form-group">
-                            <p>La fourniture de ces documents est un impératif légal pour tout candidat aux élections législatives. Nous devons donc les vérifier pour valider votre participation au tirage au sort.</p>
-                            <p>En revanche, si vous ne le avez pas à votre disposition, vous avez la possibilité de nous les transmettre plus tard mettant à jour votre candidature.</p>
+                            <p>La fourniture de ces documents est un impératif légal (<a href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025375501&cidTexte=LEGITEXT000006070239&dateTexte=20170303" target="_blank" title="article R99 du code électoral">article R99 du code électoral</a>) pour tout candidat aux élections législatives. Nous devons donc les vérifier pour valider votre participation au tirage au sort.</p>
 
-                            <label for="idcard" class="control-label">Copie de votre carte d'identité recto/verso ou de votre passeport ({{  ConfigService.get("max-filesize") }}Mo max)
+                            <label for="idcard" class="control-label">Copie de votre carte d'identité (recto/verso) ou de votre passeport. Le document doit être en cours de validité. ({{  ConfigService.get("max-filesize") }} Mo maximum)
                                 :</label>
-
 
                             <input type="file" class="form-control" accept="application/pdf, image/*" id="idcard"
                                    name="idcard">
                             {%  if candidature.path_idcard!=''  %}
                                 <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
                             {%  endif %}
+                            <br/>
+                            <p><strong>Un extrait de casier judiciaire 3B</strong>. Sa validité étant de trois mois, il ne serait pas valable pour le deuxième tour des élections législatives, qui a lieu le 11 juin, si vous nous le transmettiez aujourd'hui. Nous vous recontacterons un peu plus tard pour vous indiquer la procédure à suivre pour nous le transmettre.</p>
                         </div>
-                        <div class="form-group">
 
-                            <label for="criminal_record" class="control-label">Extrait de casier judiciaire B3 ({{  ConfigService.get("max-filesize") }}Mo max) :</label>
+
+
+
+                        <!-- <div class="form-group">
+
+                            <label for="criminal_record" class="control-label">Extrait de casier judiciaire B3 ({{  ConfigService.get("max-filesize") }} Mo maximum) :</label>
 
                             <div class="help-block">Vous pouvez demander au Ministère de la Justice de vous envoyer ce document par la Poste sur <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank" class="text-primary">ce site Web</a></div>
 
@@ -608,49 +612,8 @@
                             {%  if candidature.path_criminal_record!=''  %}
                                 <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
                             {%  endif %}
-                        </div>
+                        </div> -->
                         <hr/>
-                        <h2>Engagements *</h2>
-                        <div class="form-group ">
-                            <div class="checkbox">
-                                <label class="control-label">
-                                    <input id="engagement-1" value="ok" type="checkbox"
-                                           name="engagement-1" {{ checkedengagement }}>
-                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
-                                </label>
-                                <label class="label-checkbox" for="engagement-1">Engagement 1 : Lorem ipsum dolor sit
-                                    amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent
-                                    dictum, libero non auctor consequat, velit felis venenatis nibh</label>
-                            </div>
-                        </div>
-                        <hr/>
-                        <div class="form-group ">
-                            <div class="checkbox">
-                                <label class="control-label">
-                                    <input id="engagement-2" value="ok" type="checkbox"
-                                           name="engagement-2" {{ checkedengagement }}>
-                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
-                                </label>
-                                <label class="label-checkbox" for="engagement-2">Engagement 2 : Lorem ipsum dolor sit
-                                    amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent
-                                    dictum, libero non auctor consequat, velit felis venenatis nibh</label>
-                            </div>
-                        </div>
-                        <hr/>
-                        <div class="form-group ">
-                            <div class="checkbox">
-                                <label class="control-label">
-                                    <input id="engagement-3" value="ok" type="checkbox"
-                                           name="engagement-3" {{ checkedengagement }}>
-                                    <span class="cr"><i class="cr-icon fa fa-check"></i></span>
-                                </label>
-                                <label class="label-checkbox" for="engagement-3">Engagement 3 : Lorem ipsum dolor sit
-                                    amet, consectetur adipiscing elit. Integer euismod vitae erat in sagittis. Praesent
-                                    dictum, libero non auctor consequat, velit felis venenatis nibh</label>
-                            </div>
-                        </div>
-
-
                         {#<div class="form-group">
                             <p>Si vous disposez déjà de votre attestation d'inscription à une liste électorale</p>
                             <label for="attestation" class="control-label">Attestation d’inscription liste électorale
@@ -665,7 +628,6 @@
                         </div>#}
 
                         {% if ConfigService.get("enable-captcha")== 1  %}
-                        <hr/>
                         <div class="form-group">
                             <label for="captcha" class="control-label">Code de sécurité : *</label>
                             <div class="p-b">
