@@ -3,6 +3,7 @@ html{
 }
 body{
     height:100%;
+    font-size: 18px;
 }
 
 #loading{
@@ -171,7 +172,7 @@ body{
 
 
 .toast-message {
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .no-underline
