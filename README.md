@@ -1,8 +1,24 @@
-# Candidature #MAVOIX v1.0.0
+# Candidature #MAVOIX v1.0.1
 
 Soumission et publication des inscriptions au tirage au sort [#MAVOIX](https://mavoix.info).
 
 Le formulaire se trouve à l'adresse : https://candidature.mavoix.info.
+
+Version de test : https://candidature.maudry.fr
+
+
+## Notes de version
+
+#### 1.0.1
+
+- Le deuxième tour est le **18 juin**
+- Autres coquilles
+- Augmentation de la taille de la police de caractères de base (14px => 18px)
+
+### 1.0.0
+
+- Formulaire fonctionnel et stylisé
+- Interface admin fonctionnelle mais non stylisée
 
 
 ## Dependencies
