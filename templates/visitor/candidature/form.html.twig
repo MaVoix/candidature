@@ -578,7 +578,7 @@
                                 140 caractères minimum</p>
                         </div>
                         <div class="form-group">
-                            <label for="video" class="control-label">...ou le lien vers votre vidéo de témoignage</label>
+                            <label for="video" class="control-label">...et/ou le lien vers votre vidéo de témoignagegit </label>
 
                                 <input type="text" class="form-control publicinfo" id="video" name="video"
                                        placeholder="http://www.lienversvotrevideo.com" value="{{ candidature.url_video }}">
@@ -646,7 +646,7 @@
                             {% endif  %}
 
                         <hr />
-                        <p>En cliquant sur le bouton ci-dessous, vous reconnaissez avoir pris connaissance de notre <a href="/home/mentions-legales.html">politique de gestion des données personnelles</a>.</p>
+                        <p>En cliquant sur le bouton ci-dessous, vous reconnaissez avoir pris connaissance de notre <a href="/home/mentions-legales.html">politique de gestion des données personnelles</a> et acceptez que les informations des champs encadrés en <span style="color:#05a60d">vert soient rendues publiques.</p>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary ">
                                 {% if candidature.id!='' %}
