@@ -568,17 +568,17 @@
                                  style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}"></div>
 
                         </div>
-                        <p>Votre témoignage personnel sur les raisons de votre envie de participer à cette expérimentation. Il est public, et sera potentiellement partagé sur les réseaux sociaux.</p>
+                        <p>Partagez ici votre témoignage personnel sur les raisons de votre envie de participer à cette expérimentation. Il est public, et sera partagé sur le site Web #MAVOIX et sur les réseaux sociaux.</p>
 
                         <div class="form-group">
-                            <label for="presentation" class="control-label"></label>
+                            <label for="presentation" class="control-label">Insérez votre texte...</label>
                             <textarea class="form-control publicinfo" rows="8" id="presentation"
                                       name="presentation"> {{ candidature.presentation }}</textarea>
                             <p class="help-block form-text text-muted">
                                 140 caractères minimum</p>
                         </div>
                         <div class="form-group">
-                            <label for="video" class="control-label">Lien vers votre vidéo de témoignage : </label>
+                            <label for="video" class="control-label">...ou le lien vers votre vidéo de témoignage</label>
 
                                 <input type="text" class="form-control publicinfo" id="video" name="video"
                                        placeholder="http://www.lienversvotrevideo.com" value="{{ candidature.url_video }}">
