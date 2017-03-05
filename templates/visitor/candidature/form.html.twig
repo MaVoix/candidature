@@ -23,19 +23,34 @@
                         <p>C'est pour nous un honneur de mettre à votre service le fruit du travail de nombreux mois pour co-construire #MAVOIX de manière horizontale et coopérative. À l'approche des élections législatives, c'est à votre tour de saisir l'opportunité de vous engager au service des Françaises et des Français.</p>
                         <p>Votre mission une fois élu·e à l'Assemblée nationale : relayer leurs décisions leur permettant d’être  véritablement acteurs et actrices des lois. Il s'agirait d'un événement inédit et historique. </p>
 
-                        <p>Documents requis pour valider le formulaire :</p>
+                        <h2>Document requis</h2>
+
+                        <p>Pour valider le formulaire :</p>
 
                         <ul>
                         <li>une photo ayant une bonne résolution (votre bouche, votre visage, une photo qui vous inspire)</li>
                         <li>une copie de votre carte d'identité (recto/verso) ou de votre passeport. Le document doit être en cours de validité.</li>
                         </ul>
 
-                        <p>Document requis pour valider votre participation au tirage au sort :</p>
+                        <p>Pour valider votre participation au tirage au sort :</p>
                         <ul>
                             <li>un extrait de casier judiciaire 3B. Sa validité étant de trois mois, il ne serait pas valable pour le deuxième tour des élections législatives, qui a lieu le 18 juin, si vous nous le transmettiez aujourd'hui. Nous vous recontacterons un peu plus tard pour vous indiquer la procédure à suivre pour nous le transmettre. </li>
                         </ul>
 
+                        <h2>Certaines informations seront rendues publiques</h2>
+
+                        <p>Afin d'être transparents sur le processus de validation des candidatures, quelques informations des candidatures validées seront rendues publiques à <a href="/candidature/candidatures.html">cette adresse</a> :
+
+                        - Prénom
+                        - Ville de résidence
+                        - Photo
+                        - Texte et vidéo de témoignage (possibilité de partage sur les réseaux sociaux)
+
+                        Les informations qui seront rendues publiques sont encadrées en <span style="color:#05a60d;font-weight:bold;">vert</span>.
+
                         <p>Avant de remplir le formulaire, voici quelques questions afin de nous assurer que vous êtes bel et bien engagé·e à devenir un·e député·e #MAVOIX et que vous remplissez les conditions légales.</p>
+
+                        <h2>Tirage au sort</h2>
 
                         <div class="form-group engagements-a">
                             <div class="checkbox">
@@ -217,7 +232,7 @@
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="control-label">Prénom : *</label>
-                            <input type="text" class="form-control" id="prenom" name="prenom"
+                            <input type="text" class="form-control publicinfo" id="prenom" name="prenom"
                                    value="{{ candidature.firstname|capitalize }}"
                                    placeholder="Prénom">
                         </div>
@@ -259,12 +274,12 @@
                         </div>
                         <div class="form-group">
                             <label for="cp" class="control-label">Code postal : *</label>
-                            <input type="text" class="form-control" id="cp" name="cp" value="{{ candidature.zipcode }}"
+                            <input type="text" class="form-control publicinfo" id="cp" name="cp" value="{{ candidature.zipcode }}"
                                    placeholder="XXXXX">
                         </div>
                         <div class="form-group">
                             <label for="ville" class="control-label">Ville : *</label>
-                            <input type="text" class="form-control" id="ville" name="ville"
+                            <input type="text" class="form-control publicinfo" id="ville" name="ville"
                                    value="{{ candidature.city }}"
                                    placeholder="Nom de la ville">
                         </div>
@@ -523,7 +538,7 @@
                             <label for="imagefile" class="control-label">Photo : * </label>
 
 
-                            <div class="input-group image-preview">
+                            <div class="input-group image-preview  publicinfo">
                                 <input type="file" accept="image/jpeg" name="image" id="imagefile"/>
                                 <input type="hidden" id="imageData" name="imageData"
                                        value="{% if candidature.path_pic!='' %}{{ base64image }}{% endif %}"/>
@@ -553,7 +568,7 @@
 
                         <div class="form-group">
                             <label for="presentation" class="control-label">Texte de présentation :</label>
-                            <textarea class="form-control" rows="8" id="presentation"
+                            <textarea class="form-control publicinfo" rows="8" id="presentation"
                                       name="presentation"> {{ candidature.presentation }}</textarea>
                             <p class="help-block form-text text-muted">
                                 140 caractères minimum</p>
@@ -561,7 +576,7 @@
                         <div class="form-group">
                             <label for="video" class="control-label">Lien vidéo : </label>
 
-                                <input type="text" class="form-control" id="video" name="video"
+                                <input type="text" class="form-control publicinfo" id="video" name="video"
                                        placeholder="http://www.lienversvotrevideo.com" value="{{ candidature.url_video }}">
 
                             <p class="help-block form-text text-muted">
@@ -572,7 +587,7 @@
                         <div class="form-group">
                             <p>La fourniture de ces documents est un impératif légal (<a href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025375501&cidTexte=LEGITEXT000006070239&dateTexte=20170303" target="_blank" title="article R99 du code électoral">article R99 du code électoral</a>) pour tout candidat aux élections législatives. Nous devons donc les vérifier pour valider votre participation au tirage au sort.</p>
 
-                            <label for="idcard" class="control-label">Copie de votre carte d'identité (recto/verso) ou de votre passeport. Le document doit être en cours de validité. ({{  ConfigService.get("max-filesize") }} Mo maximum)
+                            <label for="idcard" class="control-label">Copie de votre carte d'identité (recto/verso), ou à défaut de carte d'identité, de votre passeport. Le document doit être en cours de validité. ({{  ConfigService.get("max-filesize") }} Mo maximum)
                                 :</label>
 
                             <input type="file" class="form-control" accept="application/pdf, image/*" id="idcard"
