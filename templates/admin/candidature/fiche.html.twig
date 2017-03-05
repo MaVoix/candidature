@@ -129,11 +129,13 @@
 
 
                     <hr />
-                    <div class="m-t">
+
+                    <!-- Pour l'instant on ne demande pas d'attestation d'inscription aux listes électorales -->
+                    <!-- <div class="m-t">
                         <label class="checkbox-inline">
                             <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_certificate=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/certificate-valid.json" data-param="id={{ candidature.id }}"> Attestation VALIDE
                         </label>
-                    </div>
+                    </div> -->
                     <div class="m-t">
                         <label class="checkbox-inline">
                             <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_idcard=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte ID VALIDE
