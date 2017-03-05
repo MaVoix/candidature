@@ -23,7 +23,7 @@
                         <p>C'est pour nous un honneur de mettre à votre service le fruit du travail de nombreux mois pour co-construire #MAVOIX de manière horizontale et coopérative. À l'approche des élections législatives, c'est à votre tour de saisir l'opportunité de vous engager au service des Françaises et des Français.</p>
                         <p>Votre mission une fois élu·e à l'Assemblée nationale : relayer leurs décisions leur permettant d’être  véritablement acteurs et actrices des lois. Il s'agirait d'un événement inédit et historique. </p>
 
-                        <h2>Document requis</h2>
+                        <h2>Documents requis</h2>
 
                         <p>Pour valider le formulaire :</p>
 
@@ -536,6 +536,7 @@
                         </div>
                         <hr/>
                         <h2>Votre candidature</h2>
+
                         <div class="form-group">
                             <label for="imagefile" class="control-label">Photo : * </label>
 
@@ -563,20 +564,21 @@
 
                             <div class="help-block">Idéalement format carré (entre {{ ConfigService.get("min-width") }}px et {{ ConfigService.get("max-height") }}px ). {{  ConfigService.get("max-filesize") }}Mo max</div>
 
-                            <div class="drop-zone"
+                            <div class="drop-zone publicinfo"
                                  style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}"></div>
 
                         </div>
+                        <p>Votre témoignage personnel sur les raisons de votre envie de participer à cette expérimentation. Il est public, et sera potentiellement partagé sur les réseaux sociaux.</p>
 
                         <div class="form-group">
-                            <label for="presentation" class="control-label">Texte de présentation :</label>
+                            <label for="presentation" class="control-label"></label>
                             <textarea class="form-control publicinfo" rows="8" id="presentation"
                                       name="presentation"> {{ candidature.presentation }}</textarea>
                             <p class="help-block form-text text-muted">
                                 140 caractères minimum</p>
                         </div>
                         <div class="form-group">
-                            <label for="video" class="control-label">Lien vidéo : </label>
+                            <label for="video" class="control-label">Lien vers votre vidéo de témoignage : </label>
 
                                 <input type="text" class="form-control publicinfo" id="video" name="video"
                                        placeholder="http://www.lienversvotrevideo.com" value="{{ candidature.url_video }}">
