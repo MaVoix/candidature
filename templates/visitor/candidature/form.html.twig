@@ -23,7 +23,7 @@
                         <p>C'est pour nous un honneur de mettre à votre service le fruit du travail de nombreux mois pour co-construire #MAVOIX de manière horizontale et coopérative. À l'approche des élections législatives, c'est à votre tour de saisir l'opportunité de vous engager au service des Françaises et des Français.</p>
                         <p>Votre mission une fois élu·e à l'Assemblée nationale : relayer leurs décisions leur permettant d’être  véritablement acteurs et actrices des lois. Il s'agirait d'un événement inédit et historique. </p>
 
-                        <h2>Document requis</h2>
+                        <h2>Documents requis</h2>
 
                         <p>Pour valider le formulaire :</p>
 
@@ -41,12 +41,14 @@
 
                         <p>Afin d'être transparents sur le processus de validation des candidatures, quelques informations des candidatures validées seront rendues publiques à <a href="/candidature/candidatures.html">cette adresse</a> :
 
-                        - Prénom
-                        - Ville de résidence
-                        - Photo
-                        - Texte et vidéo de témoignage (possibilité de partage sur les réseaux sociaux)
+                        <ul>
+                            <li>Prénom</li>
+                            <li>Ville de résidence</li>
+                            <li>Photo</li>
+                            <li>Texte et vidéo de témoignage (possibilité de partage sur les réseaux sociaux)</li>
+                        </ul>
 
-                        Les informations qui seront rendues publiques sont encadrées en <span style="color:#05a60d;font-weight:bold;">vert</span>.
+                        <p>Les informations qui seront rendues publiques sont encadrées en <span style="color:#05a60d;font-weight:bold;">vert</span>.</p>
 
                         <p>Avant de remplir le formulaire, voici quelques questions afin de nous assurer que vous êtes bel et bien engagé·e à devenir un·e député·e #MAVOIX et que vous remplissez les conditions légales.</p>
 
@@ -534,6 +536,7 @@
                         </div>
                         <hr/>
                         <h2>Votre candidature</h2>
+
                         <div class="form-group">
                             <label for="imagefile" class="control-label">Photo : * </label>
 
@@ -561,20 +564,21 @@
 
                             <div class="help-block">Idéalement format carré (entre {{ ConfigService.get("min-width") }}px et {{ ConfigService.get("max-height") }}px ). {{  ConfigService.get("max-filesize") }}Mo max</div>
 
-                            <div class="drop-zone"
+                            <div class="drop-zone publicinfo"
                                  style="{%  if candidature.path_pic!='' %}background-image:url('/{{ candidature.path_pic }}'){% endif %}"></div>
 
                         </div>
+                        <p>Partagez ici votre témoignage personnel sur les raisons de votre envie de participer à cette expérimentation. Il est public, et sera partagé sur le site Web #MAVOIX et sur les réseaux sociaux.</p>
 
                         <div class="form-group">
-                            <label for="presentation" class="control-label">Texte de présentation :</label>
+                            <label for="presentation" class="control-label">Insérez votre texte...</label>
                             <textarea class="form-control publicinfo" rows="8" id="presentation"
                                       name="presentation"> {{ candidature.presentation }}</textarea>
                             <p class="help-block form-text text-muted">
                                 140 caractères minimum</p>
                         </div>
                         <div class="form-group">
-                            <label for="video" class="control-label">Lien vidéo : </label>
+                            <label for="video" class="control-label">...et/ou le lien vers votre vidéo de témoignagegit </label>
 
                                 <input type="text" class="form-control publicinfo" id="video" name="video"
                                        placeholder="http://www.lienversvotrevideo.com" value="{{ candidature.url_video }}">
@@ -642,7 +646,7 @@
                             {% endif  %}
 
                         <hr />
-                        <p>En cliquant sur le bouton ci-dessous, vous reconnaissez avoir pris connaissance de notre <a href="/home/mentions-legales.html">politique de gestion des données personnelles</a>.</p>
+                        <p>En cliquant sur le bouton ci-dessous, vous reconnaissez avoir pris connaissance de notre <a href="/home/mentions-legales.html">politique de gestion des données personnelles</a> et acceptez que les informations des champs encadrés en <span style="color:#05a60d">vert soient rendues publiques.</p>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary ">
                                 {% if candidature.id!='' %}
