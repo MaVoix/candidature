@@ -298,3 +298,8 @@ h2, h3 {
   margin-top: 35px;
   margin-bottom: 15px;
 }
+
+.publicinfo {
+  border-color: #05a60d;
+  border-width: 2px;
+}
