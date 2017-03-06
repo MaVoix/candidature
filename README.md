@@ -9,6 +9,11 @@ Version de test : https://candidature.maudry.fr
 
 ## Notes de version
 
+### 1.2.1
+
+- Ajout d'un lien vers le site Web de #MAVOIX dans la page de liste des candidats
+- "CandidatureS" dans le titre de la page
+
 ### 1.2.0
 
 - Ajout de métadonnées OpenGraph pour améliorer les partages sur Facebook.
