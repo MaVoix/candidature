@@ -82,13 +82,13 @@
                     {%  endif %}#}
 
                     {%  if candidature.path_idcard!=''  %}
-                        <a href="/{{ candidature.path_idcard }}"  download="{{ candidature.path_idcard|basename }}"  class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Carte Identité</a>
+                        <a href="/{{ candidature.path_idcard }}" target="_blank"  class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Carte Identité</a>
                     {%  else %}
                         <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Carte Identité</button>
                     {% endif %}
 
                     {%  if candidature.path_criminal_record !=''  %}
-                        <a href="/{{ candidature.path_criminal_record }}" download="{{ candidature.path_criminal_record|basename }}" class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier judiciaire</a>
+                        <a href="/{{ candidature.path_criminal_record }}" target="_blank" class="btn btn-primary btn-block"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier judiciaire</a>
                     {%  else %}
                         <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier judiciaire</button>
                     {% endif %}
@@ -129,11 +129,13 @@
 
 
                     <hr />
-                    <div class="m-t">
+
+                    <!-- Pour l'instant on ne demande pas d'attestation d'inscription aux listes électorales -->
+                    <!-- <div class="m-t">
                         <label class="checkbox-inline">
                             <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_certificate=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/certificate-valid.json" data-param="id={{ candidature.id }}"> Attestation VALIDE
                         </label>
-                    </div>
+                    </div> -->
                     <div class="m-t">
                         <label class="checkbox-inline">
                             <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_idcard=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte ID VALIDE

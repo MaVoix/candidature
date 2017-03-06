@@ -6,8 +6,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ urlPage }}" />
     <meta property="og:image" content="{{ urlSiteHTTP }}/{{ candidature.path_pic_fit }}" />
-    <meta property="og:description" content="{% if candidature.presentation==''  %} Candidature de {{ candidature.firstname|capitalize }} {{ candidature.name|first|upper }}.{% else %} {{ candidature.presentation }} {% endif %}" />
-    <meta name="description" content="{% if candidature.presentation==''  %} Candidature de {{ candidature.firstname|capitalize }} {{ candidature.name|first|upper }}.{% else %} {{ candidature.presentation }} {% endif %}" />
+    <meta property="og:description" content="{% if candidature.presentation==''  %} Candidature de {{ candidature.firstname|capitalize }}.{% else %} {{ candidature.presentation }} {% endif %}" />
+    <meta name="description" content="{% if candidature.presentation==''  %} Candidature de {{ candidature.firstname|capitalize }}.{% else %} {{ candidature.presentation }} {% endif %}" />
 {% endblock %}
 
 {% block body %}
@@ -15,8 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-                    <h2>{{ candidature.firstname|capitalize }} {{ candidature.name|first|upper }}
-                        .<br/>
+                    <h2>{{ candidature.firstname|capitalize }}<br/>
                         <small>{{ candidature.city }} ({{ candidature.zipcode }})</small>
                     </h2>
                 </div>
@@ -36,7 +35,7 @@
                     {% endif %}
 
                     {% if candidature.url_video!=''  %}
-                        <p ><a href="{{ candidature.url_video }}"  target="_blank" class="text-primary"> Voir la vidéo de {{ candidature.firstname|capitalize }} </a></p>
+                        <p ><a href="{{ candidature.url_video }}"  target="_blank" class="text-primary"> Voir la vidéo de {{ candidature.firstname|capitalize }}</a></p>
                     {% endif %}
                 </div>
 
