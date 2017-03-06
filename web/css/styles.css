@@ -190,6 +190,18 @@ body{
     background-color:#000000;
 }
 
+.square-pic-candidature-small{
+    height:120px;
+    width:120px;
+      /*margin:0;
+      padding:0;*/
+    background-size: cover;
+    background-position: center center;
+    background-color:#000000;
+}
+
+
+
 
 .circle-pic-candidature{
     width:100%;
@@ -302,4 +314,17 @@ h2, h3 {
 .publicinfo {
   border-color: #05a60d;
   border-width: 2px;
+}
+
+/*.table.updatableContent td {
+  font-size: 0.8em;
+}*/
+
+div.scrollable {
+  max-width: 400px;
+  max-height: 120px;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    font-size: 16px;
 }
