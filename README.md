@@ -1,4 +1,4 @@
-# Candidature #MAVOIX v1.1.0
+# Candidature #MAVOIX v1.2.0
 
 Soumission et publication des inscriptions au tirage au sort [#MAVOIX](https://mavoix.info).
 
@@ -9,6 +9,11 @@ Version de test : https://candidature.maudry.fr
 
 ## Notes de version
 
+### 1.2.0
+
+- Ajout de métadonnées OpenGraph pour améliorer les partages sur Facebook.
+- Modifications rédactionnelles
+
 ### 1.1.0
 
 - Visualisation de la liste de candidats à valider sous forme de tableau (bêta)
@@ -16,6 +21,7 @@ Version de test : https://candidature.maudry.fr
 - Ajout du script de sauvegarde
 - Ajout d'un menu jaune dans l'interface d'admin
 - Suppression des dernière références aux attestations d'inscription aux listes électorales (document bien plus compliqué à obtenir que l'extrait de casier judiciaire B3)
+- Pour les validateur, plus besoin de télécharger les documents pour les valider : visualisation directe dans le navigateur
 
 #### 1.0.2
 
