@@ -250,15 +250,15 @@ if($nError==0){
         $Candidature->setKey_edit($sKey);
         $Candidature->setState("offline");
     }
-    $Candidature->setName($_POST["nom"]);
-    $Candidature->setFirstname($_POST["prenom"]);
+    $Candidature->setName(strtoupper($_POST["nom"]));
+    $Candidature->setFirstname(ucwords($_POST["prenom"]));
     $Candidature->setCivility($_POST["civilite"]);
     $Candidature->setEmail($_POST["email"]);
     $Candidature->setTel($_POST["tel"]);
     $Candidature->setAd1($_POST["ad1"]);
     $Candidature->setAd2($_POST["ad2"]);
     $Candidature->setAd3($_POST["ad3"]);
-    $Candidature->setCity($_POST["ville"]);
+    $Candidature->setCity(ucwords($_POST["ville"]));
     $Candidature->setZipcode($_POST["cp"]);
     $Candidature->setCountry($_POST["pays"]);
     $Candidature->setUrl_video($_POST["video"]);
