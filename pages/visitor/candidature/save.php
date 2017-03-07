@@ -367,7 +367,12 @@ if($nError==0){
             Mail::sendMail($Candidature->getEmail(), "Confirmation de candidature", $sBodyMailHTML, $sBodyMailTXT, true);
         }
 
-        $aResponse["redirect"] = "/candidature/success.html";
+        if($oMe->getType()=="admin"){
+            $aResponse["redirect"] = "/candidature/list.html";
+        }else{
+            $aResponse["redirect"] = "/candidature/success.html";
+        }
+
         $aResponse["durationMessage"] = "2000";
         $aResponse["durationRedirect"] = "2000";
         $aResponse["durationFade"] = "10000";
