@@ -15,12 +15,12 @@
                         {% endif %}
                         {% if oMe.type=='admin' %}
                             <div style="margin:auto">
-                                <h1>EDITION DU FORMULAIRE</h1>
+                                <h1>Édition de la candidature</h1>
                             </div>
                             <hr/>
                             <p>Ce champ est réservé aux administrateurs, il n'est pas affiché sur le site et n'est pas visible au candidat :</p>
                             <div class="form-group">
-                                <label for="comment" class="control-label">Commentaire administrateur :</label>
+                                <label for="comment" class="control-label">Commentaires sur la candidature :</label>
                                 <textarea class="form-control" rows="8" id="comment"
                                           name="comment"> {{ candidature.comment }}</textarea>
                             </div>
