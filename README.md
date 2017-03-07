@@ -58,6 +58,7 @@ Version de test : https://candidature.maudry.fr
 - PHP 5 or later
 - Composer
 - PHP mcrypt module
+- PHP curl module
 - MySQL database
 
 
