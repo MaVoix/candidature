@@ -35,7 +35,14 @@ if(isset($_POST["id"]) && isset($_POST["key"])){
 
 
 //mandatory fields
-$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","pays","engagement-a1","engagement-a2","engagement-a3","engagement-a4","engagement-a5","engagement-a6","engagement-a7","engagement-a8","engagement-a9","engagement-a10","engagement-a11","imageFilename");
+$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","pays","imageFilename");
+
+//ajoute les engagements si l'utilisateur n'est pas admin
+if($oMe->getType()!="admin"){
+    $aEngagements=array("engagement-a1","engagement-a2","engagement-a3","engagement-a4","engagement-a5","engagement-a6","engagement-a7","engagement-a8","engagement-a9","engagement-a10","engagement-a11");
+    $aMandoryFields=array_merge($aMandoryFields,$aEngagements);
+}
+
 
 foreach($aMandoryFields as $sField){
     if (!isset($_POST[$sField]) || $_POST[$sField] == "") {
@@ -93,6 +100,10 @@ if (!isset($_POST["ad2"])) {
 
 if (!isset($_POST["ad3"])) {
     $_POST["ad3"]="";
+}
+
+if (!isset($_POST["comment"])) {
+    $_POST["comment"]="";
 }
 
 $bPresentation=false;
@@ -263,6 +274,9 @@ if($nError==0){
     $Candidature->setCountry($_POST["pays"]);
     $Candidature->setUrl_video($_POST["video"]);
     $Candidature->setPresentation(vars::cleanInput($_POST["presentation"]));
+    if($oMe->getType()=="admin") {
+        $Candidature->setComment(vars::cleanInput($_POST["comment"]));
+    }
 
 
 
