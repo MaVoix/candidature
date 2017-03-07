@@ -140,12 +140,12 @@
                     </div> -->
                     <div class="m-t">
                         <label class="checkbox-inline">
-                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_idcard=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte ID VALIDE
+                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_idcard=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte ID valide
                         </label>
                     </div>
                     <div class="m-t">
                         <label class="checkbox-inline">
-                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_criminal_record=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/criminal-record-valid.json" data-param="id={{ candidature.id }}"> Extrait judiciaire VALIDE
+                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_criminal_record=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/criminal-record-valid.json" data-param="id={{ candidature.id }}"> Extrait judiciaire valide
                         </label>
                     </div>
                     <hr />
@@ -156,7 +156,7 @@
                         </div>
                         <div class="col-xs-6">
                             <label class="checkbox-inline" >
-                                <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> EN LIGNE
+                                <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> En ligne
                             </label>
                         </div>
                     </div>

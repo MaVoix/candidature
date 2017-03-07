@@ -92,7 +92,7 @@
 
                   <td>
                   <div class="scrollable">
-                    {{ candidature.comment }}
+                    {{ candidature.comment_nl2br|raw }}
                   </div>
                   </td>
 
@@ -103,22 +103,14 @@
                         <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier</button>
                     {% endif %}
 
-                    {%  if candidature.state=='online' %}
-                          <a href="/candidature/candidat.html?id={{ candidature.id }}" class="btn btn-block btn-success">En ligne</a>
-                    {%  else %}
-                        <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i>Hors ligne</button>
-                    {% endif %}
-
-
-
-
+                    <label class="checkbox-inline" >
+                        <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> En ligne
+                    </label>
                   </td>
                   <td>
 
                     <a href="{%  if candidature.state=='offline'  %}{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}{% else %}javascript:void(0);{% endif %}  "
                      class="btn btn-info btn-block"   {%  if candidature.state=='online'  %}disabled{% endif %} >Editer</a>
-
-
                    </td>
                 </tr>
 
