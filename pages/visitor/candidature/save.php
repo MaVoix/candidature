@@ -61,17 +61,20 @@ if(ConfigService::get("enable-captcha")){
 }
 
 
-//mandory files
-
-if (array_key_exists("idcard", $_FILES)) {
-    if ($_FILES["idcard"]["tmp_name"] == "") {
-        $nError++;
+//mandatory files
+//pas de vérification de fichier obligatoire sur mode edition (car le fichier précédent est conservé)
+if(!$bEdit){
+    if (array_key_exists("idcard", $_FILES)) {
+        if ($_FILES["idcard"]["tmp_name"] == "") {
+            $nError++;
+            array_push($aResponse["required"], array("field" => "idcard"));
+        }
+    }else{
         array_push($aResponse["required"], array("field" => "idcard"));
+        $nError++;
     }
-}else{
-    array_push($aResponse["required"], array("field" => "idcard"));
-    $nError++;
 }
+
 /*
 if (array_key_exists("criminal_record", $_FILES)) {
     if ($_FILES["criminal_record"]["tmp_name"] == "") {
