@@ -266,6 +266,12 @@ if($nError==0){
 
 
 
+    if($oMe->getType()=="admin") {
+        if (isset($_POST["autovalid"]) && $_POST["autovalid"] == "1") {
+            $Candidature->setState("online");
+        }
+    }
+
     //save Files
     $outputDir = "data/" . date("Y") . "/" . date("m") . "/" . date("d") . "/". time() . session_id() . "/";
     mkdir($outputDir, 0777, true);

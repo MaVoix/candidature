@@ -650,7 +650,7 @@
                         <hr />
                         <p>En cliquant sur le bouton ci-dessous, vous reconnaissez avoir pris connaissance de notre <a href="/home/mentions-legales.html">politique de gestion des données personnelles</a> et acceptez que les informations des champs encadrés en <span style="color:#05a60d;font-weight:bold">vert</span> soient rendues publiques.</p>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary ">
+                            <button type="submit" class="btn btn-primary">
                                 {% if candidature.id!='' %}
                                     Enregistrer
                                 {% else %}
@@ -658,6 +658,12 @@
                                 {% endif %}
                             </button>
                         </div>
+                        {% if oMe.type=='admin' and candidature.state=='offline' %}
+                        <div class="text-center p-t-x2 p-b-x2">
+                            <input type="hidden" name="autovalid" id="autovalid" value="0" >
+                            <button type="button" class="btn  btn-primary jsBtAutoValid">Enregistrer et mettre en ligne</button>
+                        </div>
+                        {% endif %}
                         {% if oMe.type=='admin' %}
                             <div class="text-center p-t-x4 p-b-x4">
                                 <button type="button" class="btn btn-primary jsBackButton">
