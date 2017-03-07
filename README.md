@@ -9,6 +9,10 @@ Version de test : https://candidature.maudry.fr
 
 ## Notes de version
 
+### 1.2.3
+
+- Suppression de la vérification de la pièce d'identité obligatoire en mode édition (car fichier précédent conservé si pas de nouveau fichier)
+
 ### 1.2.2
 
 - Correction d'un bug concernant la vérification de la pièce d'identité obligatoire
