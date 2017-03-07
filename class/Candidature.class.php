@@ -393,6 +393,11 @@ class Candidature	{
         return nl2br($this->getPresentation());
     }
 
+    public function getComment_nl2br()
+    {
+        return nl2br($this->getComment());
+    }
+
     public function saveWithPDOSecure(){
 
         $aData=array();

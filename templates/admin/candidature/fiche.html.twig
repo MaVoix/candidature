@@ -16,9 +16,11 @@
 
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-md-offset-3 ">
-
-
-
+                        {% if candidature.comment!=''  %}
+                            <h2>Commentaire admin</h2>
+                            <p>{{ candidature.comment_nl2br|raw }} </p>
+                            <hr />
+                        {%  endif %}
                         <h2>Coordonnées</h2>
                         <div class="form-group">
                             <label for="civilite" class="control-label">Civilité :</label>
