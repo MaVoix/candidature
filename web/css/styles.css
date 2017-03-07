@@ -316,9 +316,9 @@ h2, h3 {
   border-width: 2px;
 }
 
-/*.table.updatableContent td {
-  font-size: 0.8em;
-}*/
+.table.updatableContent .checkbox-inline {
+  margin-top: 5px;
+}
 
 div.scrollable {
   max-width: 400px;
