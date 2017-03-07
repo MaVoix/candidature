@@ -1,4 +1,4 @@
-# Candidature #MAVOIX v1.2.3
+# Candidature #MAVOIX v1.3.0
 
 Soumission et publication des inscriptions au tirage au sort [#MAVOIX](https://mavoix.info).
 
@@ -8,6 +8,14 @@ Version de test : https://candidature.maudry.fr
 
 
 ## Notes de version
+
+### 1.3.0
+
+- Sur l'écran d'édition, possibilité pour les validateurs d'enregistrer et de mettre en ligne une candidature
+- Ajout d'un champ de commentaire dans la vue d'édition (les commentaires sont visibles dans la vue liste)
+- Ajout d'un bouton de mise en ligne dans la vue liste
+- Majuscule aux noms de villes et noms de famille tout en majuscules
+- Modification du texte du chapeau au-desssus de la liste publique des candidats
 
 ### 1.2.3
 
@@ -53,7 +61,7 @@ Version de test : https://candidature.maudry.fr
 - Interface admin fonctionnelle mais non stylisée
 
 
-## Dependencies
+## Prerequisites
 
 - PHP 5 or later
 - Composer
@@ -67,7 +75,7 @@ Version de test : https://candidature.maudry.fr
 1. Set documentRoot of your VHOST on /web/
 1. Set chmod 777 on /web/data folder
 1. Set chmod 777 on /tmp folder
-1. execute sql/CREATE-DATABASE.sql in a new database
+1. execute CREATE-DATABASE.sql in a new database
 1. Create a user admin (use PASSWORD function on pass field)
 1. Run composer update
 1. Copy web/config.sample.php into web/config.php and customize it
