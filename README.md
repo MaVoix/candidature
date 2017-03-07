@@ -9,6 +9,11 @@ Version de test : https://candidature.maudry.fr
 
 ## Notes de version
 
+### 1.2.2
+
+- Correction d'un bug concernant la vérification de la pièce d'identité obligatoire
+- Correction de la balise META open-graph sur la page de liste des volontaires
+
 ### 1.2.1
 
 - Ajout d'un lien vers le site Web de #MAVOIX dans la page de liste des candidats
