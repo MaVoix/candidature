@@ -65,18 +65,22 @@ if(ConfigService::get("enable-captcha")){
 
 if (array_key_exists("idcard", $_FILES)) {
     if ($_FILES["idcard"]["tmp_name"] == "") {
+        $nError++;
         array_push($aResponse["required"], array("field" => "idcard"));
     }
 }else{
     array_push($aResponse["required"], array("field" => "idcard"));
+    $nError++;
 }
 /*
 if (array_key_exists("criminal_record", $_FILES)) {
     if ($_FILES["criminal_record"]["tmp_name"] == "") {
+        $nError++;
         array_push($aResponse["required"], array("field" => "criminal_record"));
     }
 }else{
     array_push($aResponse["required"], array("field" => "criminal_record"));
+    $nError++;
 }*/
 
 if (!isset($_POST["ad2"])) {
