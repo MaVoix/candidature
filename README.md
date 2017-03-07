@@ -1,4 +1,4 @@
-# Candidature #MAVOIX v1.2.0
+# Candidature #MAVOIX v1.2.3
 
 Soumission et publication des inscriptions au tirage au sort [#MAVOIX](https://mavoix.info).
 
