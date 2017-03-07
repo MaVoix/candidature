@@ -106,6 +106,13 @@ $(document).ready(function () {
     //historyback button
     $(".jsBackButton").on('click', function() {  window.history.back(); });
 
+    //submit auto-valid pour l'admin
+    $(".jsBtAutoValid").on('click', function() {
+        $("#autovalid").val("1");
+        $("#formcandidature").submit();
+
+    });
+
     //tel international plugin
     $("#phone").intlTelInput({
         utilsScript: "/js/plugins/intlTelInput/utils.js",

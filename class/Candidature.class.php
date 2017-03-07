@@ -1,3 +1,5 @@
+
+
 <?php	/**
  * Class Candidature
  */
@@ -34,6 +36,7 @@ class Candidature	{
     private $bIs_certificate;
     private $bIs_idcard;
     private $bIs_criminal_record;
+    private $sComment;
     private $sKey_edit;
 
 
@@ -278,6 +281,11 @@ class Candidature	{
             $aData["is_criminal_record"]=$this->getIs_criminal_record();
         }
 
+        if(isset($this->aDataSet["comment"]))
+        {
+            $aData["comment"]=$this->getComment();
+        }
+
         if(isset($this->aDataSet["key_edit"]))
         {
             $aData["key_edit"]=$this->getKey_edit();
@@ -325,6 +333,7 @@ class Candidature	{
         $this->setIs_certificate(0);
         $this->setIs_idcard(0);
         $this->setIs_criminal_record(0);
+        $this->setComment(NULL);
         $this->setKey_edit(NULL);
     }
 
@@ -359,6 +368,7 @@ class Candidature	{
             "is_certificate" => $this->getIs_certificate(),
             "is_idcard" => $this->getIs_idcard(),
             "is_criminal_record" => $this->getIs_criminal_record(),
+            "comment" => $this->getComment(),
             "key_edit" => $this->getKey_edit()
         ];
 
@@ -381,6 +391,11 @@ class Candidature	{
     public function getPresentation_nl2br()
     {
         return nl2br($this->getPresentation());
+    }
+
+    public function getComment_nl2br()
+    {
+        return nl2br($this->getComment());
     }
 
     public function saveWithPDOSecure(){
@@ -507,6 +522,11 @@ class Candidature	{
             $aData["is_criminal_record"]=$this->getIs_criminal_record();
         }
 
+        if(isset($this->aDataSet["comment"]))
+        {
+            $aData["comment"]=$this->getComment();
+        }
+
         if(isset($this->aDataSet["key_edit"]))
         {
             $aData["key_edit"]=$this->getKey_edit();
@@ -545,7 +565,6 @@ class Candidature	{
         }
         $this->aDataSet=array();
     }
-
 
     /*
     ********************************************************************************************
@@ -1689,6 +1708,50 @@ class Candidature	{
 
 
     /**
+     * Set le champ comment
+     * @param string $sComment nouvelle valeur pour le champ comment
+     */
+    public function setComment($sComment)
+    {
+        if( is_null($sComment) ) $sComment='';
+        $this->sComment = $sComment;
+        $this->aDataSet["comment"]=1;
+    }
+
+
+
+    /**
+     * Get le champ comment
+     * @return string valeur du champ comment
+     */
+    public function getComment()
+    {
+        if( !is_null($this->sComment) )
+        {
+            if( $this->sComment==='' )
+            {
+                return NULL;
+            }
+            else
+            {
+                return $this->sComment;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('comment'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->sComment;
+        }
+    }
+
+
+
+    /**
      * Set le champ key_edit
      * @param string $sKey_edit nouvelle valeur pour le champ key_edit
      */
@@ -1731,3 +1794,4 @@ class Candidature	{
     }
 
 }
+

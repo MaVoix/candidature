@@ -35,7 +35,14 @@ if(isset($_POST["id"]) && isset($_POST["key"])){
 
 
 //mandatory fields
-$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","pays","engagement-a1","engagement-a2","engagement-a3","engagement-a4","engagement-a5","engagement-a6","engagement-a7","engagement-a8","engagement-a9","engagement-a10","engagement-a11","imageFilename");
+$aMandoryFields=array("civilite","nom","prenom","email","tel","ad1","ville","cp","pays","imageFilename");
+
+//ajoute les engagements si l'utilisateur n'est pas admin
+if($oMe->getType()!="admin"){
+    $aEngagements=array("engagement-a1","engagement-a2","engagement-a3","engagement-a4","engagement-a5","engagement-a6","engagement-a7","engagement-a8","engagement-a9","engagement-a10","engagement-a11");
+    $aMandoryFields=array_merge($aMandoryFields,$aEngagements);
+}
+
 
 foreach($aMandoryFields as $sField){
     if (!isset($_POST[$sField]) || $_POST[$sField] == "") {
@@ -93,6 +100,10 @@ if (!isset($_POST["ad2"])) {
 
 if (!isset($_POST["ad3"])) {
     $_POST["ad3"]="";
+}
+
+if (!isset($_POST["comment"])) {
+    $_POST["comment"]="";
 }
 
 $bPresentation=false;
@@ -250,21 +261,30 @@ if($nError==0){
         $Candidature->setKey_edit($sKey);
         $Candidature->setState("offline");
     }
-    $Candidature->setName($_POST["nom"]);
-    $Candidature->setFirstname($_POST["prenom"]);
+    $Candidature->setName(strtoupper($_POST["nom"]));
+    $Candidature->setFirstname(ucwords($_POST["prenom"]));
     $Candidature->setCivility($_POST["civilite"]);
     $Candidature->setEmail($_POST["email"]);
     $Candidature->setTel($_POST["tel"]);
     $Candidature->setAd1($_POST["ad1"]);
     $Candidature->setAd2($_POST["ad2"]);
     $Candidature->setAd3($_POST["ad3"]);
-    $Candidature->setCity($_POST["ville"]);
+    $Candidature->setCity(ucwords($_POST["ville"]));
     $Candidature->setZipcode($_POST["cp"]);
     $Candidature->setCountry($_POST["pays"]);
     $Candidature->setUrl_video($_POST["video"]);
     $Candidature->setPresentation(vars::cleanInput($_POST["presentation"]));
+    if($oMe->getType()=="admin") {
+        $Candidature->setComment(vars::cleanInput($_POST["comment"]));
+    }
 
 
+
+    if($oMe->getType()=="admin") {
+        if (isset($_POST["autovalid"]) && $_POST["autovalid"] == "1") {
+            $Candidature->setState("online");
+        }
+    }
 
     //save Files
     $outputDir = "data/" . date("Y") . "/" . date("m") . "/" . date("d") . "/". time() . session_id() . "/";
@@ -367,7 +387,12 @@ if($nError==0){
             Mail::sendMail($Candidature->getEmail(), "Confirmation de candidature", $sBodyMailHTML, $sBodyMailTXT, true);
         }
 
-        $aResponse["redirect"] = "/candidature/success.html";
+        if($oMe->getType()=="admin"){
+            $aResponse["redirect"] = "/candidature/list.html";
+        }else{
+            $aResponse["redirect"] = "/candidature/success.html";
+        }
+
         $aResponse["durationMessage"] = "2000";
         $aResponse["durationRedirect"] = "2000";
         $aResponse["durationFade"] = "10000";

@@ -35,6 +35,7 @@ class CandidatureListe extends Liste
         "is_certificate",
         "is_idcard",
         "is_criminal_record",
+        "comment",
         "key_edit"
     );
 
