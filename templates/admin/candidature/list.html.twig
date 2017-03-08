@@ -109,8 +109,8 @@
                   </td>
                   <td>
 
-                    <a href="{%  if candidature.state=='offline'  %}{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}{% else %}javascript:void(0);{% endif %}  "
-                     class="btn btn-info btn-block"   {%  if candidature.state=='online'  %}disabled{% endif %} >Editer</a>
+                    <button data-url="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}" data-id-button-candidature="{{ candidature.id }}"
+                     class="btn btn-info btn-block"   {%  if candidature.state=='online'  %}disabled{% endif %} >Editer</button>
                    </td>
                 </tr>
 
