@@ -14,6 +14,10 @@ class Twig_Extension_Filter extends Twig_Extension
                 return basename($sPath);
             }
             ),
+            new Twig_SimpleFilter("ucwords", function ($string)
+            {
+                return  mb_convert_case($string, MB_CASE_TITLE, "UTF-8");
+            })
         ];
     }
 

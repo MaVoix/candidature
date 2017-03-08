@@ -8,17 +8,17 @@ $sCSV="civilite;nom;prenom;email;tel;ville;cp;en ligne;attestation valide;Carte 
 foreach($aObj as $oCandidat){
     $sCSV.=$oCandidat->getCivility();
     $sCSV.=";";
-    $sCSV.=$oCandidat->getName();
+    $sCSV.=str_replace(";",",", mb_convert_case($oCandidat->getName(), MB_CASE_UPPER,"UTF-8"));
     $sCSV.=";";
-    $sCSV.=$oCandidat->getFirstname();
+    $sCSV.=str_replace(";",",",mb_convert_case($oCandidat->getFirstname(), MB_CASE_TITLE, "UTF-8"));
     $sCSV.=";";
-    $sCSV.=$oCandidat->getEmail();
+    $sCSV.=str_replace(";",",",mb_convert_case($oCandidat->getEmail(), MB_CASE_LOWER,"UTF-8"));
     $sCSV.=";";
-    $sCSV.=$oCandidat->getTel();
+    $sCSV.=str_replace(";",",",$oCandidat->getTel());
     $sCSV.=";";
-    $sCSV.=$oCandidat->getCity();
+    $sCSV.=str_replace(";",",",mb_convert_case($oCandidat->getCity(), MB_CASE_TITLE,"UTF-8"));
     $sCSV.=";";
-    $sCSV.=$oCandidat->getZipcode();
+    $sCSV.=str_replace(";",",",$oCandidat->getZipcode());
     $sCSV.=";";
     $sCSV.=($oCandidat->getState()=="onine")?'OUI':'NON';
     $sCSV.=";";

@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="control-label">Prénom :</label>
-                            <div>{{ candidature.firstname|capitalize}}</div>
+                            <div>{{ candidature.firstname|ucwords}}</div>
                         </div>
 
                         <div class="form-group">
@@ -48,7 +48,7 @@
                         <h2>Adresse</h2>
                         <div class="form-group">
 
-                            <b>{{ candidature.civility }} {{ candidature.firstname|capitalize}} {{ candidature.name|upper }}</b>
+                            <b>{{ candidature.civility }} {{ candidature.firstname|ucwords}} {{ candidature.name|upper }}</b>
                             <div>{{ candidature.ad1 }}</div>
                             <div>{{ candidature.ad2 }}</div>
                             <div>{{ candidature.ad3 }}</div>
