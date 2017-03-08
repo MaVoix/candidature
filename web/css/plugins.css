@@ -197,16 +197,16 @@
     padding:10px;
 }
 .online > div {
-    border:1px solid #000000;
+  /*  border:1px solid #000000;
     padding:10px;
-    color:#000000;
+    color:#000000;*/
 }
 
 .offline > div {
-    border:1px solid #999999;
+  /*  border:1px solid #999999;
     color:#999999 ;
-    padding:10px;
+    padding:10px;*/
 }
 .offline  h3 {
-    color:#999999;
+  /* color:#999999;*/
 }

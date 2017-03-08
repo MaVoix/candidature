@@ -328,3 +328,12 @@ div.scrollable {
     overflow: auto;
     font-size: 16px;
 }
+
+.blocedit_fiche.online{
+    display:block;
+    border:none;
+}
+.blocedit_fiche.offline{
+    display:none;
+    border:none;
+}

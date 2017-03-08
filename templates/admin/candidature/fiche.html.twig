@@ -99,8 +99,8 @@
 
                 </div>
             </div>
-            {%  if candidature.state=='offline'  %}
-            <div class="row m-b-x4 m-t-x2">
+
+            <div class="row m-b-x4 m-t-x2 blocedit_fiche {%  if candidature.state=='offline'  %}offline{% else %}online{% endif %}"   data-id-candidature="{{ candidature.id }}"  >
                 <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
 
                     <label for="linkedit" class="control-label">Lien d'édition :</label>
@@ -116,7 +116,7 @@
                 </div>
 
             </div>
-            {% endif %}
+
 
 
 
