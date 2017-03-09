@@ -110,7 +110,7 @@
                   <td>
 
                     <button data-url="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}" data-id-button-candidature="{{ candidature.id }}"
-                     class="btn btn-info btn-block"   {%  if candidature.state=='online'  %}disabled{% endif %} >Editer</button>
+                     class="btn btn-info btn-block {%  if candidature.state=='offline'  %}jsLink{% endif %}"   {%  if candidature.state=='online'  %}disabled{% endif %} >Editer</button>
                    </td>
                 </tr>
 
