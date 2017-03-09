@@ -27,7 +27,7 @@
                                 <button type="submit" class="no-button">
                                     <div class="text-center sticker-name">
                                         <h3>{{ candidature.firstname|ucwords }}<br/>
-                                            <small>{{ candidature.city|capitalize }} ({{ candidature.zipcode }})</small>
+                                            <small>{{ candidature.city|capitalizefirst }} ({{ candidature.zipcode }})</small>
                                         </h3>
                                     </div>
                                     <div style="background-image:url('/{{ candidature.path_pic_fit }}');"

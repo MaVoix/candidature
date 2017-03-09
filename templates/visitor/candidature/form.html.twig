@@ -302,7 +302,7 @@
                         <div class="form-group">
                             <label for="ville" class="control-label">Ville : *</label>
                             <input type="text" class="form-control publicinfo" id="ville" name="ville"
-                                   value="{{ candidature.city }}"
+                                   value="{{ candidature.city|capitalizefirst }}"
                                    placeholder="Nom de la ville">
                         </div>
                         <div class="form-group">

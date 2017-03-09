@@ -17,6 +17,9 @@ class Twig_Extension_Filter extends Twig_Extension
             new Twig_SimpleFilter("ucwords", function ($string)
             {
                 return  mb_convert_case($string, MB_CASE_TITLE, "UTF-8");
+            }), new Twig_SimpleFilter("capitalizefirst", function ($string)
+            {
+                return  mb_convert_case(substr($string,0,1), MB_CASE_TITLE, "UTF-8").substr($string,1);
             })
         ];
     }
