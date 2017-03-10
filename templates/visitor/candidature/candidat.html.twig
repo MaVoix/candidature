@@ -13,6 +13,14 @@
 {% block body %}
     <div class="wrapper-page">
         <div class="container">
+            {% if candidature.state=='offline'  %}
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
+                    <h2>Candidat hors-ligne<br /><small>Visibile uniquement par les administrateurs</small></h2>
+                    <hr />
+                </div>
+            </div>
+            {% endif %}
             <div class="row">
                 <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
                     <h2>{{ candidature.firstname|capitalize }}<br/>
@@ -41,8 +49,10 @@
 
             </div>
         </div>
+        {% if candidature.state=='online'  %}
         <div class="text-center p-t-x4 p-b-x4">
             <div class="fb-share-button" data-href="{{ urlPage }}" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlPageEncoded }}&amp;src=sdkpreparse">Partager</a></div>
         </div>
+        {%  endif %}
     </div>
 {% endblock %}

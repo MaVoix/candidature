@@ -83,7 +83,9 @@
                 <tr>
                   <td><span style="font-size:2em">{{ candidature.id }}</span></td>
                   <td>
-                    <a href="/candidature/fiche.html?id={{ candidature.id }}"><div style="background-image:url('/{{ candidature.path_pic_fit }}');" class="square-pic-candidature-small jsLink" ></div></a></td>
+                   {#  <a href="/candidature/fiche.html?id={{ candidature.id }}"><div style="background-image:url('/{{ candidature.path_pic_fit }}');" class="square-pic-candidature-small jsLink" ></div></a> #}
+                   <a href="/candidature/candidat.html?id={{ candidature.id }}"><div style="background-image:url('/{{ candidature.path_pic_fit }}');" class="square-pic-candidature-small jsLink" ></div></a>
+                  </td>
 
                   <td>
                     <p>{{ candidature.civility }} {{ candidature.firstname|ucwords }} {{ candidature.name|upper }}</p>
