@@ -294,6 +294,7 @@ if($nError==0){
     $outputFilePhotoFit= $outputDir."photo-fit.jpg";
     $outputFileCerificat=$outputDir."certificate.pdf";
     $outputFileIdcard=$outputDir."idcard.pdf";
+    $outputFileIdcardVerso=$outputDir."idcard-verso.pdf";
     $outputFileCriminalRecord=$outputDir."extrait-judiciaire.pdf";
 
 
@@ -314,7 +315,7 @@ if($nError==0){
     @unlink($_FILES['image']['tmp_name']);
 
 
-    //PDF
+    //fichier carte ID
     if (array_key_exists("idcard", $_FILES)) {
         if(file_exists($_FILES['idcard']['tmp_name'])){
             $extension=pathinfo($_FILES['idcard']['name'], PATHINFO_EXTENSION);
@@ -335,6 +336,28 @@ if($nError==0){
         }
     }
 
+    //fichier carte ID VERSO
+    if (array_key_exists("idcard_verso", $_FILES)) {
+        if (file_exists($_FILES['idcard_verso']['tmp_name'])) {
+            $extension = pathinfo($_FILES['idcard_verso']['name'], PATHINFO_EXTENSION);
+            $outputFileIdcardVerso = $outputDir . "idcard-verso." . $extension;
+            if (@move_uploaded_file($_FILES['idcard_verso']['tmp_name'], $outputFileIdcardVerso)) {
+                if (!in_array(mime_content_type($outputFileIdcardVerso), array_merge(array("application/pdf"), $aMime))) {
+                    $nError++;
+                    $aResponse["message"]["text"] = "Verso carte d'identité : Format de fichier non reconnu.";
+                    array_push($aResponse["required"], array("field" => "idcard"));
+                } else {
+                    $Candidature->setPath_idcard_verso($outputFileIdcardVerso);
+                }
+            } else {
+                $aResponse["message"]["text"] = "Verso carte d'identité : Erreur lors de l'enregistrement de votre fichier.";
+                array_push($aResponse["required"], array("field" => "idcard"));
+                $nError++;
+            }
+        }
+    }
+
+    //fichier extrait judiciaire
     if (array_key_exists("criminal_record", $_FILES)) {
         if(file_exists($_FILES['criminal_record']['tmp_name'])){
             $extension=pathinfo($_FILES['criminal_record']['name'], PATHINFO_EXTENSION);
