@@ -13,7 +13,7 @@
                             <input type="hidden" id="id" name="id" value="{{ candidature.id }}"/>
                             <input type="hidden" id="key" name="key" value="{{ key }}"/>
                         {% endif %}
-                        {% if oMe.type=='admin' %}
+                        {% if oMe.type=='admin' and candidature.id!='' %}
                             <div style="margin:auto">
                                 <h1>Édition de la candidature</h1>
                             </div>
