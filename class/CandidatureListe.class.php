@@ -31,6 +31,7 @@ class CandidatureListe extends Liste
         "path_pic",
         "path_certificate",
         "path_idcard",
+        "path_idcard_verso",
         "path_criminal_record",
         "is_certificate",
         "is_idcard",
