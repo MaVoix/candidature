@@ -620,7 +620,9 @@
                                 <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
                             {%  endif %}
 
-                           <br /> <label for="idcard_verso" class="control-label">Si vous n'avez pas réussi à mettre le recto et le verso dans un même fichier, voici un deuxième champ pour envoyer l'autre face. ({{  ConfigService.get("max-filesize") }} Mo maximum)
+                        </div>
+                        <div class="form-group">
+                        <label for="idcard_verso" class="control-label">Si vous n'avez pas réussi à mettre le recto et le verso dans un même fichier, voici un deuxième champ pour envoyer l'autre face. ({{  ConfigService.get("max-filesize") }} Mo maximum)
                                 :</label>
 
                             <input type="file" class="form-control" accept="application/pdf, image/*" id="idcard_verso"
@@ -628,10 +630,9 @@
                             {%  if candidature.path_idcard_verso!=''  %}
                                 <div class="text-danger">Un fichier a déja été envoyé lors de l'inscription. Si vous envoyez un nouveau fichier celui-ci sera remplacé.</div>
                             {%  endif %}
-                            <br/>
-                            <p><strong>Un extrait de casier judiciaire 3B</strong>. Sa validité étant de trois mois, il ne serait pas valable pour le deuxième tour des élections législatives, qui a lieu le 18 juin, si vous nous le transmettiez aujourd'hui. Nous vous recontacterons un peu plus tard pour vous indiquer la procédure à suivre pour nous le transmettre.</p>
                         </div>
-
+                        <br/>
+                        <p><strong>Un extrait de casier judiciaire 3B</strong>. Sa validité étant de trois mois, il ne serait pas valable pour le deuxième tour des élections législatives, qui a lieu le 18 juin, si vous nous le transmettiez aujourd'hui. Nous vous recontacterons un peu plus tard pour vous indiquer la procédure à suivre pour nous le transmettre.</p>
 
 
 

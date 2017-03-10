@@ -509,7 +509,7 @@ class Candidature	{
 
         if(isset($this->aDataSet["path_idcard_verso"]))
         {
-            $aData["path_idcard"]=$this->getPath_idcard();
+            $aData["path_idcard_verso"]=$this->getPath_idcard_verso();
         }
 
         if(isset($this->aDataSet["path_criminal_record"]))

@@ -345,13 +345,13 @@ if($nError==0){
                 if (!in_array(mime_content_type($outputFileIdcardVerso), array_merge(array("application/pdf"), $aMime))) {
                     $nError++;
                     $aResponse["message"]["text"] = "Verso carte d'identité : Format de fichier non reconnu.";
-                    array_push($aResponse["required"], array("field" => "idcard"));
+                    array_push($aResponse["required"], array("field" => "idcard_verso"));
                 } else {
                     $Candidature->setPath_idcard_verso($outputFileIdcardVerso);
                 }
             } else {
                 $aResponse["message"]["text"] = "Verso carte d'identité : Erreur lors de l'enregistrement de votre fichier.";
-                array_push($aResponse["required"], array("field" => "idcard"));
+                array_push($aResponse["required"], array("field" => "idcard_verso"));
                 $nError++;
             }
         }
