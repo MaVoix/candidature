@@ -20,7 +20,7 @@ foreach($aObj as $oCandidat){
     $sCSV.=";";
     $sCSV.=str_replace(";",",",$oCandidat->getZipcode());
     $sCSV.=";";
-    $sCSV.=($oCandidat->getState()=="onine")?'OUI':'NON';
+    $sCSV.=($oCandidat->getState()=="online")?'OUI':'NON';
     $sCSV.=";";
     $sCSV.=($oCandidat->getIs_certificate()==1)?'OUI':'NON';
     $sCSV.=";";
