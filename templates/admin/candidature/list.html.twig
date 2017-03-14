@@ -103,7 +103,7 @@
                       <a href="/{{ candidature.path_idcard_verso }}" target="_blank" class="btn btn-block {%  if candidature.is_idcard == 1 %} btn-success {% else %} btn-primary {% endif %}"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> ID verso</a>
                       {% endif %}
                     {%  if candidature.path_criminal_record !=''  %}
-                          <a href="/{{ candidature.path_criminal_record }}" class="btn btn-block {%  if candidature.is_criminal_record == 1 %} btn-success {% else %} btn-primary {% endif %}"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier</a>
+                          <a href="/{{ candidature.path_criminal_record }}" target="_blank" class="btn btn-block {%  if candidature.is_criminal_record == 1 %} btn-success {% else %} btn-primary {% endif %}"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier</a>
                     {%  else %}
                         <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier</button>
                     {% endif %}

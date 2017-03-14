@@ -82,15 +82,17 @@ if(!$bEdit){
     }
 }
 
-/*
-if (array_key_exists("criminal_record", $_FILES)) {
-    if ($_FILES["criminal_record"]["tmp_name"] == "") {
-        $nError++;
+
+/*if(!$bEdit){
+    if (array_key_exists("criminal_record", $_FILES)) {
+        if ($_FILES["criminal_record"]["tmp_name"] == "") {
+            $nError++;
+            array_push($aResponse["required"], array("field" => "criminal_record"));
+        }
+    }else{
         array_push($aResponse["required"], array("field" => "criminal_record"));
+        $nError++;
     }
-}else{
-    array_push($aResponse["required"], array("field" => "criminal_record"));
-    $nError++;
 }*/
 
 if (!isset($_POST["ad2"])) {
@@ -358,6 +360,7 @@ if($nError==0){
     }
 
     //fichier extrait judiciaire
+    $bIsCriminalRecordSent=false;
     if (array_key_exists("criminal_record", $_FILES)) {
         if(file_exists($_FILES['criminal_record']['tmp_name'])){
             $extension=pathinfo($_FILES['criminal_record']['name'], PATHINFO_EXTENSION);
@@ -369,6 +372,7 @@ if($nError==0){
                     array_push($aResponse["required"],array("field"=>"criminal_record"));
                 }else{
                     $Candidature->setPath_criminal_record($outputFileCriminalRecord);
+                    $bIsCriminalRecordSent=true;
                 }
             } else {
                 $aResponse["message"]["text"] = "Extrait judiciaire : Erreur lors de l'enregistrement de votre fichier.";
@@ -401,10 +405,12 @@ if($nError==0){
 
         $TwigEngine = App::getTwig();
         $sBodyMailHTML = $TwigEngine->render("visitor/mail/body.html.twig", [
-            "candidature" => $Candidature
+            "candidature" => $Candidature,
+            "isCriminalRecordSent"=> $bIsCriminalRecordSent,
         ]);
         $sBodyMailTXT = $TwigEngine->render("visitor/mail/body.txt.twig", [
-            "candidature" => $Candidature
+            "candidature" => $Candidature,
+            "isCriminalRecordSent"=> $bIsCriminalRecordSent,
         ]);
         if(!$bEdit) {
             Mail::sendMail($Candidature->getEmail(), "Confirmation de candidature", $sBodyMailHTML, $sBodyMailTXT, true);
