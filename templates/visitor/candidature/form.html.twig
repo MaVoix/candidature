@@ -627,7 +627,7 @@
                         <div class="form-group">
                             <p>La fourniture de ces documents est un impératif légal (<a href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000025375501&cidTexte=LEGITEXT000006070239&dateTexte=20170303" target="_blank" title="article R99 du code électoral">article R99 du code électoral</a>) pour tout candidat aux élections législatives. Nous devons donc les vérifier pour valider votre participation au tirage au sort.</p>
 
-                            <label for="idcard" class="control-label">Copie de votre carte d'identité (recto/verso), ou à défaut de carte d'identité, de votre passeport. Le document doit être en cours de validité. ({{  ConfigService.get("max-filesize") }} Mo maximum)
+                            <label for="idcard" class="control-label">Copie de votre carte d'identité ou de votre passeport. Le document doit être en cours de validité. ({{  ConfigService.get("max-filesize") }} Mo maximum)
                                 :</label>
 
                             <input type="file" class="form-control" accept="application/pdf, image/*" id="idcard"
@@ -638,7 +638,7 @@
 
                         </div>
                         <div class="form-group">
-                        <label for="idcard_verso" class="control-label">Si vous n'avez pas réussi à mettre le recto et le verso dans un même fichier, voici un deuxième champ pour envoyer l'autre face. ({{  ConfigService.get("max-filesize") }} Mo maximum)
+                        <label for="idcard_verso" class="control-label">Si vous n'avez pas réussi à mettre le recto et le verso de votre carte d'identité dans un même fichier, voici un deuxième champ pour envoyer l'autre face. ({{  ConfigService.get("max-filesize") }} Mo maximum)
                                 :</label>
 
                             <input type="file" class="form-control" accept="application/pdf, image/*" id="idcard_verso"
