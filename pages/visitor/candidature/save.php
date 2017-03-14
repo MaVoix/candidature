@@ -421,6 +421,7 @@ if($nError==0){
         }else{
             $aResponse["redirect"] = "/candidature/success.html";
         }
+        SessionService::set("last-save-id",$Candidature->getId());
 
         $aResponse["durationMessage"] = "2000";
         $aResponse["durationRedirect"] = "2000";

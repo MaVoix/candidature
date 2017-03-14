@@ -2,6 +2,15 @@
 
 
 {% block body %}
+    {#
+    exemple d'utilisation de "candidature" :
+    {{ candidature.firstname|ucwords }}
+    {{ candidature.city|capitalizefirst }} ({{ candidature.zipcode }})
+
+    //si pas le path de l'extrait judiciaire est vide (pas de fichier) alors "tontexte"
+    {% if candidature.path_criminal_record ==''  %} tontexte {% endif %}
+
+    #}
     <div class="wrapper-page">
         <div class="container">
             <div class="row">
