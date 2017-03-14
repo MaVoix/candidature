@@ -1,5 +1,21 @@
 {% extends "visitor/base.html.twig" %}
 
+{% block meta %}
+    {{ parent() }}
+    <meta property="og:title" content="#MAVOIX - Candidature"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ urlPage }}"/>
+    <meta property="og:image" content="{{ urlSite }}/image-panneaux.png"/>
+    <meta property="og:description"  content=""/>
+    <meta name="description"  content=""/>
+    <!-- TWITTER --->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@MAVOIX2017">
+    <meta name="twitter:creator" content="@MAVOIX2017">
+    <meta name="twitter:title" content="#MAVOIX - Candidature">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="{{ urlSite }}/image-panneaux.png">
+{% endblock %}
 
 {% block body %}
     <div class="wrapper-page">
