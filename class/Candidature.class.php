@@ -388,6 +388,11 @@ class Candidature	{
     *                             DEBUT FONCTIONS PERSONNALISES                  	           *
     ********************************************************************************************
     */
+    public function getPresentation_meta()
+    {
+        return trim(str_replace(array('"',"\t","\n","\r"),array("'","","",""),$this->getPresentation()));
+    }
+
     public function getPath_pic_fit()
     {
         return str_replace(basename($this->getPath_pic()),"photo-fit.jpg",$this->getPath_pic());
