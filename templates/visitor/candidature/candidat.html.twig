@@ -5,7 +5,7 @@
     <meta property="og:title" content="#MAVOIX - Candidature"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{ urlPage }}"/>
-    <meta property="og:image" content="{{ urlSiteHTTP }}/{{ candidature.path_pic_fit }}"/>
+    <meta property="og:image" content="{{ urlSite }}/{{ candidature.path_pic_fit }}"/>
     <meta property="og:description"
           content="{% if candidature.presentation=='' %}Candidature de {{ candidature.firstname|ucwords }}.{% else %}{{ candidature.getPresentation_Meta }}{% endif %}"/>
     <meta name="description"
@@ -16,7 +16,7 @@
     <meta name="twitter:creator" content="@MAVOIX2017">
     <meta name="twitter:title" content="#MAVOIX - Candidature">
     <meta name="twitter:description" content="{% if candidature.presentation=='' %}Candidature de {{ candidature.firstname|ucwords }}.{% else %}{{ candidature.getPresentation_Meta }}{% endif %}">
-    <meta name="twitter:image" content="{{ urlSiteHTTP }}/{{ candidature.path_pic_fit }}">
+    <meta name="twitter:image" content="{{ urlSite }}/{{ candidature.path_pic_fit }}">
 {% endblock %}
 
 {% block css %}
