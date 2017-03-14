@@ -2,7 +2,7 @@
 
 {% block meta %}
     {{ parent() }}
-    <meta property="og:title" content="#MAVOIX - Candidature"/>
+    <meta property="og:title" content="#MAVOIX - Candidature de {{ candidature.firstname|ucwords }}"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{ urlPage }}"/>
     <meta property="og:image" content="{{ urlSite }}/{{ candidature.path_pic_fit }}"/>
@@ -14,7 +14,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@MAVOIX2017">
     <meta name="twitter:creator" content="@MAVOIX2017">
-    <meta name="twitter:title" content="#MAVOIX - Candidature">
+    <meta name="twitter:title" content="#MAVOIX - Candidature de {{ candidature.firstname|ucwords }}">
     <meta name="twitter:description" content="{% if candidature.presentation=='' %}Candidature de {{ candidature.firstname|ucwords }}.{% else %}{{ candidature.getPresentation_Meta }}{% endif %}">
     <meta name="twitter:image" content="{{ urlSite }}/{{ candidature.path_pic_fit }}">
 {% endblock %}
