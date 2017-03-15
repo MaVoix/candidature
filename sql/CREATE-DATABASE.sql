@@ -72,7 +72,7 @@ CREATE TABLE `cms` (
   `date_deleted` datetime NOT NULL,
   `ref` varchar(200) NOT NULL,
   `comment` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
