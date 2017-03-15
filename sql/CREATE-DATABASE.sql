@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 10 Mars 2017 à 11:13
+-- Généré le :  Mer 15 Mars 2017 à 21:38
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -62,6 +62,21 @@ CREATE TABLE `candidature` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `cms`
+--
+
+CREATE TABLE `cms` (
+  `id` int(11) NOT NULL,
+  `date_created` datetime NOT NULL,
+  `date_amended` datetime NOT NULL,
+  `date_deleted` datetime NOT NULL,
+  `ref` varchar(200) NOT NULL,
+  `comment` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `user`
 --
 
@@ -84,6 +99,12 @@ ALTER TABLE `candidature`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `cms`
+--
+ALTER TABLE `cms`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
@@ -97,6 +118,11 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `candidature`
 --
 ALTER TABLE `candidature`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `cms`
+--
+ALTER TABLE `cms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `user`
