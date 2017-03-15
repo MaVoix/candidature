@@ -16,13 +16,10 @@ $aResponse["required"] = array();
 
 
 if(isset($_POST["ref"])){
-    $aResponse["message"]["text"]="01";
     $oListeCms=new CmsListe();
     $oListeCms->applyRules4GetBlock($_POST["ref"]);
     $aCms= $oListeCms->getPage();
-    $aResponse["message"]["text"]="02";
     if(count($aCms)==1){
-        $aResponse["message"]["text"]="03";
         $oCms= new Cms(array("id"=>$aCms[0]["id"]));
         $aResponse["type"] = "no-reponse";
         $oCms->setContent($_POST["content"]);

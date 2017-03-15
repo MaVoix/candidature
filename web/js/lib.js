@@ -244,8 +244,26 @@ $(document).ready(function () {
 
     });
 
-    var $markdownBlocks=$(".markdown");
-    $markdownBlocks.html( markdown.toHTML( $markdownBlocks.html() ));
+    var $markdownEditBlocks=$(".jsEditCmsBlock");
+    $markdownEditBlocks.each(function(){
+        var str=$.trim($(this).text());
+        if(str==""){
+            $(this).html(markdown.toHTML("Vide")) ;
+        }else {
+            $(this).html(markdown.toHTML($.trim($(this).text())));
+        }
+    });
+
+    var $markdownBlocks=$(".jsCmsBlock");
+    $markdownBlocks.each(function(){
+        var str=$.trim($(this).text());
+        if(str==""){
+
+        }else {
+            $(this).html(markdown.toHTML($.trim($(this).text())));
+        }
+    });
+
 
 
 });
