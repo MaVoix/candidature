@@ -61,6 +61,26 @@ class CmsListe extends Liste
                 "value" => $sRef
             ]
         ]);
+        $this->addCriteres([
+            [
+                "field" => "date_deleted",
+                "compare" => "IS NULL",
+                "value" => ""
+            ]
+        ]);
+
+    }
+
+    public function applyRules4All()
+    {
+        $this->setAllFields();
+        $this->addCriteres([
+            [
+                "field" => "date_deleted",
+                "compare" => "IS NULL",
+                "value" => ""
+            ]
+        ]);
 
     }
 
