@@ -220,6 +220,40 @@ $(document).ready(function () {
         }
     }, 1000 * 60 * 2);
 
+    //CMS Markdown
+    $body.on('click','.jsEditCmsBlock',function(){
+       var $block=$("#"+$(this).data("block-id"));
+       var ref=$(this).data("block-reference");
+
+       $block.markdown({
+            savable:true,
+            language:'fr',
+            onShow: function(e){},
+            onPreview: function(e) {
+                return e.getContent();
+               /* var previewContent
+                if (e.isDirty()) {
+                    var originalContent = e.getContent();
+                    previewContent = "Prepended text here..."
+                        + "\n"
+                        + originalContent
+                        + "\n"
+                        +"Apended text here..."
+                } else {
+                    previewContent = e.getContent();
+                }
+
+                return previewContent*/
+            },
+            onSave: function(e) {},
+            onChange: function(e){},
+            onFocus: function(e) {},
+            onBlur: function(e) {}
+        })
+
+    });
+
+
 });
 
 
