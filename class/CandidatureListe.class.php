@@ -94,13 +94,13 @@ class CandidatureListe extends Liste
             ]
         ]);
 
-        $this->addCriteres([
+        /*$this->addCriteres([
             [
                 "field" => "state",
                 "compare" => "=",
                 "value" => "offline"
             ]
-        ]);
+        ]);*/
 
         $this->addCriteres([
             [
