@@ -1,45 +1,32 @@
-<!-- <div class="wrapper-menu">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-4 text-left">
-                <a href="javascript:void(0);" class="click-send-ajax pull-left text-primary" data-url="/home/deconnexion.json">Déconnexion</a>
-            </div>
-
-            <div class="col-xs-12 col-md-4 text-center">
-                    <a href="/candidature/list.html" class="btn btn-default">Validation des candidatures</a>
-            </div>
-
-            <div class="col-xs-12 col-md-4 text-right">
-                <div class="btn-group ">
-                    <a href="/candidature/candidatures.html" class="btn btn-default pull-left">Accueil</a>
-                    <a href="/candidature/form.html" class="btn btn-default">Inscription</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-<div class="topmenu">
+<nav class="navbar  navbar-default navbar-fixed-top topmenu">
   <div class="container">
     <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a class="navbar-brand" id="logo" href="http://mavoix.info">
         <img src="/css/images/logo.png"/>
       </a>
     </div>
-    <div class="navbar-collapse collapse" id="navbar-main">
+    <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li>
           <a href="/candidature/form.html">Formulaire</a>
         </li>
         <li>
-          <a href="/candidature/list.html">Validation des candidatures</a>
+          <a href="/candidature/list.html">Validation <span class="hidden-sm">des candidatures</span></a>
         </li>
         <li>
           <a href="/candidature/candidatures.html">Candidatures en ligne</a>
         </li>
         <li>
-          <a href="javascript:void(0);" class="click-send-ajax pull-left text-primary" data-url="/home/deconnexion.json">Déconnexion</a>
+          <a href="javascript:void(0);" class="click-send-ajax  text-primary" data-url="/home/deconnexion.json">Déconnexion</a>
         </li>
       </ul>
-    </div>
+    </div><!--/.nav-collapse -->
   </div>
-</div>
+</nav>
+<div style="height:70px;">&nbsp;</div>
