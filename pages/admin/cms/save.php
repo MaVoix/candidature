@@ -28,7 +28,13 @@ if(isset($_POST["ref"])){
         $oCms->setContent($_POST["content"]);
         $oCms->setDate_amended(date("Y-m-d H:i:s"));
         $oCms->save();
-
+    }else{
+        $oCms= new Cms();
+        $oCms->setRef($_POST["ref"]);
+        $oCms->setContent($_POST["content"]);
+        $oCms->setDate_amended(date("Y-m-d H:i:s"));
+        $oCms->setDate_created(date("Y-m-d H:i:s"));
+        $oCms->save();
     }
 }
 
