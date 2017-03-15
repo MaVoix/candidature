@@ -263,6 +263,11 @@ if($nError==0){
         $Candidature->setKey_edit($sKey);
         $Candidature->setState("offline");
     }
+
+    //force le mode offline sur l'enregistrement par un utilisateur
+    if($oMe->getType()!="admin"){
+        $Candidature->setState("offline");
+    }
     $Candidature->setName($_POST["nom"]);
     $Candidature->setFirstname($_POST["prenom"]);
     $Candidature->setCivility($_POST["civilite"]);
