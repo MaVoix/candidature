@@ -14,7 +14,7 @@ class Cms	{
     private $sDate_amended;
     private $sDate_deleted;
     private $sRef;
-    private $sComment;
+    private $sContent;
 
 
     /**
@@ -158,9 +158,9 @@ class Cms	{
             $aData["ref"]=$this->getRef();
         }
 
-        if(isset($this->aDataSet["comment"]))
+        if(isset($this->aDataSet["content"]))
         {
-            $aData["comment"]=$this->getComment();
+            $aData["content"]=$this->getContent();
         }
 
         if($this->getId()>0)
@@ -185,7 +185,7 @@ class Cms	{
         $this->setDate_amended(NULL);
         $this->setDate_deleted(NULL);
         $this->setRef(NULL);
-        $this->setComment(NULL);
+        $this->setContent(NULL);
     }
 
     /**
@@ -199,7 +199,7 @@ class Cms	{
             "date_amended" => $this->getDate_amended(),
             "date_deleted" => $this->getDate_deleted(),
             "ref" => $this->getRef(),
-            "comment" => $this->getComment()
+            "content" => $this->getContent()
         ];
 
         return json_encode($aObjet);
@@ -447,45 +447,60 @@ class Cms	{
 
 
     /**
-     * Set le champ comment
-     * @param string $sComment nouvelle valeur pour le champ comment
+     * Set le champ content
+     * @param string $sContent nouvelle valeur pour le champ content
      */
-    public function setComment($sComment)
+    public function setContent($sContent)
     {
-        if( is_null($sComment) ) $sComment='';
-        $this->sComment = $sComment;
-        $this->aDataSet["comment"]=1;
+        if( is_null($sContent) ) $sContent='';
+        $this->sContent = $sContent;
+        $this->aDataSet["content"]=1;
     }
 
 
 
     /**
-     * Get le champ comment
-     * @return string valeur du champ comment
+     * Get le champ content
+     * @return string valeur du champ content
      */
-    public function getComment()
+    public function getContent()
     {
-        if( !is_null($this->sComment) )
+        if( !is_null($this->sContent) )
         {
-            if( $this->sComment==='' )
+            if( $this->sContent==='' )
             {
                 return NULL;
             }
             else
             {
-                return $this->sComment;
+                return $this->sContent;
             }
         }
         else
         {
-            $this->hydrateFromBDD(array('comment'));
+            $this->hydrateFromBDD(array('content'));
             $this->callHydrateFromBDDOnGet++;
             if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
             {
                 echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
             }
-            return $this->sComment;
+            return $this->sContent;
         }
+    }
+
+
+
+    public function applyRules4GetBlock($sRef)
+    {
+        $this->setAllFields();
+        $this->addCriteres([
+            [
+                "field" => "ref",
+                "compare" => "=",
+                "value" => $sRef
+            ]
+        ]);
+
     }
 
 }

@@ -15,14 +15,14 @@ class CmsListe extends Liste
         "date_amended",
         "date_deleted",
         "ref",
-        "comment"
+        "content"
     );
 
     /**
      * Constructeur
      * @param array $aParam tableau de parametres
      */
-    public function __construct( $aParam=array() )
+    public function __construct($aParam = array())
     {
         parent::__construct();
         $this->setTablePrincipale("cms");
@@ -48,6 +48,20 @@ class CmsListe extends Liste
     public function setAllFields()
     {
         $this->setFields(self::$_champs);
+    }
+
+
+    public function applyRules4GetBlock($sRef)
+    {
+        $this->setAllFields();
+        $this->addCriteres([
+            [
+                "field" => "ref",
+                "compare" => "=",
+                "value" => $sRef
+            ]
+        ]);
+
     }
 
 }

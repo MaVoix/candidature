@@ -223,8 +223,7 @@ $(document).ready(function () {
     //CMS Markdown
    $body.on('dblclick','.jsEditCmsBlock',function(){
        var $block=$(this);
-       var ref=$(this).data("block-reference");
-
+       var ref=$(this).data("block-ref");
        $block.markdown({
             savable:true,
             language:'fr',
@@ -235,7 +234,7 @@ $(document).ready(function () {
                 return e.getContent();
             },
             onSave: function(e) {
-                sendAjaxRequest("/cms/save.php",{content:e.getContent(),ref:ref},true)
+                sendAjaxRequest("/cms/save.json",{content:e.getContent(),ref:ref},true);
                 e.blur();
             },
             onChange: function(e){},
