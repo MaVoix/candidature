@@ -89,7 +89,7 @@
         <div class="container">
             <div class="row ">
                 <div class="col-xs-12 col-md-6 col-md-offset-3 ">
-
+                  <div class="row">
 
                     <hr/>
 
@@ -103,21 +103,44 @@
                     <a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}"
                                 class="btn btn-info btn-block"   >Éditer</a>
                     </div>
-                    <div class="m-t">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" class="jsSwitchAjax"
-                                   {% if candidature.is_idcard=='1' %}checked{% endif %} data-toggle="toggle"
-                                   data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte
-                            ID valide
-                        </label>
+                  </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="m-t">
+                          <a href="/{{ candidature.path_idcard }}" target="_blank" class="btn btn-block btn-primary"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> ID</a>
+                              {%  if candidature.path_idcard_verso !=''  %}
+                              <a href="/{{ candidature.path_idcard_verso }}" target="_blank" class="btn btn-block btn-primary"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> ID verso</a>
+                              {% endif %}
+                        </div>
+
+                      </div>
+                      <div class="col-md-6">
+                        <div class="m-t">
+                        {%  if candidature.path_criminal_record !=''  %}
+                              <a href="/{{ candidature.path_criminal_record }}" target="_blank" class="btn btn-block btn-primary"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier</a>
+                        {%  else %}
+                            <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier</button>
+                        {% endif %}
+                        </div>
+                      </div>
                     </div>
-                    <div class="m-t">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" class="jsSwitchAjax"
-                                   {% if candidature.is_criminal_record=='1' %}checked{% endif %} data-toggle="toggle"
-                                   data-url="/candidature/criminal-record-valid.json"
-                                   data-param="id={{ candidature.id }}"> Extrait judiciaire valide
-                        </label>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="m-t">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="jsSwitchAjax"
+                                       {% if candidature.is_idcard=='1' %}checked{% endif %} data-toggle="toggle"
+                                       data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte ID valide
+                            </label>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="m-t">
+                          <label class="checkbox-inline">
+                              <input type="checkbox" class="jsSwitchAjax" data-onstyle="success" {%  if candidature.path_criminal_record !=''  %} data-param="id={{ candidature.id }}" data-url="/candidature/criminal-record-valid.json" {% endif %} {% if candidature.is_criminal_record=='1' and candidature.path_criminal_record !=''%}checked{% endif %} data-toggle="toggle"> Extrait casier valide
+                          </label>
+                        </div>
+                      </div>
                     </div>
                     <hr/>
 
@@ -128,8 +151,9 @@
                                data-modal-body="Êtes-vous sûr de vouloir supprimer définitivement cette candidature ? <br> <i>En cas de doutes, il est préférable de simplement passer cette canidature hors ligne.</i><p class='m-t-x2'><b>A NOTER : Cette intervention n'efface pas complétement les données en base</b></p>"
                                data-modal-confirm="Supprimer" data-modal-cancel="Annuler"
                                data-url="/candidature/delete.json"
-                               data-param='{"id":"{{ candidature.id }}","from":"fiche"}'><i class="fa fa-trash"
-                                                                                            aria-hidden="true"></i></a>
+                               data-param='{"id":"{{ candidature.id }}","from":"fiche"}'>
+                               <i class="fa fa-trash" aria-hidden="true">
+                               </i> Supprimer</a>
                         </div>
                         <div class="col-xs-6">
                             <label class="checkbox-inline">
@@ -138,6 +162,12 @@
                                        data-toggle="toggle" data-url="/candidature/state.json"
                                        data-param="id={{ candidature.id }}"> En ligne
                             </label>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-md-offset-3 ">
+                          <div class="m-t">
+                            <a href="{{ ConfigService.get("urlSite") }}/candidature/list.html#{{ candidature.id }}"
+                                        class="btn btn-info btn-block"   ><< Retour à la liste</a>
+                          </div>
                         </div>
                     </div>
 
