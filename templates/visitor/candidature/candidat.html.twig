@@ -100,6 +100,10 @@
                         </label>
                     </div> -->
                     <div class="m-t">
+                    <a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}"
+                                class="btn btn-info btn-block"   >Éditer</a>
+                    </div>
+                    <div class="m-t">
                         <label class="checkbox-inline">
                             <input type="checkbox" class="jsSwitchAjax"
                                    {% if candidature.is_idcard=='1' %}checked{% endif %} data-toggle="toggle"
