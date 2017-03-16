@@ -108,9 +108,7 @@
                         <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier</button>
                     {% endif %}
 
-                    <label class="checkbox-inline" >
-                        <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> En ligne
-                    </label>
+
                   </td>
                   <td>
                     <a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}" class="btn btn-info btn-block"   >Editer</a>
@@ -124,6 +122,9 @@
                         <input type="checkbox" class="jsSwitchAjax" data-onstyle="success" {%  if candidature.path_criminal_record !=''  %} data-param="id={{ candidature.id }}" data-url="/candidature/criminal-record-valid.json" {% endif %} {% if candidature.is_criminal_record=='1' and  candidature.path_criminal_record !=''%}checked{% endif %} data-toggle="toggle"
 
                                > Extrait casier valide
+                    </label>
+                    <label class="checkbox-inline" >
+                        <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> En ligne
                     </label>
 
                             </td>
