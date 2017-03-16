@@ -1,4 +1,4 @@
-# Candidature #MAVOIX v1.3.0
+# Candidature #MAVOIX v1.4.0
 
 Soumission et publication des inscriptions au tirage au sort [#MAVOIX](https://mavoix.info).
 
@@ -8,6 +8,17 @@ Version de test : https://candidature.maudry.fr
 
 
 ## Notes de version
+
+### 1.4.0
+
+- possibilité d'envoyer l'extrait de casier judiciaire 3B
+- les candidats peuvent modifier leur candidature, mais elle est alors mise hors-ligne
+- ajout d'un menu sur la version mobile
+- ajout de Twitter cards pour les partages sur Twitter
+- ajout de métadonnées OpenGraph (Facebook) sur la page du formulaire
+- ajout d'insctructions de contact en cas de soucis
+- corrections dans la mise en majuscule des noms de villes et des prénoms
+- possibilité d'envoyer l'autre face de la carte d'identité dans un deuxième fichier
 
 ### 1.3.0
 
