@@ -31,6 +31,7 @@ class CandidatureListe extends Liste
         "path_pic",
         "path_certificate",
         "path_idcard",
+        "path_idcard_verso",
         "path_criminal_record",
         "is_certificate",
         "is_idcard",
@@ -93,13 +94,13 @@ class CandidatureListe extends Liste
             ]
         ]);
 
-        $this->addCriteres([
+        /*$this->addCriteres([
             [
                 "field" => "state",
                 "compare" => "=",
                 "value" => "offline"
             ]
-        ]);
+        ]);*/
 
         $this->addCriteres([
             [
@@ -185,6 +186,30 @@ class CandidatureListe extends Liste
 
 
     public function applyRules4GetCandidatAdmin($id)
+    {
+        $this->setAllFields();
+
+        $this->addCriteres([
+            [
+                "field" => "id",
+                "compare" => "=",
+                "value" => vars::secureInjection($id)
+            ]
+        ]);
+
+
+        $this->addCriteres([
+            [
+                "field" => "date_deleted",
+                "compare" => "IS NULL",
+                "value" => ""
+            ]
+        ]);
+
+        return $this;
+    }
+
+    public function applyRules4GetCandidatSaved($id)
     {
         $this->setAllFields();
 

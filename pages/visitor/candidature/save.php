@@ -82,15 +82,17 @@ if(!$bEdit){
     }
 }
 
-/*
-if (array_key_exists("criminal_record", $_FILES)) {
-    if ($_FILES["criminal_record"]["tmp_name"] == "") {
-        $nError++;
+
+/*if(!$bEdit){
+    if (array_key_exists("criminal_record", $_FILES)) {
+        if ($_FILES["criminal_record"]["tmp_name"] == "") {
+            $nError++;
+            array_push($aResponse["required"], array("field" => "criminal_record"));
+        }
+    }else{
         array_push($aResponse["required"], array("field" => "criminal_record"));
+        $nError++;
     }
-}else{
-    array_push($aResponse["required"], array("field" => "criminal_record"));
-    $nError++;
 }*/
 
 if (!isset($_POST["ad2"])) {
@@ -261,15 +263,27 @@ if($nError==0){
         $Candidature->setKey_edit($sKey);
         $Candidature->setState("offline");
     }
-    $Candidature->setName(strtoupper($_POST["nom"]));
-    $Candidature->setFirstname(ucwords($_POST["prenom"]));
+
+    //force le mode offline sur l'enregistrement par un utilisateur
+    if($oMe->getType()!="admin"){
+        $Candidature->setState("offline");
+    }
+
+    //ajout un commentaire si edition utilisateur
+    if($oMe->getType()!="admin" && $bEdit){
+        $sCommentaire=""."Candidature modifiée le ".date("d/m/Y")." à ".date("H:i")." par le candidat."."\n\n".$OldCandidature->getComment();
+        $Candidature->setComment($sCommentaire);
+    }
+
+    $Candidature->setName($_POST["nom"]);
+    $Candidature->setFirstname($_POST["prenom"]);
     $Candidature->setCivility($_POST["civilite"]);
     $Candidature->setEmail($_POST["email"]);
     $Candidature->setTel($_POST["tel"]);
     $Candidature->setAd1($_POST["ad1"]);
     $Candidature->setAd2($_POST["ad2"]);
     $Candidature->setAd3($_POST["ad3"]);
-    $Candidature->setCity(ucwords($_POST["ville"]));
+    $Candidature->setCity($_POST["ville"]);
     $Candidature->setZipcode($_POST["cp"]);
     $Candidature->setCountry($_POST["pays"]);
     $Candidature->setUrl_video($_POST["video"]);
@@ -294,6 +308,7 @@ if($nError==0){
     $outputFilePhotoFit= $outputDir."photo-fit.jpg";
     $outputFileCerificat=$outputDir."certificate.pdf";
     $outputFileIdcard=$outputDir."idcard.pdf";
+    $outputFileIdcardVerso=$outputDir."idcard-verso.pdf";
     $outputFileCriminalRecord=$outputDir."extrait-judiciaire.pdf";
 
 
@@ -314,7 +329,7 @@ if($nError==0){
     @unlink($_FILES['image']['tmp_name']);
 
 
-    //PDF
+    //fichier carte ID
     if (array_key_exists("idcard", $_FILES)) {
         if(file_exists($_FILES['idcard']['tmp_name'])){
             $extension=pathinfo($_FILES['idcard']['name'], PATHINFO_EXTENSION);
@@ -335,6 +350,29 @@ if($nError==0){
         }
     }
 
+    //fichier carte ID VERSO
+    if (array_key_exists("idcard_verso", $_FILES)) {
+        if (file_exists($_FILES['idcard_verso']['tmp_name'])) {
+            $extension = pathinfo($_FILES['idcard_verso']['name'], PATHINFO_EXTENSION);
+            $outputFileIdcardVerso = $outputDir . "idcard-verso." . $extension;
+            if (@move_uploaded_file($_FILES['idcard_verso']['tmp_name'], $outputFileIdcardVerso)) {
+                if (!in_array(mime_content_type($outputFileIdcardVerso), array_merge(array("application/pdf"), $aMime))) {
+                    $nError++;
+                    $aResponse["message"]["text"] = "Verso carte d'identité : Format de fichier non reconnu.";
+                    array_push($aResponse["required"], array("field" => "idcard_verso"));
+                } else {
+                    $Candidature->setPath_idcard_verso($outputFileIdcardVerso);
+                }
+            } else {
+                $aResponse["message"]["text"] = "Verso carte d'identité : Erreur lors de l'enregistrement de votre fichier.";
+                array_push($aResponse["required"], array("field" => "idcard_verso"));
+                $nError++;
+            }
+        }
+    }
+
+    //fichier extrait judiciaire
+    $bIsCriminalRecordSent=false;
     if (array_key_exists("criminal_record", $_FILES)) {
         if(file_exists($_FILES['criminal_record']['tmp_name'])){
             $extension=pathinfo($_FILES['criminal_record']['name'], PATHINFO_EXTENSION);
@@ -346,6 +384,7 @@ if($nError==0){
                     array_push($aResponse["required"],array("field"=>"criminal_record"));
                 }else{
                     $Candidature->setPath_criminal_record($outputFileCriminalRecord);
+                    $bIsCriminalRecordSent=true;
                 }
             } else {
                 $aResponse["message"]["text"] = "Extrait judiciaire : Erreur lors de l'enregistrement de votre fichier.";
@@ -378,10 +417,12 @@ if($nError==0){
 
         $TwigEngine = App::getTwig();
         $sBodyMailHTML = $TwigEngine->render("visitor/mail/body.html.twig", [
-            "candidature" => $Candidature
+            "candidature" => $Candidature,
+            "isCriminalRecordSent"=> $bIsCriminalRecordSent,
         ]);
         $sBodyMailTXT = $TwigEngine->render("visitor/mail/body.txt.twig", [
-            "candidature" => $Candidature
+            "candidature" => $Candidature,
+            "isCriminalRecordSent"=> $bIsCriminalRecordSent,
         ]);
         if(!$bEdit) {
             Mail::sendMail($Candidature->getEmail(), "Confirmation de candidature", $sBodyMailHTML, $sBodyMailTXT, true);
@@ -392,6 +433,7 @@ if($nError==0){
         }else{
             $aResponse["redirect"] = "/candidature/success.html";
         }
+        SessionService::set("last-save-id",$Candidature->getId());
 
         $aResponse["durationMessage"] = "2000";
         $aResponse["durationRedirect"] = "2000";

@@ -248,7 +248,26 @@ a {
 }
 
 .topmenu {
-  background-color: #f2e732;
+    background-color: #f2e732;
+    color:#000000;
+}
+
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>li>a{
+text-decoration: none;
+    background-color: transparent;
+    color:#000;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+text-decoration: none;
+    background-color: #eee;
+}
+.topmenu .navbar-toggle,.topmenu .navbar-toggle:focus,.topmenu .navbar-toggle:hover, .topmenu .navbar-toggle:active {
+    border-color: #000000;
+    color:#000000;
+    background-color: transparent;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border:none;
 }
 
 .navbar-right {
@@ -304,7 +323,7 @@ button.btn-primary:hover, .btn:hover {
 .engagements-a span.cr {
   top:5px;
 }
-]
+
 
 h2, h3 {
   margin-top: 35px;
@@ -327,4 +346,13 @@ div.scrollable {
     padding: 0;
     overflow: auto;
     font-size: 16px;
+}
+
+.blocedit_fiche.online{
+    display:block;
+    border:none;
+}
+.blocedit_fiche.offline{
+    display:none;
+    border:none;
 }

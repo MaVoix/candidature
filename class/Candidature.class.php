@@ -1,5 +1,3 @@
-
-
 <?php	/**
  * Class Candidature
  */
@@ -32,6 +30,7 @@ class Candidature	{
     private $sPath_pic;
     private $sPath_certificate;
     private $sPath_idcard;
+    private $sPath_idcard_verso;
     private $sPath_criminal_record;
     private $bIs_certificate;
     private $bIs_idcard;
@@ -261,6 +260,11 @@ class Candidature	{
             $aData["path_idcard"]=$this->getPath_idcard();
         }
 
+        if(isset($this->aDataSet["path_idcard_verso"]))
+        {
+            $aData["path_idcard_verso"]=$this->getPath_idcard_verso();
+        }
+
         if(isset($this->aDataSet["path_criminal_record"]))
         {
             $aData["path_criminal_record"]=$this->getPath_criminal_record();
@@ -329,6 +333,7 @@ class Candidature	{
         $this->setPath_pic(NULL);
         $this->setPath_certificate(NULL);
         $this->setPath_idcard(NULL);
+        $this->setPath_idcard_verso(NULL);
         $this->setPath_criminal_record(NULL);
         $this->setIs_certificate(0);
         $this->setIs_idcard(0);
@@ -364,6 +369,7 @@ class Candidature	{
             "path_pic" => $this->getPath_pic(),
             "path_certificate" => $this->getPath_certificate(),
             "path_idcard" => $this->getPath_idcard(),
+            "path_idcard_verso" => $this->getPath_idcard_verso(),
             "path_criminal_record" => $this->getPath_criminal_record(),
             "is_certificate" => $this->getIs_certificate(),
             "is_idcard" => $this->getIs_idcard(),
@@ -382,6 +388,10 @@ class Candidature	{
     *                             DEBUT FONCTIONS PERSONNALISES                  	           *
     ********************************************************************************************
     */
+    public function getPresentation_meta()
+    {
+        return trim(str_replace(array('"',"\t","\n","\r"),array("'","","",""),$this->getPresentation()));
+    }
 
     public function getPath_pic_fit()
     {
@@ -502,6 +512,11 @@ class Candidature	{
             $aData["path_idcard"]=$this->getPath_idcard();
         }
 
+        if(isset($this->aDataSet["path_idcard_verso"]))
+        {
+            $aData["path_idcard_verso"]=$this->getPath_idcard_verso();
+        }
+
         if(isset($this->aDataSet["path_criminal_record"]))
         {
             $aData["path_criminal_record"]=$this->getPath_criminal_record();
@@ -565,6 +580,8 @@ class Candidature	{
         }
         $this->aDataSet=array();
     }
+
+
 
     /*
     ********************************************************************************************
@@ -1513,6 +1530,60 @@ class Candidature	{
 
 
     /**
+     * Set le champ path_idcard_verso
+     * @param string $sPath_idcard_verso nouvelle valeur pour le champ path_idcard_verso
+     */
+    public function setPath_idcard_verso($sPath_idcard_verso)
+    {
+        if( is_null($sPath_idcard_verso) ) $sPath_idcard_verso='';
+        $this->sPath_idcard_verso = $sPath_idcard_verso;
+        $this->aDataSet["path_idcard_verso"]=1;
+    }
+
+
+
+    /**
+     * Get le champ path_idcard_verso
+     * @return string valeur du champ path_idcard_verso
+     */
+    public function getPath_idcard_verso()
+    {
+        if( !is_null($this->sPath_idcard_verso) )
+        {
+            if( $this->sPath_idcard_verso==='' )
+            {
+                return NULL;
+            }
+            else
+            {
+                return $this->sPath_idcard_verso;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('path_idcard_verso'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->sPath_idcard_verso;
+        }
+    }
+
+    public function Pathcard_verso()
+    {
+        if( $this->sPath_idcard_verso){
+            $oPathcard_verso = new Pathcard_verso(array("id"=>$this->sPath_idcard_verso));
+            $oPathcard_verso->HydrateFromBDD(array("*"));
+            return $oPathcard_verso;
+        }else{
+            return NULL;
+        }
+    }
+
+
+    /**
      * Set le champ path_criminal_record
      * @param string $sPath_criminal_record nouvelle valeur pour le champ path_criminal_record
      */
@@ -1794,4 +1865,3 @@ class Candidature	{
     }
 
 }
-

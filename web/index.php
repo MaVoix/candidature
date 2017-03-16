@@ -48,5 +48,3 @@ if($bMaintenance){
     //init app
     App::init();
 }
-
-

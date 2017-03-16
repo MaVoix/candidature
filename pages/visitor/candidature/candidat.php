@@ -2,7 +2,11 @@
 
 if(isset($_GET["id"])){
     $oListeCandidature=new CandidatureListe();
-    $oListeCandidature->applyRules4GetCandidatVisitor($_GET["id"]);
+    if($oMe->getType()=="admin"){
+        $oListeCandidature->applyRules4GetCandidatAdmin($_GET["id"]);
+    }else{
+        $oListeCandidature->applyRules4GetCandidatVisitor($_GET["id"]);
+    }
     $aCandidatures=$oListeCandidature->getPage();
     if(count($aCandidatures)==1){
         $oCandidature=new Candidature(array("id"=>$aCandidatures[0]["id"]));

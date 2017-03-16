@@ -2,6 +2,15 @@
 
 
 {% block body %}
+    {#
+    exemple d'utilisation de "candidature" :
+    {{ candidature.firstname|ucwords }}
+    {{ candidature.city|capitalizefirst }} ({{ candidature.zipcode }})
+
+    //si pas le path de l'extrait judiciaire est vide (pas de fichier) alors "tontexte"
+    {% if candidature.path_criminal_record ==''  %} tontexte {% endif %}
+
+    #}
     <div class="wrapper-page">
         <div class="container">
             <div class="row">
@@ -16,6 +25,17 @@
 <p>Vous pouvez modifier votre candidature si vous avez oublié quelque chose ou que vous avez trouvé une meilleure photo. Le lien se trouve dans l'email de confirmation.</p>
 
 <p>Ce qu’il vous reste à faire désormais : </p>
+
+{% if candidature.path_criminal_record ==''  %}
+<h3 id="casierjudiciaire">Envoyer votre extrait de casier judiciaire 3B</h3>
+<p>Pour valider votre participation au tirage au sort, nous avons besoin, pour des raisons légales, que vous nous envoyiez une copie d'un extrait de casier judiciaire 3B :</p>
+<ol>
+  <li>demandez à <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank">cette adresse</a> à ce que l'extrait de casier judiciaire vous soit envoyé par courrier</li>
+  <li>lorsque vous l'aurez reçu, numérisez (scannez) le document</li>
+  <li>faites le nous parvenir en éditant votre formulaire de candidature grâce au lien contenu dans l'email de confirmation que l'on vient de vous envoyer</li>
+</ol>
+{% endif %}
+
 
 <h3 id="vousrapprocherdungroupelocalmavoix">Vous rapprocher d'un groupe local #MAVOIX</h3>
 

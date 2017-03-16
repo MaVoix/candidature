@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="control-label">Prénom :</label>
-                            <div>{{ candidature.firstname|capitalize}}</div>
+                            <div>{{ candidature.firstname|ucwords}}</div>
                         </div>
 
                         <div class="form-group">
@@ -48,11 +48,11 @@
                         <h2>Adresse</h2>
                         <div class="form-group">
 
-                            <b>{{ candidature.civility }} {{ candidature.firstname|capitalize}} {{ candidature.name|upper }}</b>
+                            <b>{{ candidature.civility }} {{ candidature.firstname|ucwords}} {{ candidature.name|upper }}</b>
                             <div>{{ candidature.ad1 }}</div>
                             <div>{{ candidature.ad2 }}</div>
                             <div>{{ candidature.ad3 }}</div>
-                            <div>{{ candidature.zipcode }} {{ candidature.city|capitalize }}</div>
+                            <div>{{ candidature.zipcode }} {{ candidature.city|capitalizefirst }}</div>
                             <div>{{ candidature.country}}</div>
                         </div>
 
@@ -99,8 +99,8 @@
 
                 </div>
             </div>
-            {%  if candidature.state=='offline'  %}
-            <div class="row m-b-x4 m-t-x2">
+
+            <div class="row m-b-x4 m-t-x2 blocedit_fiche {%  if candidature.state=='offline'  %}offline{% else %}online{% endif %}"   data-id-candidature="{{ candidature.id }}"  >
                 <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
 
                     <label for="linkedit" class="control-label">Lien d'édition :</label>
@@ -116,7 +116,7 @@
                 </div>
 
             </div>
-            {% endif %}
+
 
 
 

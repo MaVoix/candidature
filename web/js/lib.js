@@ -306,7 +306,22 @@ function sendAjaxRequest( url, aData, bFadeLoading)
 
             if(response.type == "refresh-state-list" )
             {
+                //reaffiche le bouton sur la fiche
                 $('[data-id-candidature="'+response.id+'"]').removeClass("offline").removeClass("online").addClass(response.class);
+
+                //reactive le bouton dans la liste
+                var $button= $('button[data-id-button-candidature="'+response.id+'"]');
+                if($button.length>0){
+                    if(response.class=="online"){
+                        $button.removeClass("jsLink");
+                        $button.prop("disabled",true);
+                    }else{
+                        $button.addClass("jsLink");
+                        $button.prop("disabled",false);
+                    }
+                }
+
+
             }
 
             if(response.type == "refresh-delete-list" )
