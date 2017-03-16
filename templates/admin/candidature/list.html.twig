@@ -98,7 +98,7 @@
                   </div>
                   </td>
 
-                  <td>  <a href="/{{ candidature.path_idcard }}" target="_blank" class="btn btn-block {%  if candidature.is_idcard == 1 %} btn-success {% else %} btn-primary {% endif %}"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> ID</a>
+                  <td style="font-size:14pt;">  <a href="/{{ candidature.path_idcard }}" target="_blank" class="btn btn-block {%  if candidature.is_idcard == 1 %} btn-success {% else %} btn-primary {% endif %}"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> ID</a>
                       {%  if candidature.path_idcard_verso !=''  %}
                       <a href="/{{ candidature.path_idcard_verso }}" target="_blank" class="btn btn-block {%  if candidature.is_idcard == 1 %} btn-success {% else %} btn-primary {% endif %}"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> ID verso</a>
                       {% endif %}
