@@ -4,6 +4,7 @@ html{
 body{
     height:100%;
     font-size: 18px;
+    padding-top: 50px;
 }
 
 #loading{
@@ -47,7 +48,9 @@ body{
     padding:25px 10px 10px 10px;
 }
 
-
+.btn {
+  font-size: 1em;
+}
 
 .toast {
     opacity: 1 !important;
@@ -300,7 +303,6 @@ button.btn-primary,button.btn-primary.active, .btn-primary:active, .open>.dropdo
   background-color: white;
   border-color: black;
   color: black;
-  font-size: 1.2em;
   transition: all 0.4s;
 }
 
@@ -337,6 +339,23 @@ h2, h3 {
 
 .table.updatableContent .checkbox-inline {
   margin-top: 5px;
+}
+
+.updatableContent .anchor {
+  position: relative;
+  bottom: 100px;
+}
+
+.updatableContent button, .updatableContent a.btn {
+  min-width: 120px;
+  font-size: 0.8em;
+}
+.updatableContent .checkbox-inline {
+  font-size: 14px;
+}
+
+.updatableContent .checkbox-inline+.checkbox-inline {
+  margin-left: 0px;
 }
 
 div.scrollable {

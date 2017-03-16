@@ -81,7 +81,7 @@
                 {% for candidature in candidatures %}
 
                 <tr>
-                  <td><span style="font-size:2em">{{ candidature.id }}</span></td>
+                  <td><a class="anchor" name="{{ candidature.id }}"></a><span style="font-size:2em">{{ candidature.id }}</span></td>
                   <td>
                    {#  <a href="/candidature/fiche.html?id={{ candidature.id }}"><div style="background-image:url('/{{ candidature.path_pic_fit }}');" class="square-pic-candidature-small jsLink" ></div></a> #}
                    <a href="/candidature/candidat.html?id={{ candidature.id }}"><div style="background-image:url('/{{ candidature.path_pic_fit }}');" class="square-pic-candidature-small jsLink" ></div></a>
@@ -98,7 +98,7 @@
                   </div>
                   </td>
 
-                  <td style="font-size:14pt;">  <a href="/{{ candidature.path_idcard }}" target="_blank" class="btn btn-block {%  if candidature.is_idcard == 1 %} btn-success {% else %} btn-primary {% endif %}"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> ID</a>
+                  <td>  <a href="/{{ candidature.path_idcard }}" target="_blank" class="btn btn-block {%  if candidature.is_idcard == 1 %} btn-success {% else %} btn-primary {% endif %}"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> ID</a>
                       {%  if candidature.path_idcard_verso !=''  %}
                       <a href="/{{ candidature.path_idcard_verso }}" target="_blank" class="btn btn-block {%  if candidature.is_idcard == 1 %} btn-success {% else %} btn-primary {% endif %}"><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> ID verso</a>
                       {% endif %}
@@ -112,8 +112,21 @@
                         <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> En ligne
                     </label>
                   </td>
-                  <td><a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}"
-                              class="btn btn-info btn-block"   >Editer</a></td>
+                  <td>
+                    <a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}" class="btn btn-info btn-block"   >Editer</a>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="jsSwitchAjax" data-onstyle="success"
+                               {% if candidature.is_idcard=='1' %}checked{% endif %} data-toggle="toggle"
+                               data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte
+                        ID valide
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="jsSwitchAjax" data-onstyle="success" {%  if candidature.path_criminal_record !=''  %} data-param="id={{ candidature.id }}" data-url="/candidature/criminal-record-valid.json" {% endif %} {% if candidature.is_criminal_record=='1' and  candidature.path_criminal_record !=''%}checked{% endif %} data-toggle="toggle"
+
+                               > Extrait casier valide
+                    </label>
+
+                            </td>
                 </tr>
 
 
