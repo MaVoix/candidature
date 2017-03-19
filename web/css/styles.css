@@ -52,6 +52,10 @@ body{
   font-size: 1em;
 }
 
+.btn-group-fontsize{
+    font-size: 14px;
+}
+
 .toast {
     opacity: 1 !important;
 }
