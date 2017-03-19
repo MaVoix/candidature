@@ -1,4 +1,4 @@
-# Candidature #MAVOIX v1.4.0
+# Candidature #MAVOIX v1.5.0
 
 Soumission et publication des inscriptions au tirage au sort [#MAVOIX](https://mavoix.info).
 
@@ -8,6 +8,11 @@ Version de test : https://candidature.maudry.fr
 
 
 ## Notes de version
+
+### 1.5.0
+
+- actions de validation possibles tant sur la vue liste que sur la prévisualisation
+- correction de bugs d'affichage
 
 ### 1.4.0
 
@@ -78,6 +83,7 @@ Version de test : https://candidature.maudry.fr
 - Composer
 - PHP mcrypt module
 - PHP curl module
+- PHP GD module
 - MySQL database
 
 

@@ -372,7 +372,7 @@ function sendAjaxRequest( url, aData, bFadeLoading)
                 {
 
                     $currentContent.replaceWith($updatedContent);
-                    $('[data-toggle]').bootstrapToggle();
+                    $('[type="checkbox"][data-toggle]').bootstrapToggle();
 
 
                 }
