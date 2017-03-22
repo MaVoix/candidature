@@ -16,8 +16,9 @@
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <h1>Voici les {{ candidatures|length }} premiers volontaires pour être candidat·e·s #MAVOIX</h1>
-                    <p>Allez à la rencontre de ces femmes et de ces hommes. Chacun·e raconte une part du chemin de<br/> cette expérimentation démocratique que nous inventons ensemble.</p>
-                    <p>Le 6 mai, à Paris, un tirage au sort désignera les candidat·e·s <a href="https://www.mavoix.info">#MAVOIX</a> aux législatives parmi ces volontaires. <br/><a title="Formulaire de candidatures" href="/">Les candidatures sont ouvertes</a> jusqu'au 25 avril à minuit.</p>
+                    <div class="col-xs-12 {% if oMe.type=='admin' %}jsEditCmsBlock{% else %}jsCmsBlock{% endif %}" data-block-ref="introcandidatures">
+                        {{ CMS.introcandidatures}}
+                    </div>
                 </div>
                 <div class="row">
                     {% for candidature in candidatures %}
