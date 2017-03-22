@@ -62,10 +62,15 @@
                                 <li>une copie de votre carte d'identité (recto/verso) ou de votre passeport. Le document doit être en cours de validité.</li>
                             </ul>
 
-                            <p>Pour valider votre participation au tirage au sort :</p>
-                            <ul>
-                                <li>un extrait de casier judiciaire 3B. Sa validité étant de trois mois, il ne serait pas valable pour le deuxième tour des élections législatives, qui a lieu le 18 juin, si vous nous le transmettiez aujourd'hui. Nous vous recontacterons un peu plus tard pour vous indiquer la procédure à suivre pour nous le transmettre. </li>
-                            </ul>
+                            <p>Pour valider votre participation au tirage au sort, vous devez également nous faire parvenir une copie d'un <strong>extrait de casier judiciaire 3B</strong>. Vous pouvez demander à ce qu'il vous soit envoyé par courrier à <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank">cette adresse</a>. Ce document n'est pas nécessaire pour valider le formulaire, mais <strong>vous devrez nous l'envoyer avant le 25 avril pour pouvoir partiper au tirage au sort</strong>. L'email de confirmation de candidature contient un lien pour modifier votre candidature, et <a href="#criminal_record_field">envoyer une copie numérisée</a> de ce document.</p>
+
+                            <p>Vous pouvez donc soit :</p>
+                              <ul>
+                                <li>valider le formulaire dès maintenant sans ce document et rééditer le formulaire lorsque vous aurez reçu et numérisé (scanné) votre extrait de casier judiciaire</li>
+                                <li>attendre d'avoir reçu votre extrait de casier judiciaire par la Poste pour remplir le formulaire, et ainsi envoyer tous les documents justificatifs d'un coup</li>
+                              </ul>
+
+                              <p>Dans tous les cas, si vous souhaitez devenir candidat #MAVOIX, nous vous conseillons de <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank">faire la demande de ce document</a> au plus vite.</p>
 
                             <h2>Certaines informations seront rendues publiques</h2>
 
@@ -77,6 +82,10 @@
                                 <li>Photo</li>
                                 <li>Texte et vidéo de témoignage (possibilité de partage sur les réseaux sociaux)</li>
                             </ul>
+
+                            <h2>Des questions ?</h2>
+
+                            <p>Si quelque chose n'est pas clair ou que vous avez des difficultés à valider le formulaire, n'hésitez pas à nous écrire à <strong>candidature@mavoix.info</strong> ou <a href="https://www.facebook.com/mavoixjuin2017" target="_blank">sur notre page Facebook</a>.</p>
 
                             <p>Les informations qui seront rendues publiques sont encadrées en <span style="color:#05a60d;font-weight:bold;">vert</span>.</p>
 
@@ -652,11 +661,11 @@
 
 
 
-                         <div class="form-group">
+                         <div class="form-group" id="criminal_record_field">
 
                             <label for="criminal_record" class="control-label">Extrait de casier judiciaire B3 ({{  ConfigService.get("max-filesize") }} Mo maximum) :</label>
 
-                            <div class="help-block">Vous pouvez demander au Ministère de la Justice de vous envoyer ce document par la Poste sur <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank" class="text-primary">ce site Web</a></div>
+                            <div class="help-block"><p>Vous pouvez demander au Ministère de la Justice de vous envoyer ce document par la Poste sur <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank" class="text-primary">ce site Web</a>. Vous pouvez valider le formulaire sans ce document, mais vous devrez nous le transmettre avant le 25 avril à minuit pour valider votre inscription au tirage au sort.</div>
 
                             <input type="file" class="form-control" accept="application/pdf, image/*" id="criminal_record"
                                    name="criminal_record">

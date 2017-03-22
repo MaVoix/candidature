@@ -24,7 +24,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control"
                                    value="{{ search }}" autofocus  id="search" name="search" placeholder="Nom, prénom, ville, code postal ...">
-                            <span class="input-group-btn"><button type="submit"  class="btn btn-default"><i class="fa fa-search"></i> Go</button>
+                            <span class="input-group-btn"><button type="submit"  class="btn btn-default btn-group-fontsize"><i class="fa fa-search"></i></button>
                             </span>                    </div>
                 </div>
                 <div class="col-xs-12 col-md-6" >
@@ -81,7 +81,7 @@
                 {% for candidature in candidatures %}
 
                 <tr>
-                  <td><span style="font-size:2em">{{ candidature.id }}</span></td>
+                  <td><a class="anchor" name="{{ candidature.id }}"></a><span style="font-size:2em">{{ candidature.id }}</span></td>
                   <td>
                    {#  <a href="/candidature/fiche.html?id={{ candidature.id }}"><div style="background-image:url('/{{ candidature.path_pic_fit }}');" class="square-pic-candidature-small jsLink" ></div></a> #}
                    <a href="/candidature/candidat.html?id={{ candidature.id }}"><div style="background-image:url('/{{ candidature.path_pic_fit }}');" class="square-pic-candidature-small jsLink" ></div></a>
@@ -108,15 +108,26 @@
                         <button disabled  class="btn btn-default btn-block" ><i class="fa fa-file-pdf-o pull-left" aria-hidden="true"></i> Extrait casier</button>
                     {% endif %}
 
+
+                  </td>
+                  <td>
+                    <a href="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}" class="btn btn-info btn-block"   >Editer</a>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="jsSwitchAjax" data-onstyle="success"
+                               {% if candidature.is_idcard=='1' %}checked{% endif %} data-toggle="toggle"
+                               data-url="/candidature/idcard-valid.json" data-param="id={{ candidature.id }}"> Carte
+                        ID valide
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" class="jsSwitchAjax" data-onstyle="success" {%  if candidature.path_criminal_record !=''  %} data-param="id={{ candidature.id }}" data-url="/candidature/criminal-record-valid.json" {% endif %} {% if candidature.is_criminal_record=='1' and  candidature.path_criminal_record !=''%}checked{% endif %} data-toggle="toggle"
+
+                               > Extrait casier valide
+                    </label>
                     <label class="checkbox-inline" >
                         <input type="checkbox" class="jsSwitchAjax" {%  if candidature.state=='online'  %}checked{% endif %} data-onstyle="success"  data-toggle="toggle" data-url="/candidature/state.json" data-param="id={{ candidature.id }}"> En ligne
                     </label>
-                  </td>
-                  <td>
 
-                    <button data-url="{{ ConfigService.get("urlSite") }}/candidature/form.html?id={{ candidature.id }}&key={{ candidature.key_edit }}" data-id-button-candidature="{{ candidature.id }}"
-                     class="btn btn-info btn-block {%  if candidature.state=='offline'  %}jsLink{% endif %}"   {%  if candidature.state=='online'  %}disabled{% endif %} >Editer</button>
-                   </td>
+                            </td>
                 </tr>
 
 

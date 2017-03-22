@@ -263,6 +263,18 @@ if($nError==0){
         $Candidature->setKey_edit($sKey);
         $Candidature->setState("offline");
     }
+
+    //force le mode offline sur l'enregistrement par un utilisateur
+    if($oMe->getType()!="admin"){
+        $Candidature->setState("offline");
+    }
+
+    //ajout un commentaire si edition utilisateur
+    if($oMe->getType()!="admin" && $bEdit){
+        $sCommentaire=""."Candidature modifiée le ".date("d/m/Y")." à ".date("H:i")." par le candidat."."\n\n".$OldCandidature->getComment();
+        $Candidature->setComment($sCommentaire);
+    }
+
     $Candidature->setName($_POST["nom"]);
     $Candidature->setFirstname($_POST["prenom"]);
     $Candidature->setCivility($_POST["civilite"]);

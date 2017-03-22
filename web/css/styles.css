@@ -4,6 +4,7 @@ html{
 body{
     height:100%;
     font-size: 18px;
+    padding-top: 50px;
 }
 
 #loading{
@@ -47,7 +48,13 @@ body{
     padding:25px 10px 10px 10px;
 }
 
+.btn {
+  font-size: 1em;
+}
 
+.btn-group-fontsize{
+    font-size: 14px;
+}
 
 .toast {
     opacity: 1 !important;
@@ -191,8 +198,8 @@ body{
 }
 
 .square-pic-candidature-small{
-    height:120px;
-    width:120px;
+    height:140px;
+    width:140px;
       /*margin:0;
       padding:0;*/
     background-size: cover;
@@ -248,7 +255,26 @@ a {
 }
 
 .topmenu {
-  background-color: #f2e732;
+    background-color: #f2e732;
+    color:#000000;
+}
+
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>li>a{
+text-decoration: none;
+    background-color: transparent;
+    color:#000;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+text-decoration: none;
+    background-color: #eee;
+}
+.topmenu .navbar-toggle,.topmenu .navbar-toggle:focus,.topmenu .navbar-toggle:hover, .topmenu .navbar-toggle:active {
+    border-color: #000000;
+    color:#000000;
+    background-color: transparent;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border:none;
 }
 
 .navbar-right {
@@ -281,7 +307,6 @@ button.btn-primary,button.btn-primary.active, .btn-primary:active, .open>.dropdo
   background-color: white;
   border-color: black;
   color: black;
-  font-size: 1.2em;
   transition: all 0.4s;
 }
 
@@ -318,6 +343,23 @@ h2, h3 {
 
 .table.updatableContent .checkbox-inline {
   margin-top: 5px;
+}
+
+.updatableContent .anchor {
+  position: relative;
+  bottom: 100px;
+}
+
+.updatableContent button, .updatableContent a.btn {
+  min-width: 120px;
+  font-size: 0.8em;
+}
+.updatableContent .checkbox-inline {
+  font-size: 14px;
+}
+
+.updatableContent .checkbox-inline+.checkbox-inline {
+  margin-left: 0px;
 }
 
 div.scrollable {
