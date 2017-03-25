@@ -1,30 +1,48 @@
-<html><body>
+{% extends "visitor/base.html.twig" %}
+
+{% block meta %}
+    <meta property="og:title" content="Candidatures #MAVOIX - Législatives 2017"/>
+    <meta property="og:description" content="Allez à la rencontre de ces femmes et de ces hommes. Chacun·e raconte une part du chemin de cette expérimentation démocratique que nous inventons ensemble. Le 6 mai, à Paris, un tirage au sort désignera les candidat·e·s #MAVOIX aux législatives."/>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ urlPage }}" />
+    <meta property="og:image" content="{{ ConfigService.get("urlSite") }}/css/images/image-panneaux.png" />
+{% endblock %}
+
+
+
+{% block body %}
 <div id="mapdiv"></div>
-<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-<script>
-    map = new OpenLayers.Map("mapdiv");
-    map.addLayer(new OpenLayers.Layer.OSM());
-
-    var center = new OpenLayers.LonLat( {{ candidatures[0].lng  }} ,{{ candidatures[0].lat  }} )
-        .transform(
-            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-            map.getProjectionObject() // to Spherical Mercator Projection
-        );
-
-    var zoom=8;
-
-    var markers = new OpenLayers.Layer.Markers( "Markers" );
-
-
+<div id="map" style="width:100%;height:100%;"> </div>
+<script type="text/javascript" src="http://maplib.khtml.org/khtml.maplib/khtml_all.js"> </script>
+<script type="text/javascript" >
+    var map=khtml.maplib.Map(document.getElementById("map"));
+    map.centerAndZoom(new khtml.maplib.LatLng({{ candidatures[0].lat  }} ,{{ candidatures[0].lng  }}),7) //latitude, longitude, zoom
+    var marker=[];
+    var infobox=[];
     {% for candidature in candidatures %}
-        markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat( {{ candidature.lng  }} ,{{ candidature.lat }} ).transform(
-            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-            map.getProjectionObject())) // to Spherical Mercator Projection
-        );
+    marker[{{ loop.index }}] = new khtml.maplib.overlay.Marker({
+        position: new khtml.maplib.LatLng({{ candidature.lat  }}+{{ loop.index/6000 }},{{ candidature.lng  }}+{{ loop.index/6000 }}), //ajout de l'index pour éviter les superpositions exact
+        icon: {
+            url: "/css/images/marker-map.png",
+            size: {width: 50, height: 42},
+            origin: {x: 0, y: 0},
+            anchor: {
+                x: "-25px",
+                y: "-21px"
+            }
+        }, draggable: false,
+        title: "{{ candidature.firstname|ucwords }}"
+    });
+    infobox[{{ loop.index }}] = new khtml.maplib.overlay.InfoWindow({
+        content: "<a href='/candidature/candidat.html?id={{ candidature.id }}' style='color:#000000;'><div style='float:left;width:50px;height:50px;background-position:center;background-size:cover;background-image:url(/{{ candidature.path_pic_fit }});' ></div><div class='text-center '><h3 class='no-margin'>{{  candidature.firstname|ucwords }}<br/><small>{{ candidature.city|capitalizefirst }} ({{ candidature.zipcode }})</small></h3></div></a>"
+
+    });
+
+    marker[{{ loop.index }}].attachEvent( 'click', function() {
+        infobox[{{ loop.index }}] .open(map, this);
+    });
+    map.addOverlay(marker[{{ loop.index }}]);
+
     {%  endfor %}
-    map.addLayer(markers);
-
-    map.setCenter (center, zoom);
 </script>
-
-</body></html>
+{% endblock %}
