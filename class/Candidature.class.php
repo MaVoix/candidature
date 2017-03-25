@@ -623,7 +623,7 @@ class Candidature	{
                     $geometry=$features[0]["geometry"];
                     if(array_key_exists("coordinates",$geometry)){
                         if(count($geometry["coordinates"])==2){
-                            $coordinate=array("lat"=>$geometry["coordinates"][0],"lng"=>$geometry["coordinates"][1]);
+                            $coordinate=array("lat"=>$geometry["coordinates"][1],"lng"=>$geometry["coordinates"][0]);
                         }
 
                     }
