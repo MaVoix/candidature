@@ -631,8 +631,7 @@ class Candidature	{
                 }
             }
         }
-        $this->setLat( $coordinate["lat"]);
-        $this->setLng( $coordinate["lng"]);
+       return $coordinate;
 
     }
 
