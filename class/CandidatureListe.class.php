@@ -37,7 +37,9 @@ class CandidatureListe extends Liste
         "is_idcard",
         "is_criminal_record",
         "comment",
-        "key_edit"
+        "key_edit",
+        "lat",
+        "lng"
     );
 
     /**
