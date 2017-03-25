@@ -14,12 +14,17 @@
     var zoom=8;
 
     var markers = new OpenLayers.Layer.Markers( "Markers" );
-    map.addLayer(markers);
+
 
     {% for candidature in candidatures %}
-        markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat( {{ candidature.lng  }} ,{{ candidature.lat }} )));
+        markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat( {{ candidature.lng  }} ,{{ candidature.lat }} ).transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject())) // to Spherical Mercator Projection
+        );
     {%  endfor %}
+    map.addLayer(markers);
 
     map.setCenter (center, zoom);
 </script>
+
 </body></html>
