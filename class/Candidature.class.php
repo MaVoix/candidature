@@ -610,7 +610,7 @@ class Candidature	{
 
     public function geocode(){
         //requete : on ne recupere que les coordonnées GPS de la ville
-        $query="http://api-adresse.data.gouv.fr/search/?q=".$this->getCity().",".$this->getZipcode()."&limit=1";
+        $query="http://api-adresse.data.gouv.fr/search/?q=".urlencode($this->getCity().",".$this->getZipcode())."&limit=1";
         $aContext=array('http'=>array('timeout'=>3)); //in second
         $context = stream_context_create($aContext);
         $response=file_get_contents($query,0,$context);
