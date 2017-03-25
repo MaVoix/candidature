@@ -608,6 +608,34 @@ class Candidature	{
     }
 
 
+    public function geocode(){
+        //requete : on ne recupere que les coordonnées GPS de la ville
+        $query="http://api-adresse.data.gouv.fr/search/?q=".$this->getCity().",".$this->getZipcode()."&limit=1";
+        $aContext=array('http'=>array('timeout'=>3)); //in second
+        $context = stream_context_create($aContext);
+        $response=file_get_contents($query,0,$context);
+        $data=json_decode($response,true);
+        $coordinate=array("lat"=>null,"lng"=>null);
+        if(!is_null($data)){
+            if(array_key_exists("features",$data)){
+                $features=$data["features"];
+                if(array_key_exists("geometry",$features)){
+                    $geometry=$features["features"]["geometry"];
+                    if(array_key_exists("coordinates",$geometry)){
+                        if(count($geometry["coordinates"])==2){
+                            $coordinate=array("lat"=>$geometry[0],"lng"=>$geometry["lng"]);
+
+                        }
+
+                    }
+                }
+            }
+        }
+        $this->setLat( $coordinate["lat"]);
+        $this->setLng( $coordinate["lng"]);
+
+    }
+
 
     /*
     ********************************************************************************************
