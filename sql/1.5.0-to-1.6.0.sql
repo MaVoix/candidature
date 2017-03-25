@@ -1,0 +1,1 @@
+ALTER TABLE `candidature` ADD `lat` DOUBLE NULL DEFAULT NULL AFTER `key_edit`, ADD `lng` DOUBLE NULL DEFAULT NULL AFTER `lat`;
