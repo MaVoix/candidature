@@ -619,12 +619,11 @@ class Candidature	{
         if(!is_null($data)){
             if(array_key_exists("features",$data)){
                 $features=$data["features"];
-                if(array_key_exists("geometry",$features)){
-                    $geometry=$features["features"]["geometry"];
+                if(array_key_exists("geometry",$features[0])){
+                    $geometry=$features[0]["geometry"];
                     if(array_key_exists("coordinates",$geometry)){
                         if(count($geometry["coordinates"])==2){
-                            $coordinate=array("lat"=>$geometry[0],"lng"=>$geometry["lng"]);
-
+                            $coordinate=array("lat"=>$geometry["coordinates"][0],"lng"=>$geometry["coordinates"][1]);
                         }
 
                     }
@@ -632,7 +631,6 @@ class Candidature	{
             }
         }
        return $coordinate;
-
     }
 
 
