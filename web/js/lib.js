@@ -248,7 +248,7 @@ $(document).ready(function () {
     $markdownEditBlocks.each(function(){
         var str=$.trim($(this).text());
         if(str==""){
-            $(this).html(markdown.toHTML("Vide")) ;
+            $(this).html(markdown.toHTML("Double cliquez ici pour éditer ce texte")) ;
         }else {
             $(this).html(markdown.toHTML($.trim($(this).text())));
         }
@@ -555,10 +555,3 @@ function sendAjaxRequest( url, aData, bFadeLoading)
 
 
 })(jQuery);
-
-
-
-
-
-
-
