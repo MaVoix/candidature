@@ -35,7 +35,7 @@
                         </div>
 
 
-                        {#{% if ConfigService.get("enable-captcha")== 1  %}#}
+                        {% if ConfigService.get("enable-captcha-editlink")== 1  %}
                             <div class="form-group">
                                 <label for="captcha" class="control-label">Code de sécurité : *</label>
                                 <div class="p-b">
@@ -45,7 +45,7 @@
                                        value=""
                                        placeholder="copiez ici le code de sécurité">
                             </div>
-                            {#{% endif  %}#}
+                            {% endif  %}
 
 <hr />
 <div class="text-center">
