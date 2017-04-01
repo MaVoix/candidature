@@ -1,0 +1,63 @@
+{% extends "visitor/base.html.twig" %}
+
+{% block body %}
+    <div class="wrapper-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <form action="/candidature/send-edit-link.json" id="formeditlink" method="post" autocomplete="off"
+                          data-ajax="true"
+                          enctype="multipart/form-data">
+
+
+                            <div style="margin:auto">
+                                <h1>Vous souhaitez modifier ou ajouter un élément à votre candidature ?</h1>
+                            </div>
+
+                            <hr/>
+
+                            <p>Vous pouvez utiliser le lien que nous vous avons envoyé par e-mail lors de l'inscription. Si vous n'avez plus ce mail, nous pouvons vous le renvoyer. Il vous suffit de remplir le formulaire ci-dessous.</p>
+
+
+                        <div class="form-group">
+                            <label for="email" class="control-label">E-mail : *</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   value="{{ candidature.email }}"
+                                   placeholder="xxxxxx@xxxxx.com ">
+                            <p class="help-block">Identique a celui utilisé pour votre candidature</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cp" class="control-label">Code postal : *</label>
+                            <input type="text" class="form-control" id="cp" name="cp" value="{{ candidature.zipcode }}"
+                                   placeholder="XXXXX">
+                            <p class="help-block">Identique a celui utilisé pour votre candidature</p>
+                        </div>
+
+
+                        {#{% if ConfigService.get("enable-captcha")== 1  %}#}
+                            <div class="form-group">
+                                <label for="captcha" class="control-label">Code de sécurité : *</label>
+                                <div class="p-b">
+                                    <img src="/captcha/image.jpg" class="jsCaptcha" style="border:1px solid #000000;"/><br /><a href="javascript:void(0);" class="text-primary jsCaptchaRefresh" style="color:#888888;"> Ce code est illisible !  </a>
+                                </div>
+                                <input type="text" class="form-control" id="captcha" name="captcha"
+                                       value=""
+                                       placeholder="copiez ici le code de sécurité">
+                            </div>
+                            {#{% endif  %}#}
+
+<hr />
+<div class="text-center">
+   <button type="submit" class="btn btn-primary">Renvoyer moi l'e-mail
+
+   </button>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
