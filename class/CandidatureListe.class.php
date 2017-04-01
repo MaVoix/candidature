@@ -186,6 +186,37 @@ class CandidatureListe extends Liste
         return $this;
     }
 
+    public function applyRules4GetEditLink($email,$cp)
+    {
+        $this->setAllFields();
+
+        $this->addCriteres([
+            [
+                "field" => "email",
+                "compare" => "=",
+                "value" => vars::secureInjection($email)
+            ]
+        ]);
+
+        $this->addCriteres([
+            [
+                "field" => "zipcode",
+                "compare" => "=",
+                "value" => vars::secureInjection($cp)
+            ]
+        ]);
+
+        $this->addCriteres([
+            [
+                "field" => "date_deleted",
+                "compare" => "IS NULL",
+                "value" => ""
+            ]
+        ]);
+
+        return $this;
+    }
+
 
     public function applyRules4GetCandidatAdmin($id)
     {
