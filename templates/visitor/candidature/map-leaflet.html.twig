@@ -27,7 +27,7 @@
          var markerList=[];
 
          {% for candidature in candidatures %}
-            markerList[{{ loop.index-1 }}]=[{{ candidature.lat }},{{ candidature.lng }},"<a href='/candidature/candidat.html?id={{ candidature.id }}' style='color:#000000;'><div style='float:left;width:50px;height:50px;background-position:center;background-size:cover;background-image:url(/{{ candidature.path_pic_fit }});' ></div><div class='text-center '><h3 class='no-margin'>{{  candidature.firstname|ucwords }}<br/><small>{{ candidature.city|capitalizefirst }} ({{ candidature.zipcode }})</small></h3></div></a>"];
+            markerList[{{ loop.index-1 }}]=[{{ candidature.lat}} + {{ loop.index/20  }},{{ candidature.lng}} + {{ loop.index/20 }},"<a href='/candidature/candidat.html?id={{ candidature.id }}' style='color:#000000;'><div style='float:left;width:50px;height:50px;background-position:center;background-size:cover;background-image:url(/{{ candidature.path_pic_fit }});' ></div><div class='text-center '><h3 class='no-margin'>{{  candidature.firstname|ucwords }}<br/><small>{{ candidature.city|capitalizefirst }} ({{ candidature.zipcode }})</small></h3></div></a>"];
          {%  endfor %}
      </script>
      <script src="/js/leafletembed.js"></script>
