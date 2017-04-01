@@ -348,6 +348,10 @@ function sendAjaxRequest( url, aData, bFadeLoading)
                     toastr.options.timeOut = 10000;
                 }
                 toastr[response.message.type](response.message.text, response.message.title);
+                $captchaBtn=$(".jsCaptchaRefresh");
+                if($captchaBtn.length>0){
+                    $captchaBtn.trigger('click');
+                }
             }
 
             if(response.type == "refresh-state-list" )
