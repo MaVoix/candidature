@@ -9,6 +9,12 @@ Version de test : https://candidature.maudry.fr
 
 ## Notes de version
 
+### 1.6.0
+
+- présentation des candidatures sous la forme d'une carte
+- possibilité pour les candidats de se faire renvoyer le mail de confirmation, et donc faciliter la modification
+- les administrateurs peuvent personnaliser le texte au-dessus de la liste des candidats
+
 ### 1.5.0
 
 - actions de validation possibles tant sur la vue liste que sur la prévisualisation
