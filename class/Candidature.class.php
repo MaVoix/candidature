@@ -37,6 +37,8 @@ class Candidature	{
     private $bIs_criminal_record;
     private $sComment;
     private $sKey_edit;
+    private $nLat;
+    private $nLng;
 
 
     /**
@@ -295,6 +297,16 @@ class Candidature	{
             $aData["key_edit"]=$this->getKey_edit();
         }
 
+        if(isset($this->aDataSet["lat"]))
+        {
+            $aData["lat"]=$this->getLat();
+        }
+
+        if(isset($this->aDataSet["lng"]))
+        {
+            $aData["lng"]=$this->getLng();
+        }
+
         if($this->getId()>0)
         {
             DbLink::getInstance($this->_sDbInstance)->update("candidature",$aData,' id="'.$this->getId().'" ');
@@ -340,6 +352,8 @@ class Candidature	{
         $this->setIs_criminal_record(0);
         $this->setComment(NULL);
         $this->setKey_edit(NULL);
+        $this->setLat(0);
+        $this->setLng(0);
     }
 
     /**
@@ -375,7 +389,9 @@ class Candidature	{
             "is_idcard" => $this->getIs_idcard(),
             "is_criminal_record" => $this->getIs_criminal_record(),
             "comment" => $this->getComment(),
-            "key_edit" => $this->getKey_edit()
+            "key_edit" => $this->getKey_edit(),
+            "lat" => $this->getLat(),
+            "lng" => $this->getLng()
         ];
 
         return json_encode($aObjet);
@@ -384,10 +400,10 @@ class Candidature	{
 
 
     /*
-    ********************************************************************************************
-    *                             DEBUT FONCTIONS PERSONNALISES                  	           *
-    ********************************************************************************************
-    */
+   ********************************************************************************************
+   *                             DEBUT FONCTIONS PERSONNALISES                  	           *
+   ********************************************************************************************
+   */
     public function getPresentation_meta()
     {
         return trim(str_replace(array('"',"\t","\n","\r"),array("'","","",""),$this->getPresentation()));
@@ -547,6 +563,16 @@ class Candidature	{
             $aData["key_edit"]=$this->getKey_edit();
         }
 
+        if(isset($this->aDataSet["lat"]))
+        {
+            $aData["lat"]=$this->getLat();
+        }
+
+        if(isset($this->aDataSet["lng"]))
+        {
+            $aData["lng"]=$this->getLng();
+        }
+
         if($this->getId()>0)
         {
             $sSql="";
@@ -581,6 +607,31 @@ class Candidature	{
         $this->aDataSet=array();
     }
 
+
+    public function geocode(){
+        //requete : on ne recupere que les coordonnées GPS de la ville
+        $query="http://api-adresse.data.gouv.fr/search/?q=".urlencode($this->getCity().",".$this->getZipcode())."&limit=1";
+        $aContext=array('http'=>array('timeout'=>3)); //in second
+        $context = stream_context_create($aContext);
+        $response=file_get_contents($query,0,$context);
+        $data=json_decode($response,true);
+        $coordinate=array("lat"=>null,"lng"=>null);
+        if(!is_null($data)){
+            if(array_key_exists("features",$data)){
+                $features=$data["features"];
+                if(array_key_exists("geometry",$features[0])){
+                    $geometry=$features[0]["geometry"];
+                    if(array_key_exists("coordinates",$geometry)){
+                        if(count($geometry["coordinates"])==2){
+                            $coordinate=array("lat"=>$geometry["coordinates"][1],"lng"=>$geometry["coordinates"][0]);
+                        }
+
+                    }
+                }
+            }
+        }
+       return $coordinate;
+    }
 
 
     /*
@@ -1861,6 +1912,100 @@ class Candidature	{
                 echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
             }
             return $this->sKey_edit;
+        }
+    }
+
+
+
+    /**
+     * Set le champ lat
+     * @param numeric $nLat nouvelle valeur pour le champ lat
+     */
+    public function setLat($nLat)
+    {
+        if( is_null($nLat) ) $nLat='';
+        if( is_numeric($nLat)  || $nLat=='' )
+        {
+            $this->nLat = $nLat;
+            $this->aDataSet["lat"]=1;
+        }
+    }
+
+
+
+    /**
+     * Get le champ lat
+     * @return numeric valeur du champ lat
+     */
+    public function getLat()
+    {
+        if( !is_null($this->nLat) )
+        {
+            if( $this->nLat==='' )
+            {
+                return NULL;
+            }
+            else
+            {
+                return $this->nLat;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('lat'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->nLat;
+        }
+    }
+
+
+
+    /**
+     * Set le champ lng
+     * @param numeric $nLng nouvelle valeur pour le champ lng
+     */
+    public function setLng($nLng)
+    {
+        if( is_null($nLng) ) $nLng='';
+        if( is_numeric($nLng)  || $nLng=='' )
+        {
+            $this->nLng = $nLng;
+            $this->aDataSet["lng"]=1;
+        }
+    }
+
+
+
+    /**
+     * Get le champ lng
+     * @return numeric valeur du champ lng
+     */
+    public function getLng()
+    {
+        if( !is_null($this->nLng) )
+        {
+            if( $this->nLng==='' )
+            {
+                return NULL;
+            }
+            else
+            {
+                return $this->nLng;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('lng'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->nLng;
         }
     }
 

@@ -1,0 +1,30 @@
+{% extends "admin/base.html.twig" %}
+
+
+{% block body %}
+<div class="wrapper-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 {% if oMe.type=='admin' %}jsEditCmsBlock{% else %}jsCmsBlock{% endif %}" data-block-ref="homeadmin">
+{{ CMS.homeadmin }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 {% if oMe.type=='admin' %}jsEditCmsBlock{% else %}jsCmsBlock{% endif %}" data-block-ref="nouveaublock">
+{{ CMS.nouveaublock }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5 {% if oMe.type=='admin' %}jsEditCmsBlock{% else %}jsCmsBlock{% endif %}" data-block-ref="col1">
+                {{ CMS.col1 }}
+            </div>
+            <div class="col-xs-1">
+
+            </div>
+            <div class="col-xs-5 {% if oMe.type=='admin' %}jsEditCmsBlock{% else %}jsCmsBlock{% endif %}" data-block-ref="col2">
+                {{ CMS.col2 }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

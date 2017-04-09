@@ -220,6 +220,52 @@ $(document).ready(function () {
         }
     }, 1000 * 60 * 2);
 
+    //CMS Markdown
+   $body.on('dblclick','.jsEditCmsBlock',function(){
+       var $block=$(this);
+       var ref=$(this).data("block-ref");
+       $block.markdown({
+            savable:true,
+            language:'fr',
+            hideable:true,
+           hiddenButtons:["cmdPreview"],
+            onShow: function(e){},
+            onPreview: function(e) {
+                return e.getContent();
+            },
+            onSave: function(e) {
+                sendAjaxRequest("/cms/save.json",{content:e.getContent(),ref:ref},true);
+                e.blur();
+            },
+            onChange: function(e){},
+            onFocus: function(e) {},
+            onBlur: function(e) {}
+        })
+
+    });
+
+    var $markdownEditBlocks=$(".jsEditCmsBlock");
+    $markdownEditBlocks.each(function(){
+        var str=$.trim($(this).text());
+        if(str==""){
+            $(this).html(markdown.toHTML("Double cliquez ici pour éditer ce texte")) ;
+        }else {
+            $(this).html(markdown.toHTML($.trim($(this).text())));
+        }
+    });
+
+    var $markdownBlocks=$(".jsCmsBlock");
+    $markdownBlocks.each(function(){
+        var str=$.trim($(this).text());
+        if(str==""){
+
+        }else {
+            $(this).html(markdown.toHTML($.trim($(this).text())));
+        }
+    });
+
+
+
 });
 
 
@@ -302,6 +348,10 @@ function sendAjaxRequest( url, aData, bFadeLoading)
                     toastr.options.timeOut = 10000;
                 }
                 toastr[response.message.type](response.message.text, response.message.title);
+                $captchaBtn=$(".jsCaptchaRefresh");
+                if($captchaBtn.length>0){
+                    $captchaBtn.trigger('click');
+                }
             }
 
             if(response.type == "refresh-state-list" )
@@ -509,10 +559,3 @@ function sendAjaxRequest( url, aData, bFadeLoading)
 
 
 })(jQuery);
-
-
-
-
-
-
-

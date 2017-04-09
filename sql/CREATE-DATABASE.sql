@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 10 Mars 2017 à 11:13
+-- Généré le :  Sam 25 Mars 2017 à 10:56
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -56,7 +57,24 @@ CREATE TABLE `candidature` (
   `is_idcard` tinyint(1) NOT NULL DEFAULT '0',
   `is_criminal_record` tinyint(1) NOT NULL DEFAULT '0',
   `comment` text NOT NULL,
-  `key_edit` varchar(255) NOT NULL
+  `key_edit` varchar(255) NOT NULL,
+  `lat` double DEFAULT NULL,
+  `lng` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cms`
+--
+
+CREATE TABLE `cms` (
+  `id` int(11) NOT NULL,
+  `date_created` datetime DEFAULT NULL,
+  `date_amended` datetime DEFAULT NULL,
+  `date_deleted` datetime DEFAULT NULL,
+  `ref` varchar(200) NOT NULL,
+  `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -84,6 +102,12 @@ ALTER TABLE `candidature`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `cms`
+--
+ALTER TABLE `cms`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
@@ -99,10 +123,16 @@ ALTER TABLE `user`
 ALTER TABLE `candidature`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT pour la table `cms`
+--
+ALTER TABLE `cms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -288,6 +288,17 @@ if($nError==0){
     $Candidature->setCountry($_POST["pays"]);
     $Candidature->setUrl_video($_POST["video"]);
     $Candidature->setPresentation(vars::cleanInput($_POST["presentation"]));
+
+
+    //geocode
+
+    $coordinate= $Candidature->geocode();
+    if(!is_null($coordinate["lat"]) && !is_null($coordinate["lng"]) ) {
+        $Candidature->setLat($coordinate["lat"]);
+        $Candidature->setLng($coordinate["lng"]);
+    }
+
+
     if($oMe->getType()=="admin") {
         $Candidature->setComment(vars::cleanInput($_POST["comment"]));
     }

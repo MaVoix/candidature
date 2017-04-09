@@ -28,6 +28,8 @@ if($bMaintenance){
 
     require_once '../class/Candidature.class.php';
     require_once '../class/CandidatureListe.class.php';
+    require_once '../class/Cms.class.php';
+    require_once '../class/CmsListe.class.php';
     require_once '../class/Navigate.class.php';
     require_once '../class/TwigExtension.class.php';
     require_once '../class/TwigExtensionFilter.class.php';

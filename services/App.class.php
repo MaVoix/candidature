@@ -18,6 +18,17 @@ class App
         $twig->addGlobal("urlPageEncoded", urlencode($oNavigate->getUrl()) );
         $twig->addGlobal("urlSite", ConfigService::get("urlSite"));
         $twig->addGlobal("urlSiteHTTP", str_replace("https://","http://",ConfigService::get("urlSite")));
+        $twig->addGlobal("urlSite", ConfigService::get("urlSite"));
+
+        //CMS
+        $oListeCms=new CmsListe();
+        $oListeCms->applyRules4All();
+        $aDatas=$oListeCms->getPage();
+        $aDataCms=array();
+        foreach($aDatas as $aData){
+            $aDataCms[$aData["ref"]]=$aData["content"];
+        }
+        $twig->addGlobal("CMS", $aDataCms);
 
         if(file_exists( self::TWIG_TEMPLATE_DIR."/".$oNavigate->getTemplate()))
         {
