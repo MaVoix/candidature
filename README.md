@@ -1,4 +1,4 @@
-# Candidature #MAVOIX v1.5.0
+# Candidature #MAVOIX v1.6.1
 
 Soumission et publication des inscriptions au tirage au sort [#MAVOIX](https://mavoix.info).
 
@@ -8,6 +8,10 @@ Version de test : https://candidature.maudry.fr
 
 
 ## Notes de version
+
+### 1.6.1
+
+- suppression du lien public vers la carte des candidatures en raison d'un problème de géocodage #54
 
 ### 1.6.0
 
