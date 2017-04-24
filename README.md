@@ -1,4 +1,4 @@
-# Candidature #MAVOIX v1.6.2
+# Candidature #MAVOIX v1.6.4
 
 Soumission et publication des inscriptions au tirage au sort [#MAVOIX](https://mavoix.info).
 
@@ -8,6 +8,10 @@ Version de test : https://candidature.maudry.fr
 
 
 ## Notes de version
+
+### 1.6.4
+
+- Correction de la date limite pour éditer sa candidature (25 avril => 2 mai)
 
 ### 1.6.3
 
