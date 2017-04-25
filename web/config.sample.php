@@ -28,6 +28,7 @@ $_CONFIG["mail-smtp-pass"]			        ="-"; //server smtp pass
 
 // MAIN
 $_CONFIG["idSite"]                          = "appelcandidature"; //for unique session var prefix
+$_CONFIG["allowNewCandidature"]         = true; //Set to false to block new candidature but allow editing
 $_CONFIG["types"]			                = "visitor|admin>visitor"; //set hierarchy of user type ex: "type1|type2>type1|type3>type1|admin|type3>type2>type1"
 $_CONFIG["area-default"]                    = array("visitor"=>"candidature","admin"=>"candidature"); //dir default for each type user
 $_CONFIG["page-default"]                    = array("visitor"=>"form","admin"=>"list"); //page default for each type user
