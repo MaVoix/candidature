@@ -29,6 +29,8 @@
                             <input type="hidden" id="id" name="id" value="{{ candidature.id }}"/>
                             <input type="hidden" id="key" name="key" value="{{ key }}"/>
                         {% endif %}
+                        {% if ConfigService.get("allowNewCandidature") or  candidature.id!=''  %}
+
                         {% if oMe.type=='admin' and candidature.id!='' %}
                             <div style="margin:auto">
                                 <h1>Édition de la candidature</h1>
@@ -42,6 +44,8 @@
                             </div>
                             <hr/>
                         {%  else %}
+
+
 
                             <div style="margin:auto">
                                 <h1>Bienvenue dans l’expérimentation inédite #MAVOIX</h1>
@@ -665,7 +669,7 @@
 
                             <label for="criminal_record" class="control-label">Extrait de casier judiciaire B3 ({{  ConfigService.get("max-filesize") }} Mo maximum) :</label>
 
-                            <div class="help-block"><p>Vous pouvez demander au Ministère de la Justice de vous envoyer ce document par la Poste sur <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank" class="text-primary">ce site Web</a>. Vous pouvez valider le formulaire sans ce document, mais vous devrez nous le transmettre avant le 25 avril à minuit pour valider votre inscription au tirage au sort.</div>
+                            <div class="help-block"><p>Vous pouvez demander au Ministère de la Justice de vous envoyer ce document par la Poste sur <a href="https://www.cjn.justice.gouv.fr/cjn/b3/eje20" target="_blank" class="text-primary">ce site Web</a>. Vous pouvez valider le formulaire sans ce document, mais vous devrez nous le transmettre avant le 2 mai à minuit pour valider votre inscription au tirage au sort.</div>
 
                             <input type="file" class="form-control" accept="application/pdf, image/*" id="criminal_record"
                                    name="criminal_record">
@@ -724,6 +728,22 @@
                                 </button>
                             </div>
                         {% endif %}
+
+                      {% else %} <!-- allowNewCandidature || group.id -->
+
+                      <p><strong>Les candidatures sont closes depuis le 25 avril 2017, à minuit.</strong></p>
+                      <p>Si vous avez déjà déposé votre candidature et souhaitez l'éditer, utilisez le lien d'édition présent dans l'email de confirmation que vous avez reçu.</p>
+                      <p>Si besoin, nous pouvons <a href="/candidature/ask-edit-link.html" target="_blank">vous renvoyer cet email de confirmation</a>.</p>
+                      <hr/>
+                      <p>Le tirage au sort des candidats <a href="https://www.mavoix.info/">#MAVOIX</a> aura lieu...</p>
+                      <p><strong>Quand ?</strong> Le 6 mai, de 9h30 à 14h</p>
+                      <p><strong>Où ?</strong><br/>
+                      Les Grands Voisins<br/>
+                      82 avenue Denfert-Rochereau<br/>
+                      75014 Paris<br/>
+                      (métro Denfert-Rochereau)</p>
+
+                      {% endif %} <!-- endif allowNewCandidature || group.id -->
                         <div class="text-center p-t-x4 p-b-x4">
                             <div class="fb-share-button" data-href="{{ urlPage }}" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlPageEncoded }}&amp;src=sdkpreparse">Partager</a></div>
                         </div>
