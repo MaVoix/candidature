@@ -2,7 +2,7 @@
 
 session_start();
 
-ini_set("memory_limit", "1G");
+ini_set("memory_limit", "256M");
 
 
 $bMaintenance=false;
