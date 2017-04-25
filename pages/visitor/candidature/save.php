@@ -440,7 +440,7 @@ if($nError==0){
         }
 
         if($oMe->getType()=="admin"){
-            $aResponse["redirect"] = "/candidature/list.html";
+            $aResponse["redirect"] = "/candidature/candidat.html?id=" . $Candidature->getId();
         }else{
             $aResponse["redirect"] = "/candidature/success.html";
         }
