@@ -622,9 +622,7 @@
                         {% if candidature.state=='online' and oMe.type!='admin' %}
 
                         <p><strong>De façon à ne pas surcharger l'équipe de validation des candidatures, nous avons décidé de bloquer l'édition de votre texte de présentation et de votre vidéo à partir du moment où votre candidature a été validée et <a href="/candidature/candidat.html?id={{ candidature.id }}" title="Candidature publique">publiée</a>. Merci de votre compréhension.</strong></p>
-
-
-                        {% else %}
+                         <div style="visibility:hidden;position:absolute;left:-10000px">{% endif %}
 
                         <div class="form-group">
                             <label for="presentation" class="control-label">Insérez votre texte...</label>
@@ -642,8 +640,9 @@
                             <p class="help-block form-text text-muted">
                                 Youtube, Vimeo ou Dailymotion (lien complet avec http..)</p>
                         </div>
+                        {% if candidature.state=='online' and oMe.type!='admin' %}</div>{% endif %}
 
-                        {% endif %}
+
                         <hr/>
                         <h2>Pièces justificatives <small>(PDF, JPG ou PNG)</small></h2>
                         <div class="form-group">
