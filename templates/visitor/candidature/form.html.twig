@@ -619,6 +619,13 @@
                         </div>
                         <p>Partagez ici votre témoignage personnel sur les raisons de votre envie de participer à cette expérimentation. Il est public, et sera partagé sur le site Web #MAVOIX et sur les réseaux sociaux.</p>
 
+                        {% if candidature.state=='online' and oMe.type!='admin' %}
+
+                        <p><strong>De façon à ne pas surcharger l'équipe de validation des candidatures, nous avons décidé de bloquer l'édition de votre texte de présentation et de votre vidéo à partir du moment où votre candidature a été validée et <a href="/candidature/candidat.html?id={{ candidature.id }}" title="Candidature publique">publiée</a>. Merci de votre compréhension.</strong></p>
+
+
+                        {% else %}
+
                         <div class="form-group">
                             <label for="presentation" class="control-label">Insérez votre texte...</label>
                             <textarea class="form-control publicinfo" rows="8" id="presentation"
@@ -635,6 +642,8 @@
                             <p class="help-block form-text text-muted">
                                 Youtube, Vimeo ou Dailymotion (lien complet avec http..)</p>
                         </div>
+
+                        {% endif %}
                         <hr/>
                         <h2>Pièces justificatives <small>(PDF, JPG ou PNG)</small></h2>
                         <div class="form-group">
