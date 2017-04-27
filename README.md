@@ -9,6 +9,10 @@ Version de test : https://candidature.maudry.fr
 
 ## Notes de version
 
+### 1.7.1
+
+- mise à jour du lieu du tirage au sort
+
 ### 1.7.0
 
 - Possibilité de désactiver les nouvelles candidatures tout en préservant l'édition des candidatures existantes
