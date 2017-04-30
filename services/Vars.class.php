@@ -60,7 +60,7 @@ class Vars
         $i = new DirectoryIterator($src);
         foreach($i as $f) {
             if($f->isFile()) {
-                copy($f->getRealPath(), "$dest/" . $f->getFilename());
+                @copy($f->getRealPath(), "$dest/" . $f->getFilename());
             } else if(!$f->isDot() && $f->isDir()) {
                 self::rcopy($f->getRealPath(), "$dest/$f");
             }
