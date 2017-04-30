@@ -48,24 +48,24 @@ if( ConfigService::get("enable-script-hotfix-1-9-1") ) {
         @copy($oCandidature->getPath_pic_fit(), $filePhotoFit);
 
         //Met à jour les liens en base
-        if (file_exists($filePhoto)) {
+        if (file_exists($filePhoto) && $oCandidature->getPath_pic_fit()!="") {
             $oCandidature->setPath_pic($filePhoto);
             $aDataScript["out"] .= "<div>mise à jour " . $filePhoto . "</div>";
         }
 
-        if (file_exists($fileCertificate)) {
+        if (file_exists($fileCertificate) && $oCandidature->getPath_certificate()!="") {
             $oCandidature->setPath_certificate($fileCertificate);
             $aDataScript["out"] .= "<div>mise à jour " . $fileCertificate . "</div>";
         }
-        if (file_exists($fileCriminalRecord)) {
+        if (file_exists($fileCriminalRecord) && $oCandidature->getPath_criminal_record()!="") {
             $oCandidature->setPath_criminal_record($fileCriminalRecord);
             $aDataScript["out"] .= "<div>mise à jour " . $fileCriminalRecord . "</div>";
         }
-        if (file_exists($filedIdCard)) {
+        if (file_exists($filedIdCard) && $oCandidature->getPath_idcard()!="") {
             $oCandidature->setPath_idcard($filedIdCard);
             $aDataScript["out"] .= "<div>mise à jour " . $filedIdCard . "</div>";
         }
-        if (file_exists($fileIdCardVerso)) {
+        if (file_exists($fileIdCardVerso) && $oCandidature->getPath_idcard_verso()!="") {
             $oCandidature->setPath_idcard_verso($fileIdCardVerso);
             $aDataScript["out"] .= "<div>mise à jour " . $fileIdCardVerso . "</div>";
         }
