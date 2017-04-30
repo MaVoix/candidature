@@ -34,5 +34,38 @@ class Vars
         return $output;
     }
 
+    public static function removeDirectory($path) {
+        $files = glob($path . '/*');
+        foreach ($files as $file) {
+            is_dir($file) ? self::removeDirectory($file) : @unlink($file);
+        }
+        @rmdir($path);
+        return;
+    }
+
+    public static function rcopy($src, $dest){
+
+        // If source is not a directory stop processing
+        if(!is_dir($src)) return false;
+
+        // If the destination directory does not exist create it
+        if(!is_dir($dest)) {
+            if(!mkdir($dest)) {
+                // If the destination directory could not be created stop processing
+                return false;
+            }
+        }
+
+        // Open the source directory to read in files
+        $i = new DirectoryIterator($src);
+        foreach($i as $f) {
+            if($f->isFile()) {
+                @copy($f->getRealPath(), "$dest/" . $f->getFilename());
+            } else if(!$f->isDot() && $f->isDir()) {
+                self::rcopy($f->getRealPath(), "$dest/$f");
+            }
+        }
+    }
+
 }
 
