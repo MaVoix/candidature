@@ -1,5 +1,6 @@
 <?php
-
+//création d'une clé unique
+$sKeyEdit=sha1($_SERVER["REMOTE_ADDR"].ConfigService::get("key").rand(1000,9999).time());
 
 $aResponse = array();
 $aResponse["type"] = "message";
@@ -26,6 +27,8 @@ if(isset($_POST["id"]) && isset($_POST["key"])){
         $bEdit=true;
         $OldCandidature=new Candidature(array("id"=>$aCandidatures[0]["id"]));
         $OldCandidature->hydrateFromBDD(array('*'));
+        //recupère la clé sur la candidature sauvegardée
+        $sKeyEdit=$OldCandidature->getKey_edit();
     }else{
 
         $nError++;
@@ -259,8 +262,7 @@ if($nError==0){
         $Candidature=new Candidature();
         $Candidature->setDate_created(date("Y-m-d H:i:s"));
         //generate key for link
-        $sKey=sha1($_SERVER["REMOTE_ADDR"].ConfigService::get("key").rand(1000,9999).time());
-        $Candidature->setKey_edit($sKey);
+        $Candidature->setKey_edit($sKeyEdit);
         $Candidature->setState("offline");
     }
 
@@ -313,14 +315,20 @@ if($nError==0){
 
     //save Files
     $outputDir = "data/" . date("Y") . "/" . date("m") . "/" . date("d") . "/". time() . session_id() . "/";
+    $outputDirSecure =$outputDir.substr($sKeyEdit,0,10)."/";
     mkdir($outputDir, 0777, true);
-    $outputFilePhoto= $outputDir."original.".$sExtension;
+    mkdir($outputDirSecure, 0777, true);
 
+    $outputFilePhoto= $outputDir."original.".$sExtension;
     $outputFilePhotoFit= $outputDir."photo-fit.jpg";
-    $outputFileCerificat=$outputDir."certificate.pdf";
-    $outputFileIdcard=$outputDir."idcard.pdf";
-    $outputFileIdcardVerso=$outputDir."idcard-verso.pdf";
-    $outputFileCriminalRecord=$outputDir."extrait-judiciaire.pdf";
+
+    //copy old file
+    if($bEdit) {
+        vars::rcopy(dirname($OldCandidature->getPath_pic()),dirname($outputFilePhoto));
+    }
+
+
+
 
 
     //PIC
@@ -344,7 +352,7 @@ if($nError==0){
     if (array_key_exists("idcard", $_FILES)) {
         if(file_exists($_FILES['idcard']['tmp_name'])){
             $extension=pathinfo($_FILES['idcard']['name'], PATHINFO_EXTENSION);
-            $outputFileIdcard=$outputDir."idcard.".$extension;
+            $outputFileIdcard=$outputDirSecure."idcard.".$extension;
             if (@move_uploaded_file($_FILES['idcard']['tmp_name'], $outputFileIdcard)) {
                 if (!in_array(mime_content_type($outputFileIdcard), array_merge(array("application/pdf"),$aMime) )) {
                     $nError++;
@@ -365,7 +373,7 @@ if($nError==0){
     if (array_key_exists("idcard_verso", $_FILES)) {
         if (file_exists($_FILES['idcard_verso']['tmp_name'])) {
             $extension = pathinfo($_FILES['idcard_verso']['name'], PATHINFO_EXTENSION);
-            $outputFileIdcardVerso = $outputDir . "idcard-verso." . $extension;
+            $outputFileIdcardVerso = $outputDirSecure . "idcard-verso." . $extension;
             if (@move_uploaded_file($_FILES['idcard_verso']['tmp_name'], $outputFileIdcardVerso)) {
                 if (!in_array(mime_content_type($outputFileIdcardVerso), array_merge(array("application/pdf"), $aMime))) {
                     $nError++;
@@ -387,7 +395,7 @@ if($nError==0){
     if (array_key_exists("criminal_record", $_FILES)) {
         if(file_exists($_FILES['criminal_record']['tmp_name'])){
             $extension=pathinfo($_FILES['criminal_record']['name'], PATHINFO_EXTENSION);
-            $outputFileCriminalRecord=$outputDir."extrait-judiciaire.".$extension;
+            $outputFileCriminalRecord=$outputDirSecure."extrait-judiciaire.".$extension;
             if (@move_uploaded_file($_FILES['criminal_record']['tmp_name'],  $outputFileCriminalRecord)) {
                 if (!in_array(mime_content_type( $outputFileCriminalRecord), array_merge(array("application/pdf"),$aMime) )) {
                     $nError++;
@@ -453,7 +461,7 @@ if($nError==0){
         $aResponse["message"]["type"] = "success";
         //if edit clean old file
         if($bEdit){
-            @unlink($OldCandidature->getPath_pic());
+            vars::removeDirectory(dirname($OldCandidature->getPath_pic()));
             $aResponse["message"]["text"] = "Modification enregistrée !";
         }else{
             $aResponse["message"]["text"] = "Candidature envoyée correctement !";
