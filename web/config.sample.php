@@ -41,3 +41,4 @@ $_CONFIG["min-height"]                      = 600; // in PX
 $_CONFIG["mime-type-limit"]                 = array('image/jpeg'=>'jpg','image/png'=>'png');
 $_CONFIG["enable-captcha"]                  = true; //enable or disable captcha
 $_CONFIG["enable-captcha-editlink"]         = true; //enable or disable captcha for ask edit link form
+$_CONFIG["enable-script-hotfix-1-9-1"]     = false; //activer pour permettre l'execution du script de rattrapage du hotfix
