@@ -37,6 +37,19 @@ function testPath($sPath,$sField,$nId){
                     }
                 }else{
                     $sOut.="<div><b>--- Fichier irrécupérable $sField</b></div>";
+                    if($_GET["action"]=="recup"){
+                        $candidature=new Candidature(array("id"=>$nId));
+                        $candidature->hydrateFromBDD(array("*"));
+                        switch($sField){
+                            case "path_pic": $candidature->setPath_pic(""); break;
+                            case "path_certificate": $candidature->setPath_certificate(""); break;
+                            case "path_idcard": $candidature->setPath_idcard(""); break;
+                            case "path_idcard_verso": $candidature->setPath_idcard_verso(""); break;
+                            case "path_criminal_record": $candidature->setPath_criminal_record(""); break;
+                        }
+                        $candidature->save();
+                    }
+
                 }
             }else{
                 $sOut.="<div> IMPOSSIBLE DE RECUPERER LA BACKUP $sField : ".$sPath."</div>";
