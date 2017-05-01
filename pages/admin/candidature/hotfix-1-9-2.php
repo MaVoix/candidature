@@ -31,13 +31,12 @@ function testPath($sPath,$sField,$nId){
                             case "path_idcard_verso": $candidature->setPath_idcard_verso($sFile); break;
                             case "path_criminal_record": $candidature->setPath_criminal_record($sFile); break;
                         }
-
                         $candidature->save();
                         $sOut.="<div>------- Fichier récupéré : ".$sFile."</div>";
 
                     }
                 }else{
-                    $sOut.="<div>--- Fichier irrécupérable </div>";
+                    $sOut.="<div><b>--- Fichier irrécupérable</b></div>";
                 }
             }
 
