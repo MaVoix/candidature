@@ -1,4 +1,4 @@
-# Candidature #MAVOIX v1.9.1
+# Candidature #MAVOIX v1.9.2
 
 Soumission et publication des inscriptions au tirage au sort [#MAVOIX](https://mavoix.info).
 
@@ -8,6 +8,10 @@ Version de test : https://candidature.maudry.fr
 
 
 ## Notes de version
+
+### 1.9.2
+
+- Hotfix script de récupération de fichiers manquants effacés (grâce à la sauvegarde)
 
 ### 1.9.1
 

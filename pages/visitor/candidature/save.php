@@ -461,7 +461,7 @@ if($nError==0){
         $aResponse["message"]["type"] = "success";
         //if edit clean old file
         if($bEdit){
-            vars::removeDirectory(dirname($OldCandidature->getPath_pic()));
+           // vars::removeDirectory(dirname($OldCandidature->getPath_pic()));
             $aResponse["message"]["text"] = "Modification enregistrée !";
         }else{
             $aResponse["message"]["text"] = "Candidature envoyée correctement !";
