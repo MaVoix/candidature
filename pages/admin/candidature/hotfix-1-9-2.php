@@ -17,13 +17,15 @@ if( ConfigService::get("enable-script-hotfix-1-9-2") ) {
     $aCandidatures = $oListeCandidature->getPage();
     // parcrous les candidatures
     foreach ($aCandidatures as $aCandidature) {
-
-        $aDataScript["out"] .="<hr />CANDIDATURE :".$aCandidature["id"];
-        $aDataScript["out"] .= testPath($aCandidature["path_pic"]);
-        $aDataScript["out"] .= testPath($aCandidature["path_certificate"]);
-        $aDataScript["out"] .= testPath($aCandidature["path_idcard"]);
-        $aDataScript["out"] .= testPath($aCandidature["path_idcard_verso"]);
-        $aDataScript["out"] .= testPath($aCandidature["path_criminal_record"]);
+        $sOut="";
+        $sOut.= testPath($aCandidature["path_pic"]);
+        $sOut.= testPath($aCandidature["path_certificate"]);
+        $sOut.= testPath($aCandidature["path_idcard"]);
+        $sOut.= testPath($aCandidature["path_idcard_verso"]);
+        $sOut.= testPath($aCandidature["path_criminal_record"]);
+        if($sOut!=""){
+            $aDataScript["out"] .="<hr />CANDIDATURE :".$aCandidature["id"].$sOut;
+        }
 
     }
 }else{
