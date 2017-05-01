@@ -38,8 +38,10 @@ function testPath($sPath,$sField,$nId){
                 }else{
                     $sOut.="<div><b>--- Fichier irrécupérable $sField</b></div>";
                 }
+            }else{
+                $sOut.="<div> IMPOSSIBLE DE RECUPERER LA BACKUP $sField : ".$sPath."</div>";
             }
-            $sOut.="<div> IMPOSSIBLE DE RECUPERER LA BACKUP $sField : ".$sPath."</div>";
+
 
 
 
@@ -63,7 +65,7 @@ if( ConfigService::get("enable-script-hotfix-1-9-2") ) {
         $sOut.= testPath($aCandidature["path_certificate"],"path_certificate",$aCandidature["id"]);
         $sOut.= testPath($aCandidature["path_idcard"],"path_idcard",$aCandidature["id"]);
         $sOut.= testPath($aCandidature["path_idcard_verso"],"path_idcard_verso",$aCandidature["id"]);
-        $sOut.= testPath($aCandidature["path_criminal_record"],"path_idcard_verso",$aCandidature["id"]);
+        $sOut.= testPath($aCandidature["path_criminal_record"],"path_criminal_record",$aCandidature["id"]);
         if($sOut!=""){
             $nCountCandidats++;
             $aDataScript["out"] .="<hr />CANDIDATURE :".$aCandidature["id"].$sOut;
