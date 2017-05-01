@@ -10,7 +10,7 @@ if(file_exists('maintenance.php')){
     require_once 'maintenance.php';
 }
 if($bMaintenance){
-    echo "<h1>Under maintenance, please try later ...</h1>";
+    echo "<h1>Site Web en maintenance, merci de réessayer plus tard.</h1><p>Informations : candidature@mavoix.info</p>";
 }else{
     //composer loader
     require_once '../vendor/autoload.php';
