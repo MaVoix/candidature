@@ -32,7 +32,7 @@ function testPath($sPath,$sField,$nId){
                             case "path_criminal_record": $candidature->setPath_criminal_record($sFile); break;
                         }
 
-                        //$candidature->save();
+                        $candidature->save();
                         $sOut.="<div>------- Fichier récupéré : ".$sFile."</div>";
 
                     }
