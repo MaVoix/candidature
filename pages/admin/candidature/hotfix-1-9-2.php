@@ -10,7 +10,7 @@ function testPath($sPath,$sField,$nId){
     global $nCountFiles;
     $sOut="";
     if(!file_exists($sPath) && $sPath!=""){
-        $sOut.="<div> IMPOSSIBLE DE TROUVER : ".$sPath."</div>";
+        $sOut.="<div> IMPOSSIBLE DE TROUVER $sField : ".$sPath."</div>";
         $nCountFiles++;
         if( $_GET["action"]=="tentative-recup" ||  $_GET["action"]=="recup" ){
             $sSql="SELECT $sField FROM `candidature-backup` WHERE id='".$nId."'";
@@ -20,7 +20,7 @@ function testPath($sPath,$sField,$nId){
             if(count($data)){
                 $sFile=$data[0][$sField];
                 if(file_exists($sFile)){
-                    $sOut.="<div>--- Fichier récupérable : ".$sFile."</div>";
+                    $sOut.="<div>--- Fichier récupérable $sField : ".$sFile."</div>";
                     if($_GET["action"]=="recup"){
                         $candidature=new Candidature(array("id"=>$nId));
                         $candidature->hydrateFromBDD(array("*"));
@@ -32,13 +32,14 @@ function testPath($sPath,$sField,$nId){
                             case "path_criminal_record": $candidature->setPath_criminal_record($sFile); break;
                         }
                         $candidature->save();
-                        $sOut.="<div>------- Fichier récupéré : ".$sFile."</div>";
+                        $sOut.="<div>------- Fichier récupéré $sField : ".$sFile."</div>";
 
                     }
                 }else{
-                    $sOut.="<div><b>--- Fichier irrécupérable</b></div>";
+                    $sOut.="<div><b>--- Fichier irrécupérable $sField</b></div>";
                 }
             }
+            $sOut.="<div> IMPOSSIBLE DE RECUPERER LA BACKUP $sField : ".$sPath."</div>";
 
 
 
