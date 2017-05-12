@@ -39,6 +39,7 @@ class Candidature	{
     private $sKey_edit;
     private $nLat;
     private $nLng;
+    private $bTireAuSort;
 
 
     /**
@@ -2008,5 +2009,53 @@ class Candidature	{
             return $this->nLng;
         }
     }
+
+
+
+    /**
+     * Set le champ tire_au_sort
+     * @param bool $bTireAuSort nouvelle valeur pour le champ lng
+     */
+    public function setTireAuSort($bTireAuSort)
+    {
+        if( empty($bTireAuSort) ) $bTireAuSort=false;
+        if( is_numeric($bTireAuSort) )
+        {
+            $this->bTireAuSort = $bTireAuSort;
+            $this->aDataSet["tire_au_sort"]=1;
+        }
+    }
+
+
+
+    /**
+     * Get le champ tire_au_sort
+     * @return bool valeur du champ tire_au_sort
+     */
+    public function getTireAuSort()
+    {
+        if( !is_null($this->bTireAuSort) )
+        {
+            if( empty($this->bTireAuSort) )
+            {
+                return false;
+            }
+            else
+            {
+                return $this->bTireAuSort;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('tire_au_sort'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->bTireAuSort;
+        }
+    }
+
 
 }

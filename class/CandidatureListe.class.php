@@ -39,7 +39,8 @@ class CandidatureListe extends Liste
         "comment",
         "key_edit",
         "lat",
-        "lng"
+        "lng",
+        "tire_au_sort"
     );
 
     /**
@@ -271,7 +272,7 @@ class CandidatureListe extends Liste
             [
                 "field" => "",
                 "compare" => "sql",
-                "value" => " name LIKE '%".vars::secureInjection($sSearch)."%' 
+                "value" => " name LIKE '%".vars::secureInjection($sSearch)."%'
                             OR firstname LIKE '%".vars::secureInjection($sSearch)."%'
                             OR zipcode LIKE '%".vars::secureInjection($sSearch)."%'
                             OR tel LIKE '%".vars::secureInjection($sSearch)."%'
