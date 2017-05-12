@@ -59,7 +59,8 @@ CREATE TABLE `candidature` (
   `comment` text NOT NULL,
   `key_edit` varchar(255) NOT NULL,
   `lat` double DEFAULT NULL,
-  `lng` double DEFAULT NULL
+  `lng` double DEFAULT NULL,
+  `tire_au_sort` BOOL NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
