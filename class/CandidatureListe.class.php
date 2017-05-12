@@ -142,6 +142,19 @@ class CandidatureListe extends Liste
 
     }
 
+    public function applyRules4ListTireAuSort()
+    {
+        $this->setAllFields();
+        $this->addCriteres([
+            [
+                "field" => "tire_au_sort",
+                "compare" => "=",
+                "value" => "1"
+            ]
+        ]);
+
+    }
+
     public function applyRules4ListAdmin()
     {
         $this->setAllFields();

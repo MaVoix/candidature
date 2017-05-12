@@ -96,7 +96,6 @@
                     {% endif %}
 
 
-
                 </div>
             </div>
 
@@ -146,6 +145,14 @@
                     <div class="m-t">
                         <label class="checkbox-inline">
                             <input type="checkbox" class="jsSwitchAjax" {%  if candidature.is_criminal_record=='1'  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/criminal-record-valid.json" data-param="id={{ candidature.id }}"> Extrait judiciaire valide
+                        </label>
+                    </div>
+                    <hr />
+
+
+                    <div class="m-t">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" class="jsSwitchAjax" {%  if candidature.tire_au_sort  %}checked{% endif %} data-toggle="toggle" data-url="/candidature/tire-au-sort.json" data-param="id={{ candidature.id }}"> Tiré au sort
                         </label>
                     </div>
                     <hr />

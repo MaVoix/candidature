@@ -308,6 +308,11 @@ class Candidature	{
             $aData["lng"]=$this->getLng();
         }
 
+        if(isset($this->aDataSet["tire_au_sort"]))
+        {
+            $aData["tire_au_sort"]=$this->getTire_au_sort();
+        }
+
         if($this->getId()>0)
         {
             DbLink::getInstance($this->_sDbInstance)->update("candidature",$aData,' id="'.$this->getId().'" ');
@@ -355,6 +360,7 @@ class Candidature	{
         $this->setKey_edit(NULL);
         $this->setLat(0);
         $this->setLng(0);
+        $this->setTire_au_sort(0);
     }
 
     /**
@@ -392,7 +398,8 @@ class Candidature	{
             "comment" => $this->getComment(),
             "key_edit" => $this->getKey_edit(),
             "lat" => $this->getLat(),
-            "lng" => $this->getLng()
+            "lng" => $this->getLng(),
+            "tire_au_sort" => $this->getTire_au_sort()
         ];
 
         return json_encode($aObjet);
@@ -572,6 +579,11 @@ class Candidature	{
         if(isset($this->aDataSet["lng"]))
         {
             $aData["lng"]=$this->getLng();
+        }
+
+        if(isset($this->aDataSet["tire_au_sort"]))
+        {
+            $aData["tire_au_sort"]=$this->getTire_au_sort();
         }
 
         if($this->getId()>0)
@@ -2016,14 +2028,10 @@ class Candidature	{
      * Set le champ tire_au_sort
      * @param bool $bTireAuSort nouvelle valeur pour le champ lng
      */
-    public function setTireAuSort($bTireAuSort)
+    public function setTire_au_sort($bTireAuSort)
     {
-        if( empty($bTireAuSort) ) $bTireAuSort=false;
-        if( is_numeric($bTireAuSort) )
-        {
-            $this->bTireAuSort = $bTireAuSort;
-            $this->aDataSet["tire_au_sort"]=1;
-        }
+        $this->bTireAuSort = $bTireAuSort;
+        $this->aDataSet["tire_au_sort"]=1;
     }
 
 
@@ -2032,7 +2040,7 @@ class Candidature	{
      * Get le champ tire_au_sort
      * @return bool valeur du champ tire_au_sort
      */
-    public function getTireAuSort()
+    public function getTire_au_sort()
     {
         if( !is_null($this->bTireAuSort) )
         {
