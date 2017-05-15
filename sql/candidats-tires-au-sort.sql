@@ -84,3 +84,4 @@ UPDATE `candidature` SET tire_au_sort=1 WHERE id='556';
 UPDATE `candidature` SET tire_au_sort=1 WHERE id='560';
 UPDATE `candidature` SET tire_au_sort=1 WHERE id='563';
 UPDATE `candidature` SET tire_au_sort=1 WHERE id='566';
+UPDATE `candidature` SET tire_au_sort=1 WHERE id='571';
