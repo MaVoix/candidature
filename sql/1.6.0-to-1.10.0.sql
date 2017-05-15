@@ -1,0 +1,1 @@
+ALTER TABLE `candidature` ADD `tire_au_sort` BOOL NULL DEFAULT NULL ;

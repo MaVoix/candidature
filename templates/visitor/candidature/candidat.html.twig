@@ -146,6 +146,18 @@
                         </div>
                       </div>
                     </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="m-t">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="jsSwitchAjax"
+                                       {% if candidature.tire_au_sort=='1' %}checked{% endif %} data-toggle="toggle"
+                                       data-url="/candidature/tire-au-sort.json" data-param="id={{ candidature.id }}"> Tiré au sort
+                            </label>
+                        </div>
+                      </div>
+                    </div>
                     <hr/>
 
                     <div class="row m-t-x4">

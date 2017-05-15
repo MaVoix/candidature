@@ -39,6 +39,7 @@ class Candidature	{
     private $sKey_edit;
     private $nLat;
     private $nLng;
+    private $bTireAuSort;
 
 
     /**
@@ -307,6 +308,11 @@ class Candidature	{
             $aData["lng"]=$this->getLng();
         }
 
+        if(isset($this->aDataSet["tire_au_sort"]))
+        {
+            $aData["tire_au_sort"]=$this->getTire_au_sort();
+        }
+
         if($this->getId()>0)
         {
             DbLink::getInstance($this->_sDbInstance)->update("candidature",$aData,' id="'.$this->getId().'" ');
@@ -354,6 +360,7 @@ class Candidature	{
         $this->setKey_edit(NULL);
         $this->setLat(0);
         $this->setLng(0);
+        $this->setTire_au_sort(0);
     }
 
     /**
@@ -391,7 +398,8 @@ class Candidature	{
             "comment" => $this->getComment(),
             "key_edit" => $this->getKey_edit(),
             "lat" => $this->getLat(),
-            "lng" => $this->getLng()
+            "lng" => $this->getLng(),
+            "tire_au_sort" => $this->getTire_au_sort()
         ];
 
         return json_encode($aObjet);
@@ -571,6 +579,11 @@ class Candidature	{
         if(isset($this->aDataSet["lng"]))
         {
             $aData["lng"]=$this->getLng();
+        }
+
+        if(isset($this->aDataSet["tire_au_sort"]))
+        {
+            $aData["tire_au_sort"]=$this->getTire_au_sort();
         }
 
         if($this->getId()>0)
@@ -2008,5 +2021,49 @@ class Candidature	{
             return $this->nLng;
         }
     }
+
+
+
+    /**
+     * Set le champ tire_au_sort
+     * @param bool $bTireAuSort nouvelle valeur pour le champ lng
+     */
+    public function setTire_au_sort($bTireAuSort)
+    {
+        $this->bTireAuSort = $bTireAuSort;
+        $this->aDataSet["tire_au_sort"]=1;
+    }
+
+
+
+    /**
+     * Get le champ tire_au_sort
+     * @return bool valeur du champ tire_au_sort
+     */
+    public function getTire_au_sort()
+    {
+        if( !is_null($this->bTireAuSort) )
+        {
+            if( empty($this->bTireAuSort) )
+            {
+                return false;
+            }
+            else
+            {
+                return $this->bTireAuSort;
+            }
+        }
+        else
+        {
+            $this->hydrateFromBDD(array('tire_au_sort'));
+            $this->callHydrateFromBDDOnGet++;
+            if($this->callHydrateFromBDDOnGet>ConfigService::get("maxCallHydrateFromBDDonGet"))
+            {
+                echo "<br />WARNING : trop d'appel en base depuis l'accesseur ". __CLASS__ ."::". __FUNCTION__ ."";
+            }
+            return $this->bTireAuSort;
+        }
+    }
+
 
 }
